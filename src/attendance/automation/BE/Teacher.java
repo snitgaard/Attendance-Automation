@@ -10,15 +10,15 @@ package attendance.automation.BE;
  * @author jigzi
  */
 public class Teacher {
+    private int id;
     private String name;
     private String email;
-    private int id;
     private String course;
 
-    public Teacher(String name, String email, int id, String course) {
+    public Teacher(int id, String name, String email, String course) {
+        this.id = id;
         this.name = name;
         this.email = email;
-        this.id = id;
         this.course = course;
     }
     

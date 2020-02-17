@@ -5,10 +5,26 @@
  */
 package attendance.automation.gui.Model;
 
+import attendance.automation.BE.Student;
+import attendance.automation.BLL.MockDataBuisness;
+import java.util.List;
+
 /**
  *
  * @author jigzi
  */
 public class StudentAttendanceModel {
     
+    private MockDataBuisness mockDataBuisness;
+    
+    public List<Student> getAllData()
+    {
+        try {
+            return mockDataBuisness.getAllData();
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        return null;
+    }
 }
