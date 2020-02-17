@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.controller;
+package attendance.automation.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author CSnit
  */
-public class TeacherLogInController implements Initializable
+public class StudentAttendanceController implements Initializable
 {
 
     /**
