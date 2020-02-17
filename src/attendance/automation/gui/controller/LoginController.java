@@ -46,7 +46,6 @@ public class LoginController implements Initializable
     private AnchorPane anchorPane;
     @FXML
     private GridPane gridPane;
-    
 
     /**
      * Initializes the controller class.
@@ -66,7 +65,7 @@ public class LoginController implements Initializable
         if (username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
         {
             System.out.println("Logged in as student");
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/StudentAttendance.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             StudentAttendanceController c = fxmlLoader.getController();
             Stage stage = new Stage();
