@@ -64,23 +64,28 @@ public class LoginController implements Initializable
 
         if (username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
         {
-            System.out.println("Logged in as student");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
-
+            redirectToStage(fxmlLoader);
+        } else if (username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
+            redirectToStage(fxmlLoader);
+        } else {
+            // todo: oops.. wrong login!
+        }
+    }
+    
+    private void redirectToStage(FXMLLoader fxmlLoader) throws IOException 
+    {
             Parent root = (Parent) fxmlLoader.load();
-            StudentAttendanceController c = fxmlLoader.getController();
+            Object c = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.DECORATED);
             stage.setAlwaysOnTop(true);
-            stage.setTitle("Add Movie");
+            stage.setTitle("Attendance Automation");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.show();
-        } else if (username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
-        {
-            System.out.println("Logged in as teacher");
-        }
     }
-
 }

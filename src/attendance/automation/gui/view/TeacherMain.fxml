@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherMainController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="attendance.automation.gui.controller.TeacherMainController">
     <stylesheets>
-        <URL value="@/attendance/automation/gui/css/Style.css"/>
+        <URL value="@/attendance/automation/gui/css/Style.css" />
     </stylesheets>
+   <children>
+      <Label layoutX="104.0" layoutY="164.0" text="Velkommen lærer">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
