@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 ### Java ###
 # Compiled class file
 *.class
@@ -22,23 +21,16 @@
 *.tar.gz
 *.rar
 
-# Other files #
-*.txt
-*.mp4
-*.mpeg
-*.mpeg4
-*.jpg
-*.jpeg
-*.png
-*.gif
-
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# End of https://www.gitignore.io/api/java,netbeans
-=======
-nbproject/project.properties
-/build/
-/dist/
->>>>>>> parent of af86056... Update .gitignore
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
