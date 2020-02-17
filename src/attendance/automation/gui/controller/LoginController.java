@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.controller;
+package attendance.automation.gui.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -28,7 +28,7 @@ import javafx.stage.StageStyle;
  *
  * @author CSnit
  */
-public class StudentLogInController implements Initializable
+public class LoginController implements Initializable
 {
 
     @FXML
