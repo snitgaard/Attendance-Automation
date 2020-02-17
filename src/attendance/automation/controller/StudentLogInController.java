@@ -66,7 +66,7 @@ public class StudentLogInController implements Initializable
         if (username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
         {
             System.out.println("Logged in as student");
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/StudentAttendance.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StudentAttendance.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             StudentAttendanceController c = fxmlLoader.getController();
             Stage stage = new Stage();
