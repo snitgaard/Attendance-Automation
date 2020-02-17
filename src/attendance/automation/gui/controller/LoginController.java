@@ -66,6 +66,7 @@ public class LoginController implements Initializable
         {
             System.out.println("Logged in as student");
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
+
             Parent root = (Parent) fxmlLoader.load();
             StudentAttendanceController c = fxmlLoader.getController();
             Stage stage = new Stage();
