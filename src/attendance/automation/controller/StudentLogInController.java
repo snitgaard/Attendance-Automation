@@ -8,13 +8,20 @@ package attendance.automation.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -39,6 +46,7 @@ public class StudentLogInController implements Initializable
     private AnchorPane anchorPane;
     @FXML
     private GridPane gridPane;
+    
 
     /**
      * Initializes the controller class.
@@ -50,17 +58,26 @@ public class StudentLogInController implements Initializable
     }
 
     @FXML
-    private void handleLogInButton(ActionEvent event)
+    private void handleLogInButton(ActionEvent event) throws IOException
     {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        
-        if(username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
+
+        if (username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
         {
             System.out.println("Logged in as student");
-        }
-        
-        else if(username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View/StudentAttendance.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            StudentAttendanceController c = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.DECORATED);
+            stage.setAlwaysOnTop(true);
+            stage.setTitle("Add Movie");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else if (username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
         {
             System.out.println("Logged in as teacher");
         }
