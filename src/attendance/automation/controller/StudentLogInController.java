@@ -6,6 +6,7 @@
 package attendance.automation.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,7 +27,7 @@ public class StudentLogInController implements Initializable
     @FXML
     private JFXTextField usernameField;
     @FXML
-    private JFXTextField passwordField;
+    private JFXPasswordField passwordField;
     @FXML
     private JFXButton btnLogin;
 
@@ -54,14 +55,15 @@ public class StudentLogInController implements Initializable
         String username = usernameField.getText();
         String password = passwordField.getText();
         
-        if(username.equalsIgnoreCase(StudentUsername))
+        if(username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
         {
             System.out.println("Logged in as student");
         }
-    }
-
-    private void loginSetup()
-    {
+        
+        else if(username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
+        {
+            System.out.println("Logged in as teacher");
+        }
     }
 
 }
