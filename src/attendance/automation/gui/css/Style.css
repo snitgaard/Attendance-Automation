@@ -7,7 +7,55 @@ and open the template in the editor.
     Created on : 7. feb. 2020, 10.52.08
     Author     : mads_
 */
+*
+{
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext: #B2B2B2; 
+}
+
 .jfx-progress-bar > .bar
 {
     -fx-background-color: #40ff1f;
+}
+
+.root
+{
+    -fx-background-color: -fx-primary; 
+}
+
+.glyph-icon
+{
+    -fx-fill: -fx-primarytext; 
+}
+
+.button
+{
+    -fx-text-fill: -fx-primarytext; 
+}
+
+.login-button
+{
+    -fx-border-color: -fx-secondary; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px; 
+}
+
+.login-button:hover
+{
+    -fx-border-color: -fx-secondary; 
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary; 
+}
+
+.label
+{
+    -fx-text-fill: -fx-primarytext; 
+}
+
+.text-field
+{
+    -fx-text-fill: -fx-primarytext;
+    -fx-font-size: 13pt;
+    -jfx-focus-color: -fx-secondary;
 }
