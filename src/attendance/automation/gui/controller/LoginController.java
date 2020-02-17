@@ -83,7 +83,7 @@ public class LoginController implements Initializable
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initStyle(StageStyle.DECORATED);
             stage.setAlwaysOnTop(true);
-            stage.setTitle("Attendance Automation");
+            stage.setTitle("Login to EASV Student Registration");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.show();
