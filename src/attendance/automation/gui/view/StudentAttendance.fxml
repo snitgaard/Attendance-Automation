@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="477.0" stylesheets="@css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="477.0" stylesheets="@css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentAttendanceController">
    <top>
       <SplitPane dividerPositions="0.14095371669004209" prefHeight="67.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <items>
@@ -37,9 +38,6 @@
         </items>
       </SplitPane>
    </top>
-   <right>
-      <Label text="Overview" textFill="#203bee" underline="true" BorderPane.alignment="TOP_RIGHT" />
-   </right>
    <center>
       <AnchorPane prefHeight="253.0" prefWidth="451.0" styleClass="progress-bar" BorderPane.alignment="CENTER">
          <children>
@@ -49,6 +47,7 @@
             <JFXToggleButton layoutX="252.0" layoutY="76.0" text="SCO: 12:00 - 14:30" />
             <JFXProgressBar layoutX="264.0" layoutY="134.0" prefHeight="21.0" prefWidth="115.0" progress="0.9" secondaryProgress="1.0" styleClass="jfx-progress-bar" stylesheets="@css/Style.css" />
             <Label layoutX="384.0" layoutY="136.0" text="90%" />
+            <Button layoutX="407.0" layoutY="4.0" mnemonicParsing="false" onAction="#handleOverview" text="Overview" />
          </children>
       </AnchorPane>
    </center>

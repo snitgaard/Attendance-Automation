@@ -5,9 +5,18 @@
  */
 package attendance.automation.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -24,6 +33,23 @@ public class StudentAttendanceController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
-    
+    }
+
+    @FXML
+    private void handleOverview(ActionEvent event) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
+
+        Parent root = (Parent) fxmlLoader.load();
+        StudentAttendanceOverviewController c = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setAlwaysOnTop(true);
+        stage.setTitle("Student Attendance Overview");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 }
