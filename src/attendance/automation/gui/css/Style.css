@@ -16,7 +16,7 @@ and open the template in the editor.
 
 .jfx-progress-bar > .bar
 {
-    -fx-background-color: #40ff1f;
+    -fx-background-color: -fx-secondary;
 }
 
 .root
@@ -59,3 +59,17 @@ and open the template in the editor.
     -fx-font-size: 13pt;
     -jfx-focus-color: -fx-secondary;
 }
+
+.jfx-toggle-button
+{
+    -fx-text-fill: -fx-primarytext;
+    -jfx-toggle-line-color: -fx-secondary; 
+    -jfx-toggle-color: -fx-primarytext;
+}
+
+.jfx-date-picker
+{
+    -fx-text-fill: -fx-primary;
+}
+
+
