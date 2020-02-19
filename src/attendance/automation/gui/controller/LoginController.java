@@ -18,6 +18,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -71,7 +76,10 @@ public class LoginController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
         } else {
-            // todo: oops.. wrong login!
+            Border warning = new Border(new BorderStroke(javafx.scene.paint.Color.RED,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2)));
+            usernameField.setBorder(warning);
+            passwordField.setBorder(warning);
         }
     }
     
