@@ -8,6 +8,7 @@ package attendance.automation.gui.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.awt.event.WindowStateListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,8 +16,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -50,7 +54,7 @@ public class LoginController implements Initializable
     @FXML
     private AnchorPane anchorPane;
     @FXML
-    private GridPane gridPane;
+    private ImageView btn_close;
 
     /**
      * Initializes the controller class.
@@ -95,5 +99,16 @@ public class LoginController implements Initializable
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.show();
+    }
+
+    @FXML
+    private void close_app(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void minimize_app(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
 }
