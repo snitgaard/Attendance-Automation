@@ -9,8 +9,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -21,7 +28,7 @@ public class StudentAttendanceOverviewController implements Initializable
 {
 
     @FXML
-    private LineChart<?, ?> attendanceChart;
+    private LineChart<String, Number> attendanceChart;
     @FXML
     private Label studentName;
     @FXML
@@ -35,7 +42,28 @@ public class StudentAttendanceOverviewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
-    
+        buildLineChart();
+    }
+
+    private void buildLineChart()
+    {
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Days");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Attendance");
+
+        XYChart.Series data = new XYChart.Series();
+        data.setName("Attendance Chart");
+
+        //Provide data
+        data.getData().add(new XYChart.Data("Monday", 10));
+        data.getData().add(new XYChart.Data("Tuesday", 67));
+        data.getData().add(new XYChart.Data("Wednesday", 75));
+        data.getData().add(new XYChart.Data("Thursday", 100));
+        data.getData().add(new XYChart.Data("Friday", 36));
+
+        attendanceChart.getData().add(data);
+    }
+
 }
