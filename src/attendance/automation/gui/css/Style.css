@@ -67,11 +67,6 @@ and open the template in the editor.
     -jfx-toggle-color: -fx-primarytext;
 }
 
-.jfx-date-picker
-{
-    -fx-text-fill: -fx-primary;
-}
-
 .jfx-date-picker > .text-field  
 {
     -fx-alignment: center;
