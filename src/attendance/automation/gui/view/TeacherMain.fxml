@@ -11,6 +11,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherMainController">
@@ -299,5 +306,28 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Pane prefHeight="47.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="571.0" layoutY="16.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@../../../../images/close.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="541.0" layoutY="18.0" onMouseClicked="#minimize_app" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../images/minus-symbol.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <ColorAdjust brightness="0.21" />
+               </effect>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
