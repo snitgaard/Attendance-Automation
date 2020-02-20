@@ -5,9 +5,14 @@
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="477.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentAttendanceController">
@@ -25,11 +30,34 @@
             <Label layoutX="394.0" layoutY="193.0" text="90%" />
             <JFXButton layoutX="406.0" layoutY="65.0" onAction="#handleOverview" styleClass="login-button" text="Overview" />
             <FontAwesomeIconView glyphName="USER" layoutX="101.0" layoutY="207.0" size="150" />
-            <Label alignment="CENTER" layoutX="-5.0" layoutY="6.0" prefHeight="47.0" prefWidth="477.0" text="EASV Student Attendance">
+            <Label alignment="CENTER" layoutY="18.0" prefHeight="47.0" prefWidth="477.0" text="EASV Student Attendance">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
+            <Pane prefHeight="27.0" prefWidth="477.0">
+               <children>
+                  <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="454.0" layoutY="7.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <image>
+                        <Image url="@../../../../images/close.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="431.0" layoutY="7.0" onMouseClicked="#minimize_app" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../images/minus-symbol.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <ColorAdjust brightness="0.21" />
+                     </effect>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
    </center>
