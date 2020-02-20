@@ -5,13 +5,19 @@
  */
 package attendance.automation.gui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +29,8 @@ public class TeacherMainController implements Initializable {
 
     @FXML
     private ImageView btn_close;
+    @FXML
+    private AnchorPane ancMain;
 
     /**
      * Initializes the controller class.
@@ -43,4 +51,23 @@ public class TeacherMainController implements Initializable {
         stage.setIconified(true);
     }
     
+    @FXML
+    private void showTeacherCourse() throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        Scene currentScene = ancMain.getScene(); 
+        currentScene.setRoot(root);     
+    }
+
+    @FXML
+    private void showTeacherClass() throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        Scene currentScene = ancMain.getScene(); 
+        currentScene.setRoot(root);     
+    }
 }
