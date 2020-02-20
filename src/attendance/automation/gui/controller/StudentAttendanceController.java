@@ -50,6 +50,7 @@ public class StudentAttendanceController implements Initializable
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
+        
     }
 
 }

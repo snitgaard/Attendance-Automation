@@ -66,26 +66,32 @@ public class LoginController implements Initializable
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.close();
+
         } else if (username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
-        } else {
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.close();
+        } else
+        {
             // todo: oops.. wrong login!
         }
     }
-    
-    private void redirectToStage(FXMLLoader fxmlLoader) throws IOException 
+
+    private void redirectToStage(FXMLLoader fxmlLoader) throws IOException
     {
-            Parent root = (Parent) fxmlLoader.load();
-            Object c = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.DECORATED);
-            stage.setAlwaysOnTop(true);
-            stage.setTitle("Login to EASV Student Registration");
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.show();
+        Parent root = (Parent) fxmlLoader.load();
+        Object c = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.DECORATED);
+        stage.setAlwaysOnTop(true);
+        stage.setTitle("Login to EASV Student Registration");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }
