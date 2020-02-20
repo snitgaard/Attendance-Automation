@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -16,6 +17,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -35,6 +38,8 @@ public class StudentAttendanceOverviewController implements Initializable
     private Label studentEducation;
     @FXML
     private Label studentLowestDay;
+    @FXML
+    private ImageView btn_close;
 
     /**
      * Initializes the controller class.
@@ -64,6 +69,17 @@ public class StudentAttendanceOverviewController implements Initializable
         data.getData().add(new XYChart.Data("Friday", 36));
 
         attendanceChart.getData().add(data);
+    }
+
+    @FXML
+    private void close_app(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
+    private void minimize_app(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
     }
 
 }
