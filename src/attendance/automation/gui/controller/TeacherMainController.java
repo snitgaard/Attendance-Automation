@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,6 +39,8 @@ public class TeacherMainController implements Initializable
     private ImageView btn_close;
     @FXML
     private AnchorPane ancMain;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     StudentAttendanceModel model = new StudentAttendanceModel();
     
@@ -69,8 +72,36 @@ public class TeacherMainController implements Initializable
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
         Parent root = (Parent) fxmlLoader.load();
 
-        Scene currentScene = ancMain.getScene(); 
-        currentScene.setRoot(root);     
+        Stage stage1 = (Stage) ancMain.getScene().getWindow();
+            stage1.close();
+            Object c = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setAlwaysOnTop(true);
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });
     }
 
     @FXML
@@ -79,7 +110,35 @@ public class TeacherMainController implements Initializable
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
         Parent root = (Parent) fxmlLoader.load();
 
-        Scene currentScene = ancMain.getScene(); 
-        currentScene.setRoot(root);     
+        Stage stage1 = (Stage) ancMain.getScene().getWindow();
+            stage1.close();
+            Object c = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initStyle(StageStyle.TRANSPARENT);
+            stage.setAlwaysOnTop(true);
+            stage.setResizable(false);
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+        root.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent event)
+            {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+            }
+        });   
     }
 }
