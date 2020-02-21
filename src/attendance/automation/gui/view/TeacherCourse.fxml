@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherEventAttendanceController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherCourseController">
     <stylesheets>
         <URL value="@/attendance/automation/gui/css/Style.css" />
     </stylesheets>
@@ -90,7 +90,7 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
+                              <Label fx:id="nameFour" text="Firstname Lastname" />
                               <Label text="50% (5)">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
@@ -120,7 +120,7 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
+                              <Label fx:id="nameTwo" text="Firstname Lastname" />
                               <Label text="28% (2)">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
@@ -135,7 +135,7 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
+                              <Label fx:id="nameOne" text="Firstname Lastname" />
                               <Label text="0% (0)">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
@@ -150,7 +150,7 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
+                              <Label fx:id="nameThree" text="Firstname Lastname" />
                               <Label text="42% (3)">
                                  <font>
                                     <Font name="System Bold" size="14.0" />

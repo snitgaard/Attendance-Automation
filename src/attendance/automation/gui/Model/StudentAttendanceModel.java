@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class StudentAttendanceModel {
     
-    private MockDataBuisness mockDataBuisness;
+    private MockDataBuisness mockDataBuisness = new MockDataBuisness();
     
     public List<Student> getAllData()
     {

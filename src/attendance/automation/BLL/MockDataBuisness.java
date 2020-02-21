@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class MockDataBuisness {
     
-    private MockData mockData;
+    private MockData mockData = new MockData();
 
     public List<Student> getAllData()
     {
