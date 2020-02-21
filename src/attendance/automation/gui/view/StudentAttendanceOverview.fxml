@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXProgressBar?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
@@ -16,74 +15,78 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="553.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.StudentAttendanceOverviewController">
-   <children>
-      <LineChart fx:id="attendanceChart" layoutY="243.0" legendVisible="false" prefHeight="307.0" prefWidth="420.0" stylesheets="@../css/Style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-        <xAxis>
-          <CategoryAxis label="Days" side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis label="Attendance" minorTickVisible="false" side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <Text fill="#b2b2b2" layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student name:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#b2b2b2" layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Education:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#b2b2b2" layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Label fx:id="studentName" layoutX="210.0" layoutY="92.0" text="Student Name">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="studentEducation" layoutX="210.0" layoutY="136.0" text="Computer Science">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="studentLowestDay" layoutX="331.0" layoutY="175.0" text="90%">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="39.0" layoutY="35.0" prefHeight="47.0" prefWidth="477.0" text="EASV Student Overview">
-         <font>
-            <Font size="32.0" />
-         </font>
-      </Label>
-      <JFXProgressBar fx:id="progressBar" layoutX="210.0" layoutY="178.0" prefHeight="21.0" prefWidth="115.0" progress="0.9" secondaryProgress="1.0" styleClass="jfx-progress-bar" stylesheets="@css/Style.css" />
-      <FontAwesomeIconView glyphName="USER" layoutX="388.0" layoutY="194.0" size="125" wrappingWidth="94.9833984375" />
-      <Pane layoutX="1.0" prefHeight="27.0" prefWidth="553.0">
-         <children>
-            <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="525.0" layoutY="5.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <image>
-                  <Image url="@../../../../images/close.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="495.0" layoutY="7.0" onMouseClicked="#minimize_app" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../images/minus-symbol.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <ColorAdjust brightness="0.21" />
-               </effect>
-            </ImageView>
-         </children>
-      </Pane>
-   </children>
+    <children>
+        <LineChart fx:id="attendanceChart" layoutY="243.0" legendVisible="false" prefHeight="307.0" prefWidth="420.0" stylesheets="@../css/Style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <xAxis>
+                <CategoryAxis label="Days" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Attendance" minorTickVisible="false" side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <Text fill="#b2b2b2" layoutX="14.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student name:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fill="#b2b2b2" layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Education:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Text fill="#b2b2b2" layoutX="14.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attendance:">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Text>
+        <Label fx:id="studentName" layoutX="210.0" layoutY="92.0" text="Student Name">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="studentEducation" layoutX="210.0" layoutY="136.0" text="Computer Science">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label fx:id="studentAttendancePercentage" layoutX="331.0" layoutY="175.0" text="90%">
+            <font>
+                <Font size="18.0" />
+            </font>
+        </Label>
+        <Label alignment="CENTER" layoutX="39.0" layoutY="35.0" prefHeight="47.0" prefWidth="477.0" text="EASV Student Overview">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Label>
+        <JFXProgressBar fx:id="progressBar" layoutX="210.0" layoutY="178.0" prefHeight="21.0" prefWidth="115.0" progress="0.9" secondaryProgress="1.0" styleClass="jfx-progress-bar" stylesheets="@css/Style.css" />
+        <ImageView fitHeight="111.0" fitWidth="115.0" layoutX="393.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/student_profile.png" />
+            </image>
+        </ImageView>
+        <Pane layoutX="1.0" prefHeight="27.0" prefWidth="553.0">
+            <children>
+                <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="525.0" layoutY="5.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <image>
+                        <Image url="@../../../../images/close.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="18.0" fitWidth="15.0" layoutX="495.0" layoutY="7.0" onMouseClicked="#minimize_app" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../images/minus-symbol.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <effect>
+                        <ColorAdjust brightness="0.21" />
+                    </effect>
+                </ImageView>
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

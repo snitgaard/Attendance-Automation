@@ -122,7 +122,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="nameFour" text="Firstname Lastname" />
-                              <Button fx:id="StudentFour" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="196.0" layoutY="10.0" styleClass="personbox" GridPane.rowIndex="1">
@@ -144,7 +144,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="nameTwo" text="Firstname Lastname" />
-                              <Button fx:id="StudentTwo" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="381.0" layoutY="10.0" styleClass="personbox">
@@ -155,7 +155,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="nameOne" text="Firstname Lastname" />
-                              <Button fx:id="studentOne" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" styleClass="personbox" GridPane.columnIndex="2">
@@ -166,7 +166,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="nameThree" text="Firstname Lastname" />
-                              <Button fx:id="StudentThree" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                      </children>

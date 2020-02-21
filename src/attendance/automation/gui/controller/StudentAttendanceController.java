@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import com.jfoenix.controls.JFXProgressBar;
+import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -38,6 +40,10 @@ public class StudentAttendanceController implements Initializable
     private double yOffset = 0;
     @FXML
     private JFXProgressBar progressBar;
+    @FXML
+    private Label studentAttendancePercentage;
+    @FXML
+    private JFXToggleButton attendanceButton;
     
     /**
      * Initializes the controller class.
@@ -80,7 +86,6 @@ public class StudentAttendanceController implements Initializable
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-        
     }
 
     @FXML
@@ -98,6 +103,8 @@ public class StudentAttendanceController implements Initializable
     private void submitAttendance(ActionEvent event)
     {
         progressBar.setProgress(0.92);
+        studentAttendancePercentage.setText(92 + "%" + "");
+        attendanceButton.setDisable(true);
     }
 
 }

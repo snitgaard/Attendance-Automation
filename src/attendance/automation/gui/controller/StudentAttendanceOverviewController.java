@@ -38,18 +38,22 @@ public class StudentAttendanceOverviewController implements Initializable
     @FXML
     private Label studentEducation;
     @FXML
-    private Label studentLowestDay;
-    @FXML
     private ImageView btn_close;
     @FXML
     private JFXProgressBar progressBar;
+    @FXML
+    private Label studentAttendancePercentage;
 
+    StudentAttendanceController studentAtten = new StudentAttendanceController();
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        studentName.setText("Kasper Lillegaard");
+        studentAttendancePercentage.setText(92 + "%" + "");
         buildLineChart();
     }
 

@@ -38,19 +38,11 @@ public class TeacherClassController implements Initializable
     @FXML
     private Label nameFour;
     @FXML
-    private Button StudentFour;
-    @FXML
     private Label nameTwo;
-    @FXML
-    private Button StudentTwo;
     @FXML
     private Label nameOne;
     @FXML
-    private Button studentOne;
-    @FXML
     private Label nameThree;
-    @FXML
-    private Button StudentThree;
 
     StudentAttendanceModel model = new StudentAttendanceModel();
 
