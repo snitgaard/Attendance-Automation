@@ -85,10 +85,8 @@ public class TeacherClassController implements Initializable
             Object c = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);
-//            stage.initStyle(StageStyle.DECORATED);
             stage.initStyle(StageStyle.TRANSPARENT);
             stage.setAlwaysOnTop(true);
-            stage.setTitle("Login to EASV Student Registration");
             stage.setResizable(false);
             stage.setScene(new Scene(root));
             stage.show();
