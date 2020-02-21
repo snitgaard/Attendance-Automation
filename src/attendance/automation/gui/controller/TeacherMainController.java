@@ -20,6 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -35,6 +38,7 @@ public class TeacherMainController implements Initializable
     private ImageView btn_close;
     @FXML
     private Button viewAttendance;
+    private AnchorPane ancMain;
 
     StudentAttendanceModel model = new StudentAttendanceModel();
     
@@ -79,4 +83,24 @@ public class TeacherMainController implements Initializable
         System.out.println(model.getAllData().toString());
     }
 
+    
+    @FXML
+    private void showTeacherCourse() throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        Scene currentScene = ancMain.getScene(); 
+        currentScene.setRoot(root);     
+    }
+
+    @FXML
+    private void showTeacherClass() throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+
+        Scene currentScene = ancMain.getScene(); 
+        currentScene.setRoot(root);     
+    }
 }

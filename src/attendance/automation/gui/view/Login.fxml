@@ -16,16 +16,16 @@
 <AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="376.0" prefWidth="402.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.LoginController">
    <children>
       <JFXTextField fx:id="usernameField" layoutX="79.0" layoutY="155.0" prefHeight="25.0" prefWidth="293.0" promptText="Enter username" styleClass="text-field" />
-      <JFXPasswordField fx:id="passwordField" layoutX="79.0" layoutY="236.0" prefHeight="25.0" prefWidth="293.0" promptText="Enter password" />
+      <JFXPasswordField fx:id="passwordField" layoutX="79.0" layoutY="220.0" prefHeight="25.0" prefWidth="293.0" promptText="Enter password" />
       <Label layoutX="130.0" layoutY="43.0" text="Welcome back">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnLogin" layoutX="139.0" layoutY="312.0" onAction="#handleLogInButton" prefHeight="50.0" prefWidth="124.0" styleClass="login-button" text="Login" />
+      <JFXButton fx:id="btnLogin" layoutX="139.0" layoutY="305.0" onAction="#handleLogInButton" prefHeight="40.0" prefWidth="124.0" styleClass="login-button" text="Login" />
       <Label layoutX="139.0" layoutY="90.0" text="Login to submit attendance" />
       <FontAwesomeIconView glyphName="USER" layoutX="51.0" layoutY="185.0" size="25" />
-      <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="269.0" size="25" />
+      <FontAwesomeIconView glyphName="LOCK" layoutX="51.0" layoutY="256.0" size="25" />
       <Pane layoutX="-14.0" prefHeight="47.0" prefWidth="410.0">
          <children>
             <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="389.0" layoutY="7.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
