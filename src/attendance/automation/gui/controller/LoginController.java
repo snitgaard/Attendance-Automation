@@ -95,7 +95,7 @@ public class LoginController implements Initializable
         }
     }
 
-    public void redirectToStage(FXMLLoader fxmlLoader) throws IOException
+    private void redirectToStage(FXMLLoader fxmlLoader) throws IOException
     {
             Parent root = (Parent) fxmlLoader.load();
             Object c = fxmlLoader.getController();
