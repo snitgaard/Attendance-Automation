@@ -60,7 +60,7 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <JFXProgressBar layoutX="210.0" layoutY="178.0" prefHeight="21.0" prefWidth="115.0" progress="0.9" secondaryProgress="1.0" styleClass="jfx-progress-bar" stylesheets="@css/Style.css" />
+      <JFXProgressBar fx:id="progressBar" layoutX="210.0" layoutY="178.0" prefHeight="21.0" prefWidth="115.0" progress="0.9" secondaryProgress="1.0" styleClass="jfx-progress-bar" stylesheets="@css/Style.css" />
       <FontAwesomeIconView glyphName="USER" layoutX="388.0" layoutY="194.0" size="125" wrappingWidth="94.9833984375" />
       <Pane layoutX="1.0" prefHeight="27.0" prefWidth="553.0">
          <children>

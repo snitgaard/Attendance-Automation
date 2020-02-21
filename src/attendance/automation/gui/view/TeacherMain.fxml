@@ -76,7 +76,6 @@
                               <Insets left="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="viewAttendance" mnemonicParsing="false" onAction="#handleAttendance" prefHeight="30.0" text="View attendance" />
                         <Button mnemonicParsing="false" onAction="#showTeacherCourse" prefHeight="30.0" text="View attendance" />
                      </children>
                      <padding>

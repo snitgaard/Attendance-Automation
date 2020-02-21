@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import com.jfoenix.controls.JFXProgressBar;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -40,6 +41,8 @@ public class StudentAttendanceOverviewController implements Initializable
     private Label studentLowestDay;
     @FXML
     private ImageView btn_close;
+    @FXML
+    private JFXProgressBar progressBar;
 
     /**
      * Initializes the controller class.

@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import com.jfoenix.controls.JFXProgressBar;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,6 +36,8 @@ public class StudentAttendanceController implements Initializable
 
     private double xOffset = 0;
     private double yOffset = 0;
+    @FXML
+    private JFXProgressBar progressBar;
     
     /**
      * Initializes the controller class.
@@ -42,7 +45,6 @@ public class StudentAttendanceController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
     }
 
     @FXML
@@ -90,6 +92,12 @@ public class StudentAttendanceController implements Initializable
     private void minimize_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
+    }
+
+    @FXML
+    private void submitAttendance(ActionEvent event)
+    {
+        progressBar.setProgress(0.92);
     }
 
 }

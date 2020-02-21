@@ -37,7 +37,6 @@ public class TeacherMainController implements Initializable
     @FXML
     private ImageView btn_close;
     @FXML
-    private Button viewAttendance;
     private AnchorPane ancMain;
 
     StudentAttendanceModel model = new StudentAttendanceModel();
@@ -63,26 +62,6 @@ public class TeacherMainController implements Initializable
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-
-    @FXML
-    private void handleAttendance(ActionEvent event) throws IOException
-    {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
-
-        Parent root = (Parent) fxmlLoader.load();
-        Object c = fxmlLoader.getController();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-//            stage.initStyle(StageStyle.DECORATED);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setAlwaysOnTop(true);
-        stage.setTitle("Login to EASV Student Registration");
-        stage.setResizable(false);
-        stage.setScene(new Scene(root));
-        stage.show();
-        System.out.println(model.getAllData().toString());
-    }
-
     
     @FXML
     private void showTeacherCourse() throws IOException

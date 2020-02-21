@@ -47,7 +47,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#showTeacherMain" prefHeight="45.0" prefWidth="62.0" text="Home" styleClass="homebutton"/>
+      <Button layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#showTeacherMain" prefHeight="45.0" prefWidth="62.0" styleClass="homebutton" text="Home" />
       <Label layoutX="92.0" layoutY="17.0" prefHeight="45.0" text="Class attendance">
          <font>
             <Font size="30.0" />
@@ -121,8 +121,8 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
-                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Label fx:id="nameFour" text="Firstname Lastname" />
+                              <Button fx:id="StudentFour" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="196.0" layoutY="10.0" styleClass="personbox" GridPane.rowIndex="1">
@@ -143,8 +143,8 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
-                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Label fx:id="nameTwo" text="Firstname Lastname" />
+                              <Button fx:id="StudentTwo" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" layoutX="381.0" layoutY="10.0" styleClass="personbox">
@@ -154,8 +154,8 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
-                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Label fx:id="nameOne" text="Firstname Lastname" />
+                              <Button fx:id="studentOne" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" styleClass="personbox" GridPane.columnIndex="2">
@@ -165,8 +165,8 @@
                                     <Image url="@../images/student_profile.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Firstname Lastname" />
-                              <Button mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
+                              <Label fx:id="nameThree" text="Firstname Lastname" />
+                              <Button fx:id="StudentThree" mnemonicParsing="false" onAction="#showTeacherStudent" text="View student" />
                            </children>
                         </VBox>
                      </children>

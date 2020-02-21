@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.gui.Model.StudentAttendanceModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -58,12 +60,6 @@ public class TeacherCourseController implements Initializable
         nameThree.setText(model.getAllData().get(2).toString());
         nameFour.setText(model.getAllData().get(3).toString());
     }
-
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-
-
 
     @FXML
     private void showTeacherMain() throws IOException
