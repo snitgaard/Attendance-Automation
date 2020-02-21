@@ -7,14 +7,11 @@ package attendance.automation.BLL;
 
 import attendance.automation.BE.Student;
 import attendance.automation.DAL.MockData;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author jigzi
+ * @author The Best Group
  */
 public class MockDataBuisness {
     

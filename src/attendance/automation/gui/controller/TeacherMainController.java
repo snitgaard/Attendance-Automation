@@ -9,7 +9,6 @@ import attendance.automation.gui.Model.StudentAttendanceModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +26,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author Troels Klein
+ * @author The Best Group
  */
 public class TeacherMainController implements Initializable
 {

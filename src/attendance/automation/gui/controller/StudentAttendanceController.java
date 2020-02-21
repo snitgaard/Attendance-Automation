@@ -28,7 +28,7 @@ import javafx.stage.StageStyle;
 /**
  * FXML Controller class
  *
- * @author CSnit
+ * @author The Best Group
  */
 public class StudentAttendanceController implements Initializable
 {

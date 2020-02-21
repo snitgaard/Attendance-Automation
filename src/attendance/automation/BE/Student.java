@@ -7,7 +7,7 @@ package attendance.automation.BE;
 
 /**
  *
- * @author jigzi
+ * @author The Best Group
  */
 public class Student {
     

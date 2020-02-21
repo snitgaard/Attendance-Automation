@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author jigzi
+ * @author The Best Group
  */
 public class StudentAttendanceModel {
     
