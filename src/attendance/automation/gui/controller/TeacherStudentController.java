@@ -14,6 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,13 +34,15 @@ public class TeacherStudentController implements Initializable {
     private AnchorPane ancMain;
     @FXML
     private ImageView btn_close;
+    @FXML
+    private LineChart<String, Number> attendanceChart;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        buildBarChart();
     }    
 
     @FXML
@@ -58,5 +64,28 @@ public class TeacherStudentController implements Initializable {
 
         Scene currentScene = ancMain.getScene(); 
         currentScene.setRoot(root);     
+    }
+    
+    private void buildBarChart()
+    {
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Days");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Attendance");
+
+        XYChart.Series data = new XYChart.Series();
+        data.setName("Attendance Chart");
+
+        //Provide data
+        data.getData().add(new XYChart.Data("Monday", 10));
+        data.getData().add(new XYChart.Data("Tuesday", 67));
+        data.getData().add(new XYChart.Data("Wednesday", 75));
+        data.getData().add(new XYChart.Data("Thursday", 100));
+        data.getData().add(new XYChart.Data("Friday", 36));
+        
+        attendanceChart.setMinHeight(300);
+
+        attendanceChart.getData().add(data);
     }
 }

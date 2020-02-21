@@ -5,12 +5,11 @@ and open the template in the editor.
 */
 /* 
     Created on : 7. feb. 2020, 10.52.08
-    Author     : mads_
 */
 *
 {
     -fx-primary : #2A2E37;
-    -fx-secondary : #FFFF8D;
+    -fx-secondary : #D1FF8D; /* #FFFF8D */
     -fx-primarytext: #B2B2B2; 
 }
 
@@ -87,4 +86,90 @@ and open the template in the editor.
     -fx-tick-label-fill: -fx-primarytext;
 }
 
+/*
+Teacher specific css
+*/
 
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane
+{
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .button, .homebutton {
+    -fx-background-color: #525b6e;
+    -fx-border-color: -fx-secondary; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px; 
+}
+
+.scroll-pane .button:hover, .homebutton:hover
+{
+    -fx-border-color: -fx-secondary; 
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary; 
+}
+
+.box, personbox {
+    -fx-background-color: #383e4a;  
+    -fx-border-color: #555;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.personbox {
+    -fx-padding: 10px;
+}
+
+.personbox .label {
+    -fx-padding: 0 0 5px 0;
+}
+
+.personbox .button {
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.progress-bar > .bar {
+    -fx-accent: -fx-secondary;
+    -fx-background-color: linear-gradient(
+        from 0px .75em to .75em 0px,
+        repeat,
+        -fx-accent 0%,
+        -fx-accent 49%,
+        derive(-fx-accent, 30%) 50%,
+        derive(-fx-accent, 30%) 99%
+        );
+}
+
+.progress-bar {
+    -fx-background-color: #555;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #B2B2B2;
+    -fx-background-radius: 5em;
+}
