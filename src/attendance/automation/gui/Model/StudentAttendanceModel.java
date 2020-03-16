@@ -6,6 +6,7 @@
 package attendance.automation.gui.Model;
 
 import attendance.automation.BE.Student;
+import attendance.automation.BLL.StudentManager;
 import java.util.List;
 
 /**
@@ -14,14 +15,16 @@ import java.util.List;
  */
 public class StudentAttendanceModel {
     
+    private StudentManager StudentManager = new StudentManager();
+    
     public List<Student> getAllData()
     {
         try {
+            return StudentManager.getAllData();
         } catch (Exception e)
         {
             System.out.println(e);
             return null;
         }
-        return null;
     }
 }
