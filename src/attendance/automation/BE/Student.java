@@ -5,10 +5,19 @@
  */
 package attendance.automation.BE;
 
+import attendance.automation.BE.Person;
+
 /**
  *
  * @author jigzi
  */
-public class Student {
+public class Student extends Person {
+
+    private Person person = new Person() {};
     
+    public Student(person.ge) {
+    }
+
+   
+
 }

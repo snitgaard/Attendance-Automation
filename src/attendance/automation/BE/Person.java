@@ -9,7 +9,7 @@ package attendance.automation.BE;
  *
  * @author jigzi
  */
-public abstract class Person {
+public class Person {
     private int id;
     private String name;
     private String email;
