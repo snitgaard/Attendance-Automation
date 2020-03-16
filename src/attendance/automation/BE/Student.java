@@ -16,7 +16,7 @@ public class Student {
     private String email;
     private String course;
 
-     public Student(String name)
+     public Student(int id, String name)
      {
         this.id = id;
         this.name = name;
