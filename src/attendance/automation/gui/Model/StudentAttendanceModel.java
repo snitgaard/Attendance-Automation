@@ -6,7 +6,6 @@
 package attendance.automation.gui.Model;
 
 import attendance.automation.BE.Student;
-import attendance.automation.BLL.MockDataBuisness;
 import java.util.List;
 
 /**
@@ -15,17 +14,14 @@ import java.util.List;
  */
 public class StudentAttendanceModel {
     
-    private MockDataBuisness mockDataBuisness = new MockDataBuisness();
-    
     public List<Student> getAllData()
     {
         try {
-            return mockDataBuisness.getAllData();
         } catch (Exception e)
         {
             System.out.println(e);
             return null;
         }
-        
+        return null;
     }
 }
