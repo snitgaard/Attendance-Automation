@@ -12,12 +12,9 @@ import attendance.automation.BE.Person;
  * @author jigzi
  */
 public class Student extends Person {
-
-    private Person person = new Person() {};
     
-    public Student(person.ge) {
+    public Student(int id, String name) {
+        this.setName(name);
+        this.setId(id);
     }
-
-   
-
 }

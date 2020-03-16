@@ -9,7 +9,11 @@ package attendance.automation.BE;
  *
  * @author The Best Group
  */
-public class Teacher extends Person{
-    
-    
+public class Teacher extends Person {
+
+    public Teacher(int id, String name) {
+        this.setId(id);
+        this.setName(name);
+    }
+
 }

@@ -5,6 +5,7 @@
  */
 package attendance.automation.DAL;
 
+import attendance.automation.BE.Person;
 import attendance.automation.BE.Student;
 import java.io.IOException;
 import java.sql.Connection;
