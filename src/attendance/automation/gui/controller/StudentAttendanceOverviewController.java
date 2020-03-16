@@ -77,7 +77,8 @@ public class StudentAttendanceOverviewController implements Initializable
 
     @FXML
     private void close_app(MouseEvent event) {
-        System.exit(0);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
     @FXML
