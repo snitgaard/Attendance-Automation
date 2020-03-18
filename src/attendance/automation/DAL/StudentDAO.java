@@ -53,22 +53,21 @@ public class StudentDAO {
        }
    }
    
-   public void updateStudent(Student student) throws SQLException
+   public boolean updateAttendance(String date, int id) throws SQLException
    {
        try (Connection  con = dbCon.getConnection())
        {
-           int id = student.getId();
-           String name = student.getName();
-           String email = student.getEmail();
-           String course = student.getCourse();
-           
-           PreparedStatement ps = con.prepareStatement("UPDATE Student SET"
-                   + "name=?, email=?, course=? WHERE id=?");
-           
-           
-           
-           
-           
+           String sql = "UPDATE Student SET date = ? WHERE id = ?;";
+           PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           ps.setString(1, date);
+           ps.setInt(2, id);
+           ps.executeUpdate();
+           return true;
+       }
+       catch (SQLException ex)
+       {
+           ex.printStackTrace();
+           return false;
        }
    }
    

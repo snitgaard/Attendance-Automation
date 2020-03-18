@@ -102,9 +102,12 @@ public class StudentAttendanceController implements Initializable
     @FXML
     private void submitAttendance(ActionEvent event)
     {
-        progressBar.setProgress(0.92);
-        studentAttendancePercentage.setText(92 + "%" + "");
-        attendanceButton.setDisable(true);
+        
+        
+        
+//        progressBar.setProgress(0.92);
+//        studentAttendancePercentage.setText(92 + "%" + "");
+//        attendanceButton.setDisable(true);
     }
 
 }
