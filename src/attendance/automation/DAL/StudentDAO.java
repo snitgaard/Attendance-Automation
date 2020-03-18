@@ -45,8 +45,9 @@ public class StudentDAO {
                 String course = rs.getString("course");
                 int attendance = rs.getInt(("attendance"));
                 String date = rs.getString("attendance");
+                int courseAttended = rs.getInt("courseAttended");
                 
-                Student student = new Student(id, name, email, course, attendance, date);
+                Student student = new Student(id, name, email, course, attendance, date, courseAttended);
                 allStudents.add(student);
             }
             return allStudents;

@@ -15,12 +15,14 @@ public class Student extends Person
 {
     private double attendance;
     private String date;
+    private int courseAttended;
     
-    public Student(int id, String name, String email, String course, double attendance, String date)
+    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended)
     {
         super(id, name, email, course);
         this.attendance = attendance;
         this.date = date;
+        this.courseAttended = courseAttended;
     }
 
     public double getAttendance()
@@ -42,6 +44,18 @@ public class Student extends Person
     {
         this.date = date;
     }
+
+    public int getCourseAttended()
+    {
+        return courseAttended;
+    }
+
+    public void setCourseAttended(int courseAttended)
+    {
+        this.courseAttended = courseAttended;
+    }
+    
+    
 
     
     

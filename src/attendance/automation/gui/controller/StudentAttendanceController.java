@@ -5,10 +5,17 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.BE.Student;
+import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,6 +39,8 @@ import javafx.stage.StageStyle;
  */
 public class StudentAttendanceController implements Initializable
 {
+    StudentModel studentModel;
+    Student student;
 
     @FXML
     private ImageView btn_close;
@@ -100,8 +109,17 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void submitAttendance(ActionEvent event)
+    private void submitAttendance(ActionEvent event) throws SQLException
     {
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
+        System.out.println("Converted String: " + strDate);
+        
+        int id = student.getId();
+        this.studentModel.updateAttendance(strDate, id);
+        
+        
         
         
         

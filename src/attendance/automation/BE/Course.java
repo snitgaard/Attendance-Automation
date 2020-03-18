@@ -13,10 +13,17 @@ public class Course {
     
     private int courseId;
     private String courseName;
+    private int weekNumber;
+    private int dayNumber;
+    private String courseTime;
 
-    public Course(int courseId, String courseName) {
+    public Course(int courseId, String courseName, int weekNumber, int dayNumber, String courseTime)
+    {
         this.courseId = courseId;
         this.courseName = courseName;
+        this.weekNumber = weekNumber;
+        this.dayNumber = dayNumber;
+        this.courseTime = courseTime;
     }
 
     public int getCourseId() {
@@ -34,6 +41,38 @@ public class Course {
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
+
+    public int getWeekNumber()
+    {
+        return weekNumber;
+    }
+
+    public void setWeekNumber(int weekNumber)
+    {
+        this.weekNumber = weekNumber;
+    }
+
+    public int getDayNumber()
+    {
+        return dayNumber;
+    }
+
+    public void setDayNumber(int dayNumber)
+    {
+        this.dayNumber = dayNumber;
+    }
+
+    public String getCourseTime()
+    {
+        return courseTime;
+    }
+
+    public void setCourseTime(String courseTime)
+    {
+        this.courseTime = courseTime;
+    }
+    
+    
     
     
     

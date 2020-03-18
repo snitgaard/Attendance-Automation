@@ -7,6 +7,7 @@ package attendance.automation.gui.Model;
 
 import attendance.automation.BE.Student;
 import attendance.automation.BLL.StudentManager;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class StudentModel {
         }
     }
     
-    public boolean updateAttendance(String date, int id)
+    public boolean updateAttendance(String date, int id) throws SQLException
     {
         return StudentManager.updateAttendance(date, id);
     }
