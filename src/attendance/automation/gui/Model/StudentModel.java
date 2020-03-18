@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author The Best Group
  */
-public class StudentAttendanceModel {
+public class StudentModel {
     
     private StudentManager StudentManager = new StudentManager();
     
