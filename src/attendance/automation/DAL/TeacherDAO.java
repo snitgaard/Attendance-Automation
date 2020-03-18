@@ -36,8 +36,10 @@ public class TeacherDAO {
             while (rs.next()) {
                 int id = rs.getInt("Id");
                 String name = rs.getString("name");
+                String email = rs.getString("email");
+                String course = rs.getString("course");
 
-                Teacher teacher = new Teacher(id, name);
+                Teacher teacher = new Teacher(id, name, email, course);
                 allTeachers.add(teacher);
             }
             return allTeachers;

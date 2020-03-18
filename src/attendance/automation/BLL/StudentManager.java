@@ -36,7 +36,7 @@ public class StudentManager {
     public List<Student> getAllData() {
         try
         {
-            return StudentDAO.getAllStudents();
+            return studentDAO.getAllStudents();
         } catch (SQLException ex)
         {
             Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);

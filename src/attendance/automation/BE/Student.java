@@ -16,7 +16,7 @@ public class Student extends Person
     private double attendance;
     private String date;
     
-    public Student(int attendance, int id, String name, String email, String course)
+    public Student(int id, String name, String email, String course, int attendance, String date)
     {
         super(id, name, email, course);
         this.attendance = attendance;
