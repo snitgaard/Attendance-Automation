@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Attendance Automation">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/Attendance Automation.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
