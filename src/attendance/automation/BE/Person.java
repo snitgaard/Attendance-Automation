@@ -9,8 +9,6 @@ package attendance.automation.BE;
  *
  * @author jigzi
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 public abstract class Person
 {
 
@@ -25,16 +23,6 @@ public abstract class Person
         this.name = name;
         this.email = email;
         this.course = course;
-=======
-=======
->>>>>>> 1ce33cf96a8c32fe1c9ffc90b96c28c82caac68d
-public class Person {
-    private int id;
-    private String name;
-    private String email;
-    private String course;
->>>>>>> 3714392a1ab0f5798ca6c9cd7ceae86eaaa5b539
-
     }
 
     public int getId()

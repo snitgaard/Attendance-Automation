@@ -1,12 +1,4 @@
 server=10.176.111.31
 user=CSe19A_17
 password=CSe19A_17
-<<<<<<< HEAD
-<<<<<<< HEAD
 database=AA Database
-=======
-database=AA database
->>>>>>> 3714392a1ab0f5798ca6c9cd7ceae86eaaa5b539
-=======
-database=AA database
->>>>>>> 1ce33cf96a8c32fe1c9ffc90b96c28c82caac68d
