@@ -27,4 +27,10 @@ public class StudentModel {
             return null;
         }
     }
+    
+    public boolean updateAttendance(String date, int id)
+    {
+        return StudentManager.updateAttendance(date, id);
+    }
+    
 }

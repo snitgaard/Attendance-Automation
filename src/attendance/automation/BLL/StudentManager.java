@@ -44,4 +44,9 @@ public class StudentManager {
         return null;
     }
     
+    public boolean updateAttendance(String date, int id)
+    {
+        return StudentDAO.updateAttendance(date, id);
+    }
+    
 }
