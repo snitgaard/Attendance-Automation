@@ -28,7 +28,7 @@ public class StudentDAO {
        dbCon = new DatabaseConnector();
    }
 
-   public List<Student> getAllStudent() throws SQLException
+   public List<Student> getAllStudents() throws SQLException
    {
        try (Connection con = dbCon.getConnection())
        {

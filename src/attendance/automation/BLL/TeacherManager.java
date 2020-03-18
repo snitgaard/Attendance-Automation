@@ -5,8 +5,8 @@
  */
 package attendance.automation.BLL;
 
-import attendance.automation.BE.Student;
-import attendance.automation.DAL.StudentDAO;
+import attendance.automation.BE.Teacher;
+import attendance.automation.DAL.TeacherDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,31 +17,31 @@ import java.util.logging.Logger;
  *
  * @author jigzi
  */
-public class StudentManager {
-
-    private StudentDAO studentDAO;
+public class TeacherManager {
     
-    public StudentManager() {
+    private TeacherDAO TeacherDAO;
+
+    public TeacherManager() {
         try
         {
-            studentDAO = new StudentDAO();
+            TeacherDAO = new TeacherDAO();
         } catch (IOException ex)
         {
-            Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     
-
-    public List<Student> getAllData() {
-        try
+    public List<Teacher> getAllData() {
+       try
         {
-            return StudentDAO.getAllStudents();
+            return TeacherDAO.getAllTeachers();
         } catch (SQLException ex)
         {
             Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+    
     
 }

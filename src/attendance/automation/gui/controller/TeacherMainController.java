@@ -5,7 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
-import attendance.automation.gui.Model.StudentAttendanceModel;
+import attendance.automation.gui.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +38,7 @@ public class TeacherMainController implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
 
-    StudentAttendanceModel model = new StudentAttendanceModel();
+    StudentModel model = new StudentModel();
     
     /**
      * Initializes the controller class.

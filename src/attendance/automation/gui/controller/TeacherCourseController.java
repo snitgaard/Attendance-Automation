@@ -5,7 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
-import attendance.automation.gui.Model.StudentAttendanceModel;
+import attendance.automation.gui.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +43,7 @@ public class TeacherCourseController implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
     
-    private StudentAttendanceModel model = new StudentAttendanceModel();
+    private StudentModel model = new StudentModel();
     private ImageView btn_close;
     @FXML
     private AnchorPane ancMain;
