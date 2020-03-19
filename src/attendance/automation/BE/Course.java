@@ -14,7 +14,6 @@ public class Course {
     private int courseId;
     private String courseName;
     private String weekDay;
-    private int courseLength;
     private String selectClass;
     private String courseTime;
 
@@ -32,14 +31,6 @@ public class Course {
 
     public void setWeekDay(String weekDay) {
         this.weekDay = weekDay;
-    }
-
-    public int getCourseLength() {
-        return courseLength;
-    }
-
-    public void setCourseLength(int courseLength) {
-        this.courseLength = courseLength;
     }
 
     public String getSelectClass() {
