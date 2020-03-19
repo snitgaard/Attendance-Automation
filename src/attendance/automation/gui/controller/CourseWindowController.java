@@ -5,12 +5,16 @@
  */
 package attendance.automation.gui.controller;
 
-import com.jfoenix.controls.JFXTextField;
+import attendance.automation.BE.Course;
+import attendance.automation.DAL.DalException;
+import attendance.automation.gui.Model.CourseModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -21,7 +25,15 @@ public class CourseWindowController implements Initializable
 {
 
     @FXML
-    private JFXTextField courseName;
+    private TextField courseName;
+    
+    CourseModel courseModel;
+    @FXML
+    private TextField weekDay;
+    @FXML
+    private ComboBox<Course> courseLength;
+    @FXML
+    private ComboBox<?> selectClass;
 
     /**
      * Initializes the controller class.
@@ -29,13 +41,28 @@ public class CourseWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
     }    
 
     @FXML
-    private void createCourse(ActionEvent event)
+    private void createCourse(ActionEvent event) throws DalException
     {
+        String course = courseName.getText();
         
+        courseModel.createCourses(course);
+        
+        
+    }
+
+    @FXML
+    private void courseLength(ActionEvent event)
+    {
+        courseLength.setItems(courseModel.getAllCourses());
+        
+    }
+
+    @FXML
+    private void selectClass(ActionEvent event)
+    {
     }
     
 }
