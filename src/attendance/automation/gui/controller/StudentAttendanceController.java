@@ -39,6 +39,7 @@ import javafx.stage.StageStyle;
  */
 public class StudentAttendanceController implements Initializable
 {
+
     StudentModel studentModel;
     Student student;
 
@@ -53,7 +54,7 @@ public class StudentAttendanceController implements Initializable
     private Label studentAttendancePercentage;
     @FXML
     private JFXToggleButton attendanceButton;
-    
+
     /**
      * Initializes the controller class.
      */
@@ -98,12 +99,14 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         System.exit(0);
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
@@ -115,14 +118,10 @@ public class StudentAttendanceController implements Initializable
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         String strDate = dateFormat.format(date);
         System.out.println("Converted String: " + strDate);
-        
+
         int id = student.getId();
         this.studentModel.updateAttendance(strDate, id);
-        
-        
-        
-        
-        
+
 //        progressBar.setProgress(0.92);
 //        studentAttendancePercentage.setText(92 + "%" + "");
 //        attendanceButton.setDisable(true);

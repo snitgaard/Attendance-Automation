@@ -71,9 +71,4 @@ public class Course {
     {
         this.courseTime = courseTime;
     }
-    
-    
-    
-    
-    
 }

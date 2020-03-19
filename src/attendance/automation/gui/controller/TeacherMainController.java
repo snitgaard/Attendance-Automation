@@ -9,6 +9,7 @@ import attendance.automation.gui.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -136,5 +137,10 @@ public class TeacherMainController implements Initializable
                 stage.setY(event.getScreenY() - yOffset);
             }
         });   
+    }
+
+    @FXML
+    private void createCourse(ActionEvent event)
+    {
     }
 }
