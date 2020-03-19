@@ -49,4 +49,10 @@ public class StudentManager {
         return studentDAO.updateAttendance(date, id);
     }
     
+    public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
+    {
+        System.out.println("MANAGER");
+        return studentDAO.checkLoginCredentials(studentEmail, studentPassword);
+    }
+    
 }

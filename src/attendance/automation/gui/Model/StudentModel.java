@@ -34,4 +34,10 @@ public class StudentModel {
         return StudentManager.updateAttendance(date, id);
     }
     
+    public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
+    {
+        System.out.println("MODEL");
+        return StudentManager.checkLoginCredentials(studentEmail, studentPassword);
+    }
+    
 }

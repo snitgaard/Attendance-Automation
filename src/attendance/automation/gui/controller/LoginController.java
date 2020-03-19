@@ -30,6 +30,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import attendance.automation.BE.Student;
+import attendance.automation.gui.Model.StudentModel;
+import java.sql.SQLException;
 
 /**
  * FXML Controller class
@@ -56,6 +59,8 @@ public class LoginController implements Initializable
     private AnchorPane anchorPane;
     @FXML
     private ImageView btn_close;
+    
+    private StudentModel studentModel; 
 
     /**
      * Initializes the controller class.
@@ -67,12 +72,12 @@ public class LoginController implements Initializable
     }
 
     @FXML
-    private void handleLogInButton(ActionEvent event) throws IOException
+    private void handleLogInButton(ActionEvent event) throws IOException, SQLException
     {
         String username = usernameField.getText();
         String password = passwordField.getText();
-
-        if (username.equalsIgnoreCase(StudentUsername) && password.equalsIgnoreCase(StudentPassword))
+        
+        if (studentModel.checkLoginCredentials(username, password) == true)
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
