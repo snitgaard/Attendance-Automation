@@ -43,7 +43,10 @@ public class CourseDAO {
             {
                 int courseId = rs.getInt("courseId");
                 String courseName = rs.getString("courseName");
-                Course course = new Course(courseId, courseName);
+                int weekNumber = rs.getInt("weekNumber");
+                int dayNumber = rs.getInt("dayNumber");
+                String courseTime = rs.getString("courseTime");
+                Course course = new Course(courseId, courseName, weekNumber, dayNumber, courseTime);
                 allCourses.add(course);
             }
             return allCourses;
@@ -63,7 +66,6 @@ public class CourseDAO {
             int affectedRows = ps.executeUpdate();
             if (affectedRows != 1)
             {
-
             }
         } catch (SQLException ex)
         {
