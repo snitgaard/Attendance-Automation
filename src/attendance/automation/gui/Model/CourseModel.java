@@ -8,6 +8,7 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Course;
 import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,9 +36,9 @@ public class CourseModel {
 
 
     //This is what the controller calls when creating a Course. This calls a method in the CourseManager
-    public void createCourses(String courseName, int courseId) throws DalException
+    public void createCourses(String courseName, String weekDay, String courseLength, String selectClass) throws DalException
     {
-        boolean courseIsCreated = courseManager.createCourse(courseName, courseId);
+        boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, courseLength, selectClass);
         if (courseIsCreated)
         {
             System.out.println("Course Created");
@@ -63,4 +64,5 @@ public class CourseModel {
             System.out.println("course Is Updated");
         }
     }
+
 }

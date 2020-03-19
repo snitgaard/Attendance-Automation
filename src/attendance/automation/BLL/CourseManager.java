@@ -34,9 +34,9 @@ public class CourseManager {
     }
 
     // This method calls the createCourse method in the courseDao
-    public boolean createCourse(String courseName, int courseId)
+    public boolean createCourse(String courseName, String weekDay, String courseLength, String selectClass)
     {
-        return courseDao.createCourse(courseName, courseId);
+        return courseDao.createCourse(courseName, weekDay, courseLength, selectClass);
     }
 
     // This song tries to call getAllCourses method from courseDao

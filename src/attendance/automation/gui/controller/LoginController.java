@@ -9,7 +9,11 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -52,9 +56,9 @@ public class LoginController implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
     private String StudentUsername = "student";
-    private String StudentPassword = "student";
+    private String StudentPassword = "32ade5e7c36fa329ea39dbc352743db40da5aa7460ec55f95b999d6371ad20170094d88d9296643f192e9d5433b8d6d817d6777632e556e96e58f741dc5b3550";
     private String TeacherUsername = "teacher";
-    private String TeacherPassword = "teacher";
+    private String TeacherPassword = "50ecc45020be014e68d714cd076007e84a9621d9a5e589a916e45273014830b399d143a57f525554bfe9e751d97fe0fa884dbdea7b07721723b4eff39e9d28ad";
     @FXML
     private AnchorPane anchorPane;
     @FXML
@@ -70,6 +74,39 @@ public class LoginController implements Initializable
     {
         //TODO
     }
+    
+    public static String encryptThisString(String input) 
+    { 
+        try { 
+            // getInstance() method is called with algorithm SHA-512 
+            MessageDigest md = MessageDigest.getInstance("SHA-512"); 
+  
+            // digest() method is called 
+            // to calculate message digest of the input string 
+            // returned as array of byte 
+            byte[] messageDigest = md.digest(input.getBytes()); 
+  
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest); 
+  
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16); 
+  
+            // Add preceding 0s to make it 32 bit 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+  
+            // return the HashText 
+            return hashtext; 
+        } 
+  
+        // For specifying wrong message digest algorithms 
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    }     
+    
 
     @FXML
     private void handleLogInButton(ActionEvent event) throws IOException, SQLException
@@ -139,4 +176,6 @@ public class LoginController implements Initializable
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
+    
+    
 }
