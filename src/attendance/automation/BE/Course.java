@@ -13,12 +13,12 @@ public class Course {
     
     private int courseId;
     private String courseName;
-    private int weekDay;
+    private String weekDay;
     private int courseLength;
     private String selectClass;
     private String courseTime;
 
-    public Course(int courseId, String courseName, int weekDay, String selectClass)
+    public Course(int courseId, String courseName, String weekDay, String selectClass)
     {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -26,11 +26,11 @@ public class Course {
         this.selectClass = selectClass;
     }
 
-    public int getWeekDay() {
+    public String getWeekDay() {
         return weekDay;
     }
 
-    public void setWeekDay(int weekDay) {
+    public void setWeekDay(String weekDay) {
         this.weekDay = weekDay;
     }
 
