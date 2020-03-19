@@ -131,6 +131,7 @@ public class StudentAttendanceController implements Initializable
                 this.studentModel.updateAttendance(strDate, id);
             }
         } catch (UnknownHostException ex) {
+            System.out.println("Smth went wrong in the submitAttendance 1st catch");
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
@@ -138,17 +139,19 @@ public class StudentAttendanceController implements Initializable
 
                 attendanceButton.setSelected(false);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setIconified(true);
+                stage.setAlwaysOnTop(true);
 
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Cannot submit attendance");
                 alert.setHeaderText(null);
                 alert.setContentText("Current location does not match with the school");
-
+                alert.initOwner(stage);
                 alert.showAndWait();
+                stage.setAlwaysOnTop(false);
             }
 
         } catch (UnknownHostException ex) {
+            System.out.println("Smth went wrong in the submitAttendance 2d catch");
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -164,7 +167,6 @@ public class StudentAttendanceController implements Initializable
                 return true;
             }
         }
-//                InetAddress addr = adresse.();
         System.out.println("Location does not match the school");
         return false;
     }
