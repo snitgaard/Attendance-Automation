@@ -55,7 +55,7 @@ public class LoginController implements Initializable
     private String StudentUsername = "student";
     private String StudentPassword = "32ade5e7c36fa329ea39dbc352743db40da5aa7460ec55f95b999d6371ad20170094d88d9296643f192e9d5433b8d6d817d6777632e556e96e58f741dc5b3550";
     private String TeacherUsername = "teacher";
-    private String TeacherPassword = "teacher";
+    private String TeacherPassword = "50ecc45020be014e68d714cd076007e84a9621d9a5e589a916e45273014830b399d143a57f525554bfe9e751d97fe0fa884dbdea7b07721723b4eff39e9d28ad";
     @FXML
     private AnchorPane anchorPane;
     @FXML
