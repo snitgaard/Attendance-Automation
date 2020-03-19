@@ -70,26 +70,21 @@ public class StudentDAO {
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
-            System.out.println("THINGS");
 
-            String sql = "SELECT * FROM Student WHERE studentEmail = " + studentEmail + "AND studentPassword = " + studentPassword + ";";
+            String sql = "SELECT * FROM Student WHERE studentEmail = ? AND studentPassword = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, studentEmail);
             ps.setString(2, studentPassword);
             ResultSet rs = ps.executeQuery();
-            System.out.println("GAY");
 
             while (rs.next()) {
-                System.out.println("TRUE");
                 return true;
                 
             }
-            System.out.println("FALSE");
             return false;
 
         } catch (SQLServerException ex) {
             ex.printStackTrace();
-            System.out.println("VERY FALSE");
             return false;
         }
     }
