@@ -13,17 +13,41 @@ public class Course {
     
     private int courseId;
     private String courseName;
-    private int weekNumber;
-    private int dayNumber;
+    private int weekDay;
+    private int courseLength;
+    private String selectClass;
     private String courseTime;
 
-    public Course(int courseId, String courseName, int weekNumber, int dayNumber, String courseTime)
+    public Course(int courseId, String courseName, int weekDay, String selectClass)
     {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.weekNumber = weekNumber;
-        this.dayNumber = dayNumber;
-        this.courseTime = courseTime;
+        this.weekDay = weekDay;
+        this.selectClass = selectClass;
+    }
+
+    public int getWeekDay() {
+        return weekDay;
+    }
+
+    public void setWeekDay(int weekDay) {
+        this.weekDay = weekDay;
+    }
+
+    public int getCourseLength() {
+        return courseLength;
+    }
+
+    public void setCourseLength(int courseLength) {
+        this.courseLength = courseLength;
+    }
+
+    public String getSelectClass() {
+        return selectClass;
+    }
+
+    public void setSelectClass(String selectClass) {
+        this.selectClass = selectClass;
     }
 
     public int getCourseId() {
@@ -42,26 +66,6 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public int getWeekNumber()
-    {
-        return weekNumber;
-    }
-
-    public void setWeekNumber(int weekNumber)
-    {
-        this.weekNumber = weekNumber;
-    }
-
-    public int getDayNumber()
-    {
-        return dayNumber;
-    }
-
-    public void setDayNumber(int dayNumber)
-    {
-        this.dayNumber = dayNumber;
-    }
-
     public String getCourseTime()
     {
         return courseTime;
@@ -71,9 +75,4 @@ public class Course {
     {
         this.courseTime = courseTime;
     }
-    
-    
-    
-    
-    
 }
