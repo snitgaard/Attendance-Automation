@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.StudentModel;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,7 @@ public class TeacherMainController implements Initializable
     private AnchorPane ancMain;
     private double xOffset = 0;
     private double yOffset = 0;
+    CourseModel courseModel;
 
     StudentModel model = new StudentModel();
     
@@ -142,5 +144,6 @@ public class TeacherMainController implements Initializable
     @FXML
     private void createCourse(ActionEvent event)
     {
+        
     }
 }
