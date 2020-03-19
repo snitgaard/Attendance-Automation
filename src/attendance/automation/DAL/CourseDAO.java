@@ -43,7 +43,7 @@ public class CourseDAO {
             {
                 int courseId = rs.getInt("courseId");
                 String courseName = rs.getString("courseName");
-                int weekDay = rs.getInt("weekDay");
+                String weekDay = rs.getString("weekDay");
                 String selectClass = rs.getString("selectClass");
                 Course course = new Course(courseId, courseName, weekDay, selectClass);
                 allCourses.add(course);
@@ -78,15 +78,15 @@ public class CourseDAO {
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
     */
-    public boolean createCourse(String courseName, int weekDay, int courseLength, String selectClass)
+    public boolean createCourse(String courseName, String weekDay, String courseLength, String selectClass)
     {
         try (Connection con = dbCon.getConnection())
         {
             String sql = "INSERT INTO Course (courseName, weekDay, courseLength, selectClass) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
-            ps.setInt(2, weekDay);
-            ps.setInt(3, courseLength);
+            ps.setString(2, weekDay);
+            ps.setString(3, courseLength);
             ps.setString(4, selectClass);
             int affectedRows = ps.executeUpdate();
 
