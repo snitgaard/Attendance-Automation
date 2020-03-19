@@ -15,7 +15,7 @@ public class Course {
     private String courseName;
     private String weekDay;
     private String selectClass;
-    private String courseTime;
+    private String courseLength;
 
     public Course(int courseId, String courseName, String weekDay, String selectClass)
     {
@@ -57,13 +57,13 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getCourseTime()
+    public String getCourseLength()
     {
-        return courseTime;
+        return courseLength;
     }
 
-    public void setCourseTime(String courseTime)
+    public void setCourseLength(String courseLength)
     {
-        this.courseTime = courseTime;
+        this.courseLength = courseLength;
     }
 }

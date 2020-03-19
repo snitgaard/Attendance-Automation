@@ -78,7 +78,7 @@ public class CourseDAO {
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
     */
-    public boolean createCourse(String courseName, String weekDay, int courseLength, String selectClass)
+    public boolean createCourse(String courseName, String weekDay, String courseLength, String selectClass)
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -86,7 +86,7 @@ public class CourseDAO {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
             ps.setString(2, weekDay);
-            ps.setInt(3, courseLength);
+            ps.setString(3, courseLength);
             ps.setString(4, selectClass);
             int affectedRows = ps.executeUpdate();
 
