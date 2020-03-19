@@ -8,6 +8,7 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Course;
 import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -63,4 +64,5 @@ public class CourseModel {
             System.out.println("course Is Updated");
         }
     }
+
 }
