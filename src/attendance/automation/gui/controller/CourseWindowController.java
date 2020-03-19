@@ -5,7 +5,6 @@
  */
 package attendance.automation.gui.controller;
 
-import attendance.automation.BE.Course;
 import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.CourseModel;
 import java.net.URL;
@@ -15,6 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -52,8 +57,18 @@ public class CourseWindowController implements Initializable
         int courseLength = (int) cb_courseLength.getSelectionModel().getSelectedItem();
         String selectClass = (String) cb_selectClass.getSelectionModel().getSelectedItem();
         
+        if (course.length() == 0 && weekDay.length() == 0)
+        {
+            Border warning = new Border(new BorderStroke(Color.RED,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2)));
+
+            txt_courseName.setBorder(warning);
+            txt_weekDay.setBorder(warning);
+        } else
+        {
+            courseModel.createCourses(course, weekDay, courseLength, selectClass);
+        }
         
-        courseModel.createCourses(course, weekDay, courseLength, selectClass);
         
         
         
