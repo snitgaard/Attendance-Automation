@@ -15,9 +15,9 @@
          </font>
       </Label>
       <Button layoutX="309.0" layoutY="252.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
-      <TextField fx:id="courseName" layoutX="125.0" layoutY="121.0" promptText="Enter course name" />
-      <TextField fx:id="weekDay" layoutX="124.0" layoutY="160.0" promptText="Enter weekday" />
-      <ComboBox fx:id="courseTime" layoutX="125.0" layoutY="199.0" onAction="#courseTime" prefWidth="150.0" promptText="Select course length" />
-      <ComboBox fx:id="selectClass" layoutX="125.0" layoutY="239.0" onAction="#selectClass" prefWidth="150.0" promptText="Select class" />
+      <TextField fx:id="txt_courseName" layoutX="125.0" layoutY="121.0" promptText="Enter course name" />
+      <TextField fx:id="txt_weekDay" layoutX="124.0" layoutY="160.0" promptText="Enter weekday" />
+      <ComboBox fx:id="cb_courseLength" layoutX="125.0" layoutY="199.0" onAction="#cb_courseLength" prefWidth="150.0" promptText="Select course length" />
+      <ComboBox fx:id="cb_selectClass" layoutX="125.0" layoutY="239.0" onAction="#cb_selectClass" prefWidth="150.0" promptText="Select class" />
    </children>
 </AnchorPane>

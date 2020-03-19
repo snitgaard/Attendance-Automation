@@ -24,16 +24,17 @@ import javafx.scene.control.TextField;
 public class CourseWindowController implements Initializable
 {
 
-    @FXML
-    private TextField courseName;
     
     CourseModel courseModel;
+
     @FXML
-    private TextField weekDay;
+    private TextField txt_courseName;
     @FXML
-    private ComboBox<Course> courseTime;
+    private TextField txt_weekDay;
     @FXML
-    private ComboBox<?> selectClass;
+    private ComboBox<?> cb_courseLength;
+    @FXML
+    private ComboBox<?> cb_selectClass;
 
     /**
      * Initializes the controller class.
@@ -46,7 +47,13 @@ public class CourseWindowController implements Initializable
     @FXML
     private void createCourse(ActionEvent event) throws DalException
     {
-        String course = courseName.getText();
+        String course = txt_courseName.getText();
+        String weekDay = txt_weekDay.getText();
+        int courseLength = (int) cb_courseLength.getSelectionModel().getSelectedItem();
+        String selectClass = (String) cb_selectClass.getSelectionModel().getSelectedItem();
+        
+        
+        courseModel.createCourses(course, weekDay, courseLength, selectClass);
         
         
         
@@ -59,8 +66,12 @@ public class CourseWindowController implements Initializable
     }
 
     @FXML
-    private void selectClass(ActionEvent event)
+    private void cb_courseLength(ActionEvent event)
     {
+    }
+
+    @FXML
+    private void cb_selectClass(ActionEvent event) {
     }
     
 }
