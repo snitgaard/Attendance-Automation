@@ -72,7 +72,7 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)  
     {
-        //TODO
+        studentModel = new StudentModel();
     }
     
     public static String encryptThisString(String input) 
