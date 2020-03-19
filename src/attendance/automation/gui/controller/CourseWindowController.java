@@ -75,14 +75,9 @@ public class CourseWindowController implements Initializable
     }
 
     @FXML
-    private void courseTime(ActionEvent event)
-    {
-        courseTime.setItems(courseModel.getAllCourses());
-    }
-
-    @FXML
     private void cb_courseLength(ActionEvent event)
     {
+//        cb_courseLength.setItems(courseModel.getAllCourses());
     }
 
     @FXML
