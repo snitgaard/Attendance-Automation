@@ -79,14 +79,14 @@ public class CourseDAO {
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
     */
-    public boolean createCourse(String courseName, int courseId)
+    public boolean createCourse(String courseName)
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "INSERT INTO Course (courseName, courseId) VALUES (?,?);";
+            String sql = "INSERT INTO Course (courseName) VALUES (?);";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
-            ps.setInt(2, courseId);
+
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows == 1)
