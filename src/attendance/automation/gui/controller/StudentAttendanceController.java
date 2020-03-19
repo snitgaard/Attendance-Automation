@@ -45,7 +45,8 @@ import javafx.stage.StageStyle;
  *
  * @author The Best Group
  */
-public class StudentAttendanceController implements Initializable {
+public class StudentAttendanceController implements Initializable
+{
 
     StudentModel studentModel;
     Student student;
@@ -105,12 +106,14 @@ public class StudentAttendanceController implements Initializable {
     }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         System.exit(0);
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
