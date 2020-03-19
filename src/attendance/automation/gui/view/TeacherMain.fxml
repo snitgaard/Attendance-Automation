@@ -21,7 +21,7 @@
         <URL value="@/attendance/automation/gui/css/Style.css" />
     </stylesheets>
    <children>
-      <Pane prefHeight="47.0" prefWidth="600.0">
+      <Pane layoutY="-253.0" prefHeight="47.0" prefWidth="600.0">
          <children>
             <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="571.0" layoutY="16.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
                <cursor>
@@ -50,7 +50,7 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="13.0" layoutY="81.0" prefHeight="300.0" prefWidth="575.0">
+      <ScrollPane layoutX="13.0" layoutY="81.0" prefHeight="559.0" prefWidth="575.0">
          <content>
             <VBox>
                <children>
@@ -256,7 +256,6 @@
                                     <Font name="System Bold" size="15.0" />
                                  </font>
                               </Label>
-                              <Label text="12:00 - 14:30" />
                            </children>
                            <HBox.margin>
                               <Insets />
@@ -323,5 +322,6 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Label layoutX="103.0" layoutY="657.0" text="12:00 - 14:30" />
    </children>
 </AnchorPane>
