@@ -31,7 +31,7 @@ public class CourseWindowController implements Initializable
     @FXML
     private TextField weekDay;
     @FXML
-    private ComboBox<Course> courseLength;
+    private ComboBox<Course> courseTime;
     @FXML
     private ComboBox<?> selectClass;
 
@@ -48,16 +48,14 @@ public class CourseWindowController implements Initializable
     {
         String course = courseName.getText();
         
-        courseModel.createCourses(course);
         
         
     }
 
     @FXML
-    private void courseLength(ActionEvent event)
+    private void courseTime(ActionEvent event)
     {
-        courseLength.setItems(courseModel.getAllCourses());
-        
+        courseTime.setItems(courseModel.getAllCourses());
     }
 
     @FXML
