@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -42,6 +44,8 @@ public class CourseWindowController implements Initializable
     private ComboBox<String> cb_courseLength;
     @FXML
     private ComboBox<?> cb_selectClass;
+    @FXML
+    private ImageView btn_close;
 
     /**
      * Initializes the controller class.
@@ -85,6 +89,14 @@ public class CourseWindowController implements Initializable
     @FXML
     private void cb_selectClass(ActionEvent event)
     {
+    }
+
+    @FXML
+    private void close_app(MouseEvent event) {
+    }
+
+    @FXML
+    private void minimize_app(MouseEvent event) {
     }
 
 }

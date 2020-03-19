@@ -16,13 +16,23 @@ public class Student extends Person
     private double attendance;
     private String date;
     private int courseAttended;
+    private String studentPassword;
     
-    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended)
+    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended, String studentPassword)
     {
         super(id, name, email, course);
         this.attendance = attendance;
         this.date = date;
         this.courseAttended = courseAttended;
+        this.studentPassword = studentPassword;
+    }
+
+    public String getStudentPassword() {
+        return studentPassword;
+    }
+
+    public void setStudentPassword(String studentPassword) {
+        this.studentPassword = studentPassword;
     }
 
     public double getAttendance()
