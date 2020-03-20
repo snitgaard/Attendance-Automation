@@ -50,9 +50,9 @@ public class StudentAttendanceController implements Initializable
 {
 
     
-    StudentModel studentModel;
-    LoginController controller;
-    Student selectedStudent;
+    private StudentModel studentModel;
+    private LoginController controller;
+    private Student selectedStudent;
     private String IpAddress;
 
     @FXML
@@ -78,8 +78,6 @@ public class StudentAttendanceController implements Initializable
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
     
      //This method makes sure that we get the correct data object when logging in as a student
@@ -89,7 +87,7 @@ public class StudentAttendanceController implements Initializable
         this.controller = controller; 
         this.selectedStudent = selectedStudent;
         
-        nameTag.setText(this.selectedStudent.getName());
+        nameTag.setText(selectedStudent.getName());
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
     }
 
