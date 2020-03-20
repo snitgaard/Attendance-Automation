@@ -41,11 +41,11 @@ public class CourseWindowController implements Initializable
     @FXML
     private TextField txt_weekDay;
     @FXML
-    private ComboBox<String> cb_courseLength;
-    @FXML
     private ComboBox<?> cb_selectClass;
     @FXML
     private ImageView btn_close;
+    @FXML
+    private TextField courseLengthField;
 
     /**
      * Initializes the controller class.
@@ -60,7 +60,7 @@ public class CourseWindowController implements Initializable
     {
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
-        String courseLength = (String) cb_courseLength.getSelectionModel().getSelectedItem();
+        String courseLength = courseLengthField.getText();
         String selectClass = (String) cb_selectClass.getSelectionModel().getSelectedItem();
 
         if (course.length() == 0 && weekDay.length() == 0)
@@ -78,17 +78,10 @@ public class CourseWindowController implements Initializable
     }
 
     @FXML
-    private void cb_courseLength(ActionEvent event)
-    {
-        ObservableList<String> courseLength = FXCollections.observableArrayList("60", "90", "120", "150", "180");
-
-        cb_courseLength.setItems(courseLength);
-        
-    }
-
-    @FXML
     private void cb_selectClass(ActionEvent event)
     {
+        
+        
     }
 
     @FXML

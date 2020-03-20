@@ -18,11 +18,10 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="309.0" layoutY="252.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
-      <TextField fx:id="txt_courseName" layoutX="125.0" layoutY="121.0" promptText="Enter course name" />
-      <TextField fx:id="txt_weekDay" layoutX="124.0" layoutY="160.0" promptText="Enter weekday" />
-      <ComboBox fx:id="cb_courseLength" layoutX="125.0" layoutY="199.0" onAction="#cb_courseLength" prefWidth="150.0" promptText="Select course length" />
-      <ComboBox fx:id="cb_selectClass" layoutX="125.0" layoutY="239.0" onAction="#cb_selectClass" prefWidth="150.0" promptText="Select class" />
+      <Button layoutX="339.0" layoutY="253.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
+      <TextField fx:id="txt_courseName" layoutX="120.0" layoutY="125.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter course name" />
+      <TextField fx:id="txt_weekDay" layoutX="120.0" layoutY="160.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter weekday" />
+      <ComboBox fx:id="cb_selectClass" layoutX="120.0" layoutY="240.0" onAction="#cb_selectClass" prefHeight="25.0" prefWidth="158.0" promptText="Select class" />
       <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="385.0" layoutY="14.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -42,5 +41,6 @@
             <ColorAdjust brightness="0.21" />
          </effect>
       </ImageView>
+      <TextField fx:id="courseLengthField" layoutX="120.0" layoutY="198.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter course length (mins)" />
    </children>
 </AnchorPane>
