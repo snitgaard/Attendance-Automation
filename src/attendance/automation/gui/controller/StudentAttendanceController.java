@@ -39,6 +39,7 @@ import javafx.scene.layout.Background;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.print.PrintException;
 
 /**
  * FXML Controller class
@@ -77,6 +78,8 @@ public class StudentAttendanceController implements Initializable
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }
     
      //This method makes sure that we get the correct data object when logging in as a student
@@ -85,12 +88,14 @@ public class StudentAttendanceController implements Initializable
         this.studentModel = studentModel;
         this.controller = controller; 
         this.selectedStudent = selectedStudent;
+        
+        nameTag.setText(this.selectedStudent.getName());
+        System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
     }
 
     @FXML
     private void handleOverview(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
-
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController c = fxmlLoader.getController();
         Stage stage = new Stage();

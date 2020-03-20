@@ -118,7 +118,7 @@ public class LoginController implements Initializable
         if (studentModel.checkLoginCredentials(username, password))
         {
             Student selectedStudent = studentModel.getSpecificStudent(username);
-            System.out.println(selectedStudent);
+            System.out.println(selectedStudent.getName());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
             StudentAttendanceController studentcontroller = fxmlLoader.getController();
