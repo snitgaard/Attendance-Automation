@@ -113,11 +113,18 @@ public class LoginController implements Initializable
     {
         String username = usernameField.getText();
         String password = encryptThisString(passwordField.getText());
+        System.out.println(username);
         
         if (studentModel.checkLoginCredentials(username, password))
         {
+            Student selectedStudent = studentModel.getSpecificStudent(username);
+            System.out.println(selectedStudent);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
+            StudentAttendanceController studentcontroller = fxmlLoader.getController();
+            // Here the edit controller is given important data objects,
+            // This secures that it is the correct ones we are working with.
+            studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 

@@ -19,7 +19,7 @@
         <AnchorPane prefHeight="253.0" prefWidth="451.0" stylesheets="@../css/Style.css" BorderPane.alignment="CENTER">
             <children>
                 <JFXDatePicker defaultColor="#c8d372" editable="false" layoutX="55.0" layoutY="269.0" showWeekNumbers="true" styleClass="jfx-date-picker" />
-                <Label layoutX="101.0" layoutY="244.0" text="Mads Pedersen">
+                <Label fx:id="nameTag" layoutX="101.0" layoutY="244.0" text="Mads Pedersen">
                     <font>
                         <Font size="16.0" />
                     </font>

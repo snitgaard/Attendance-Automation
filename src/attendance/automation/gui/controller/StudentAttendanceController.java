@@ -48,8 +48,10 @@ import javafx.stage.StageStyle;
 public class StudentAttendanceController implements Initializable
 {
 
+    
     StudentModel studentModel;
-    Student student;
+    LoginController controller;
+    Student selectedStudent;
     private String IpAddress;
 
     @FXML
@@ -62,6 +64,8 @@ public class StudentAttendanceController implements Initializable
     private Label studentAttendancePercentage;
     @FXML
     private JFXToggleButton attendanceButton;
+    @FXML
+    private Label nameTag;
 
     /**
      * Initializes the controller class.
@@ -73,6 +77,14 @@ public class StudentAttendanceController implements Initializable
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+     //This method makes sure that we get the correct data object when logging in as a student
+    void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent)
+    {
+        this.studentModel = studentModel;
+        this.controller = controller; 
+        this.selectedStudent = selectedStudent;
     }
 
     @FXML
@@ -127,7 +139,7 @@ public class StudentAttendanceController implements Initializable
                 String strDate = dateFormat.format(date);
                 System.out.println("Converted String: " + strDate);
 
-                int id = student.getId();
+                int id = selectedStudent.getId();
                 this.studentModel.updateAttendance(strDate, id);
             }
         } catch (UnknownHostException ex) {
@@ -170,5 +182,9 @@ public class StudentAttendanceController implements Initializable
         System.out.println("Location does not match the school");
         return false;
     }
+
+//    void ApplyImportantData(StudentModel studentModel, LoginController aThis, Student selectedStudent) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 }

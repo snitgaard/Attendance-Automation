@@ -7,6 +7,7 @@ package attendance.automation.BLL;
 
 import attendance.automation.BE.Student;
 import attendance.automation.DAL.StudentDAO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -52,6 +53,16 @@ public class StudentManager {
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
         return studentDAO.checkLoginCredentials(studentEmail, studentPassword);
+    }
+    
+    public List<Student> getStudent(String studentEmail) throws SQLServerException
+    {
+        return studentDAO.getStudent(studentEmail);
+    }
+    
+    public Student getSpecificStudent(String studentEmail) throws SQLServerException
+    {
+        return studentDAO.getSpecificStudent(studentEmail);
     }
     
 }
