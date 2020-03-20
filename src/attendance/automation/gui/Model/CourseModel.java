@@ -65,10 +65,4 @@ public class CourseModel {
             System.out.println("course Is Updated");
         }
     }
-    public ObservableList<Course> getAllCourseNames(int courseId, String courseName) throws SQLException
-    {
-        allCourses = FXCollections.observableArrayList();
-        allCourses.addAll(courseManager.getAllCourseNames(courseId, courseName));
-        return allCourses;
-    }
 }

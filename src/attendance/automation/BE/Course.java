@@ -25,15 +25,7 @@ public class Course {
         this.selectClass = selectClass;
         this.courseLength = courseLength;
     }
-
-    public Course(int courseId, String selectClass)
-    {
-        this.courseId = courseId;
-        this.selectClass = selectClass;
-    }
     
-    
-
     public String getWeekDay() {
         return weekDay;
     }
@@ -81,8 +73,5 @@ public class Course {
     {
         return getSelectClass();
     }
-    
-    
-    
-    
+
 }
