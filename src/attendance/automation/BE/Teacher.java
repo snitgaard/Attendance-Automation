@@ -11,9 +11,21 @@ package attendance.automation.BE;
  */
 public class Teacher extends Person{
     
-    public Teacher(int id, String name, String email, String course)
+    private String teacherPassword;
+    
+    public Teacher(int id, String name, String email, String course, String teacherPassword)
     {
         super(id, name, email, course);
+        this.teacherPassword = teacherPassword;
+    }
+    
+
+    public String getTeacherPassword() {
+        return teacherPassword;
+    }
+
+    public void setTeacherPassword(String teacherPassword) {
+        this.teacherPassword = teacherPassword;
     }
 
     public int getId()

@@ -19,12 +19,12 @@ import java.util.logging.Logger;
  */
 public class TeacherManager {
     
-    private TeacherDAO TeacherDAO;
+    private TeacherDAO teacherDAO;
 
     public TeacherManager() {
         try
         {
-            TeacherDAO = new TeacherDAO();
+            teacherDAO = new TeacherDAO();
         } catch (IOException ex)
         {
             Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -35,12 +35,17 @@ public class TeacherManager {
     public List<Teacher> getAllData() {
        try
         {
-            return TeacherDAO.getAllTeachers();
+            return teacherDAO.getAllTeachers();
         } catch (SQLException ex)
         {
             Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    {
+        return teacherDAO.checkLoginCredentials(teacherEmail, teacherPassword);
     }
     
     

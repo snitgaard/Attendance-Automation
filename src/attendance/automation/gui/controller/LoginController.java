@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.StudentModel;
+import attendance.automation.gui.Model.TeacherModel;
 import java.sql.SQLException;
 
 /**
@@ -65,6 +66,7 @@ public class LoginController implements Initializable
     private ImageView btn_close;
     
     private StudentModel studentModel; 
+    private TeacherModel teacherModel;
 
     /**
      * Initializes the controller class.
@@ -73,6 +75,7 @@ public class LoginController implements Initializable
     public void initialize(URL url, ResourceBundle rb)  
     {
         studentModel = new StudentModel();
+        teacherModel = new TeacherModel();
     }
     
     public static String encryptThisString(String input) 
@@ -121,7 +124,7 @@ public class LoginController implements Initializable
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 
-        } else if (username.equalsIgnoreCase(TeacherUsername) && password.equalsIgnoreCase(TeacherPassword))
+        } else if (teacherModel.checkLoginCredentials(username, password))
         {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
