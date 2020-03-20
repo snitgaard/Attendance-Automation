@@ -5,6 +5,8 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.BE.Student;
+import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXProgressBar;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +29,10 @@ import javafx.stage.Stage;
  */
 public class StudentAttendanceOverviewController implements Initializable
 {
+    
+    private StudentModel studentModel;
+    private StudentAttendanceController controller;
+    private Student selectedStudent;
 
     @FXML
     private LineChart<String, Number> attendanceChart;
@@ -86,5 +92,11 @@ public class StudentAttendanceOverviewController implements Initializable
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-
+    
+    void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent)
+    {
+        this.studentModel = studentModel;
+        this.controller = controller; 
+        this.selectedStudent = selectedStudent;
+    }
 }

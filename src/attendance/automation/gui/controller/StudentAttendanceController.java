@@ -95,6 +95,10 @@ public class StudentAttendanceController implements Initializable
     private void handleOverview(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
+        StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
+            // Here the edit controller is given important data objects,
+            // This secures that it is the correct ones we are working with.
+            studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
         StudentAttendanceOverviewController c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
