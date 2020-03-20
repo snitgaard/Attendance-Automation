@@ -115,7 +115,7 @@ public class LoginController implements Initializable
     private void handleLogInButton(ActionEvent event) throws IOException, SQLException
     {
         String username = usernameField.getText();
-        String password = passwordField.getText();
+        String password = encryptThisString(passwordField.getText());
         
         if (studentModel.checkLoginCredentials(username, password) == true)
         {
