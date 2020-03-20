@@ -7,6 +7,7 @@ package attendance.automation.gui.Model;
 
 import attendance.automation.BE.Student;
 import attendance.automation.BLL.StudentManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -39,4 +40,13 @@ public class StudentModel {
         return StudentManager.checkLoginCredentials(studentEmail, studentPassword);
     }
     
+    public List<Student> getStudent(String studentEmail) throws SQLServerException
+    {
+        return StudentManager.getStudent(studentEmail);
+    }
+    
+    public Student getSpecificStudent(String studentEmail) throws SQLServerException
+    {
+        return StudentManager.getSpecificStudent(studentEmail);
+    }
 }
