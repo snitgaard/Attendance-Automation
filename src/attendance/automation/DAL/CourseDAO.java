@@ -19,8 +19,9 @@ import java.util.List;
  *
  * @author jigzi
  */
-public class CourseDAO {
-    
+public class CourseDAO
+{
+
     private DatabaseConnector dbCon;
 
     public CourseDAO() throws IOException
@@ -44,8 +45,9 @@ public class CourseDAO {
                 int courseId = rs.getInt("courseId");
                 String courseName = rs.getString("courseName");
                 String weekDay = rs.getString("weekDay");
-                String selectClass = rs.getString("selectClass");
-                Course course = new Course(courseId, courseName, weekDay, selectClass);
+                String className = rs.getString("className");
+                int courseLength = rs.getInt("courseLength");
+                Course course = new Course(courseId, courseName, weekDay, className, courseLength);
                 allCourses.add(course);
             }
             return allCourses;
@@ -54,7 +56,7 @@ public class CourseDAO {
     }
 
     //Deletes the course from SQL Database
-    public void deleteCourse(Course course) 
+    public void deleteCourse(Course course)
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -69,7 +71,7 @@ public class CourseDAO {
         } catch (SQLException ex)
         {
             ex.printStackTrace();
-            
+
         }
     }
 
@@ -77,7 +79,7 @@ public class CourseDAO {
     * If called this method will create a connection between the database and the program
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
-    */
+     */
     public boolean createCourse(String courseName, String weekDay, String courseLength, String selectClass)
     {
         try (Connection con = dbCon.getConnection())
@@ -110,7 +112,7 @@ public class CourseDAO {
     * If called this method will create a connection between the database and the program
     * The SQL statement will be run.
     * the course with the chosen courseId, will have its courseName changed
-    */
+     */
     public boolean updateCourse(String courseName, int courseId)
     {
         try (Connection con = dbCon.getConnection())
@@ -127,5 +129,5 @@ public class CourseDAO {
             return false;
         }
     }
-    
+
 }

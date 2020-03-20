@@ -34,14 +34,15 @@ import javafx.scene.paint.Color;
 public class CourseWindowController implements Initializable
 {
 
-    CourseModel courseModel;
+    private CourseModel courseModel;
+    Course course;
 
     @FXML
     private TextField txt_courseName;
     @FXML
     private TextField txt_weekDay;
     @FXML
-    private ComboBox<?> cb_selectClass;
+    private ComboBox<Course> cb_selectClass;
     @FXML
     private ImageView btn_close;
     @FXML
@@ -53,6 +54,8 @@ public class CourseWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        courseModel = new CourseModel();
+        cb_selectClass.setItems(courseModel.getAllCourses());
     }
 
     @FXML
@@ -61,7 +64,7 @@ public class CourseWindowController implements Initializable
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
         String courseLength = courseLengthField.getText();
-        String selectClass = (String) cb_selectClass.getSelectionModel().getSelectedItem();
+        Course selectClass = (Course) cb_selectClass.getSelectionModel().getSelectedItem();
 
         if (course.length() == 0 && weekDay.length() == 0)
         {
@@ -72,7 +75,7 @@ public class CourseWindowController implements Initializable
             txt_weekDay.setBorder(warning);
         } else
         {
-            courseModel.createCourses(course, weekDay, courseLength, selectClass);
+            courseModel.createCourses(course, weekDay, courseLength, selectClass + "");
         }
 
     }
@@ -80,16 +83,17 @@ public class CourseWindowController implements Initializable
     @FXML
     private void cb_selectClass(ActionEvent event)
     {
-        
-        
+
     }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
     }
 
 }

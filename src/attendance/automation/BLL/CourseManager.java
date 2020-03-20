@@ -63,4 +63,9 @@ public class CourseManager {
     {
         return courseDao.updateCourse(courseName, courseId);
     }
+    
+    public List<Course> getAllCourseNames(int courseId, String courseName) throws SQLException
+    {
+        return courseDao.getAllCourseNames(courseId, courseName);
+    }
 }

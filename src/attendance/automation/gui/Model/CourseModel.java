@@ -9,6 +9,7 @@ import attendance.automation.BE.Course;
 import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
 import com.jfoenix.controls.JFXTextField;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -64,5 +65,10 @@ public class CourseModel {
             System.out.println("course Is Updated");
         }
     }
-
+    public ObservableList<Course> getAllCourseNames(int courseId, String courseName) throws SQLException
+    {
+        allCourses = FXCollections.observableArrayList();
+        allCourses.addAll(courseManager.getAllCourseNames(courseId, courseName));
+        return allCourses;
+    }
 }

@@ -323,5 +323,6 @@
          </content>
       </ScrollPane>
       <Label layoutX="103.0" layoutY="657.0" text="12:00 - 14:30" />
+      <Button layoutX="482.0" layoutY="41.0" mnemonicParsing="false" onAction="#createCourse" text="Create course" />
    </children>
 </AnchorPane>
