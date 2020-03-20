@@ -35,6 +35,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import attendance.automation.BE.Student;
+import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
 import java.sql.SQLException;
@@ -113,12 +114,10 @@ public class LoginController implements Initializable
     {
         String username = usernameField.getText();
         String password = encryptThisString(passwordField.getText());
-        System.out.println(username);
         
         if (studentModel.checkLoginCredentials(username, password))
         {
             Student selectedStudent = studentModel.getSpecificStudent(username);
-            System.out.println(selectedStudent.getName());
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
             StudentAttendanceController studentcontroller = fxmlLoader.getController();
@@ -130,8 +129,13 @@ public class LoginController implements Initializable
 
         } else if (teacherModel.checkLoginCredentials(username, password))
         {
+            Teacher selectedTeacher = teacherModel.getSpecificTeacher(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
+            TeacherMainController teachercontroller = fxmlLoader.getController();
+            // Here the edit controller is given important data objects,
+            // This secures that it is the correct ones we are working with.
+            teachercontroller.ApplyImportantData(teacherModel, this, selectedTeacher);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         } else {

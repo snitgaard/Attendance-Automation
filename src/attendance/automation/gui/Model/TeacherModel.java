@@ -7,7 +7,9 @@ package attendance.automation.gui.Model;
 
 import attendance.automation.BE.Teacher;
 import attendance.automation.BLL.TeacherManager;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,5 +32,15 @@ public class TeacherModel {
     public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
         return teacherManager.checkLoginCredentials(teacherEmail, teacherPassword);
+    }
+    
+    public List<Teacher> getTeacher(String teacherEmail) throws SQLServerException, SQLException
+    {
+        return teacherManager.getTeacher(teacherEmail);
+    }
+    
+    public Teacher getSpecificTeacher(String teacherEmail) throws SQLServerException, SQLException
+    {
+        return teacherManager.getSpecificTeacher(teacherEmail);
     }
 }

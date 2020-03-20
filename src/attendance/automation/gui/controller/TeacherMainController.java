@@ -5,8 +5,10 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.StudentModel;
+import attendance.automation.gui.Model.TeacherModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,6 +34,10 @@ import javafx.stage.StageStyle;
  */
 public class TeacherMainController implements Initializable
 {
+    
+    private TeacherModel teacherModel;
+    private LoginController controller;
+    private Teacher selectedTeacher;
 
     @FXML
     private ImageView btn_close;
@@ -41,7 +47,7 @@ public class TeacherMainController implements Initializable
     private double yOffset = 0;
     CourseModel courseModel;
 
-    StudentModel model = new StudentModel();
+    
 
     /**
      * Initializes the controller class.
@@ -174,5 +180,11 @@ public class TeacherMainController implements Initializable
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
+    }
+
+    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher) {
+        this.teacherModel = teacherModel;
+        this.controller = controller;
+        this.selectedTeacher = selectedTeacher;
     }
 }

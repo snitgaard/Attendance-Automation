@@ -7,6 +7,7 @@ package attendance.automation.BLL;
 
 import attendance.automation.BE.Teacher;
 import attendance.automation.DAL.TeacherDAO;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -48,5 +49,14 @@ public class TeacherManager {
         return teacherDAO.checkLoginCredentials(teacherEmail, teacherPassword);
     }
     
+    public List<Teacher> getTeacher(String teacherEmail) throws SQLException
+    {
+        return teacherDAO.getTeacher(teacherEmail);
+    }
+    
+     public Teacher getSpecificTeacher(String teacherEmail) throws SQLServerException, SQLException
+    {
+        return teacherDAO.getSpecificTeacher(teacherEmail);
+    }
     
 }
