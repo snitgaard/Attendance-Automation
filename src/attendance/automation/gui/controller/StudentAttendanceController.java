@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.StudentModel;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -67,6 +69,8 @@ public class StudentAttendanceController implements Initializable
     private JFXToggleButton attendanceButton;
     @FXML
     private Label nameTag;
+    @FXML
+    private JFXDatePicker calendar;
 
     /**
      * Initializes the controller class.
@@ -88,6 +92,9 @@ public class StudentAttendanceController implements Initializable
         this.selectedStudent = selectedStudent;
         
         nameTag.setText(selectedStudent.getName());
+        progressBar.setProgress(selectedStudent.getAttendance() / 100);
+        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
+        calendar.setValue(LocalDate.now());
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
     }
 
