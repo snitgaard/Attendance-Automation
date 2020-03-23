@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -129,6 +131,36 @@ public class CourseDAO
         {
             ex.printStackTrace();
             return false;
+        }
+    }
+
+    public int getAllCourseDates(Date courseDate) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            ZoneId defaultZoneId = ZoneId.systemDefault();
+            LocalDate today = LocalDate.now();
+            Date currentDate = Date.from(today.atStartOfDay(defaultZoneId).toInstant());
+
+            if (courseDate == currentDate)
+            {
+                String sql = "SELECT courseDate, count(*) as courseCount FROM Course\n"
+                        + "group by courseDate;";
+                Statement statement = con.createStatement();
+                ResultSet rs = statement.executeQuery(sql);
+                int courseCount = 0;
+                while (rs.next())
+                {
+                    courseCount++;
+                }
+                System.out.println(courseCount);
+                return courseCount;
+            }
+            else
+            {
+                return 0;
+            }
+
         }
     }
 

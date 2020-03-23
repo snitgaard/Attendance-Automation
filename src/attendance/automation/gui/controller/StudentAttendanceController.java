@@ -7,6 +7,7 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
+import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.StudentCourseModel;
 import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXDatePicker;
@@ -20,6 +21,9 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -53,18 +57,23 @@ import javax.print.PrintException;
 public class StudentAttendanceController implements Initializable
 {
 
-    
+    private static final DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
     private StudentModel studentModel;
     private LoginController controller;
     private Student selectedStudent;
     private String IpAddress;
     private StudentCourseModel studentCourseModel;
     private Course selectedCourse;
+    private CourseModel courseModel;
 
     @FXML
     private ImageView btn_close;
     private double xOffset = 0;
     private double yOffset = 0;
+    private Date courseDate = (2020 / 03 / 23 12:06:02);
+    
     @FXML
     private JFXProgressBar progressBar;
     @FXML
@@ -80,31 +89,29 @@ public class StudentAttendanceController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        try
+        {
             checker();
-            
-            for (int i = 0; i < 10; i++)
-            {
-                
-            }
-            
-            
-            
-            
-            
-        } catch (UnknownHostException ex) {
+
+            courseModel.getAllCourseDates(courseDate);
+        } catch (UnknownHostException ex)
+        {
+            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-     //This method makes sure that we get the correct data object when logging in as a student
+    //This method makes sure that we get the correct data object when logging in as a student
     void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent)
     {
         this.studentModel = studentModel;
-        this.controller = controller; 
+        this.controller = controller;
         this.selectedStudent = selectedStudent;
-        
+
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
@@ -113,27 +120,32 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException {
+    private void handleOverview(ActionEvent event) throws IOException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
-            // Here the edit controller is given important data objects,
-            // This secures that it is the correct ones we are working with.
-            studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
+        // Here the edit controller is given important data objects,
+        // This secures that it is the correct ones we are working with.
+        studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
         StudentAttendanceOverviewController c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+        root.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)
+            {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        root.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)
+            {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
@@ -159,9 +171,12 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void submitAttendance(ActionEvent event) throws SQLException {
-        try {
-            if (checker() == true) {
+    private void submitAttendance(ActionEvent event) throws SQLException
+    {
+        try
+        {
+            if (checker() == true)
+            {
                 /*Date date = Calendar.getInstance().getTime();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String strDate = dateFormat.format(date);
@@ -170,15 +185,18 @@ public class StudentAttendanceController implements Initializable
                 int attendance = 1;
                 int studentId = selectedStudent.getId();
                 int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
-                 
+
                 this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
             }
-        } catch (UnknownHostException ex) {
+        } catch (UnknownHostException ex)
+        {
             System.out.println("Smth went wrong in the submitAttendance 1st catch");
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        try {
-            if (checker() == false) {
+        try
+        {
+            if (checker() == false)
+            {
 
                 attendanceButton.setSelected(false);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -193,19 +211,23 @@ public class StudentAttendanceController implements Initializable
                 stage.setAlwaysOnTop(false);
             }
 
-        } catch (UnknownHostException ex) {
+        } catch (UnknownHostException ex)
+        {
             System.out.println("Smth went wrong in the submitAttendance 2d catch");
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    private boolean checker() throws UnknownHostException {
+    private boolean checker() throws UnknownHostException
+    {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println(IpAddress);
 
         String[] adr = IpAddress.split("\\.");
-        for (int i = 0; i < adr.length - 1; i++) {
-            if (adr[0].equals("10") && adr[1].equals("176") && adr[2].equals("161")) {
+        for (int i = 0; i < adr.length - 1; i++)
+        {
+            if (adr[0].equals("10") && adr[1].equals("176") && adr[2].equals("161"))
+            {
                 System.out.println("Location matches the school");
                 return true;
             }
@@ -217,5 +239,4 @@ public class StudentAttendanceController implements Initializable
 //    void ApplyImportantData(StudentModel studentModel, LoginController aThis, Student selectedStudent) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-
 }

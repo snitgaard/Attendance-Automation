@@ -10,6 +10,7 @@ import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
 import com.jfoenix.controls.JFXTextField;
 import java.sql.SQLException;
+import java.util.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,6 +20,7 @@ import javafx.collections.ObservableList;
  */
 public class CourseModel {
     private ObservableList<Course> allCourses;
+    private ObservableList<Course> allCourseDates;
     private CourseManager courseManager;
 
     
@@ -33,6 +35,11 @@ public class CourseModel {
         allCourses = FXCollections.observableArrayList();
         allCourses.addAll(courseManager.getAllCourses());
         return allCourses;
+    }
+    
+    public int getAllCourseDates(Date courseDate) throws SQLException
+    {
+        return courseManager.getAllCourseDates(courseDate);
     }
 
 

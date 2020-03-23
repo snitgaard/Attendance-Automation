@@ -10,6 +10,7 @@ import attendance.automation.DAL.CourseDAO;
 import attendance.automation.DAL.DalException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,8 +19,10 @@ import java.util.logging.Logger;
  *
  * @author jigzi
  */
-public class CourseManager {
-     private CourseDAO courseDao;
+public class CourseManager
+{
+
+    private CourseDAO courseDao;
 
     public CourseManager()
     {
@@ -63,5 +66,10 @@ public class CourseManager {
     {
         return courseDao.updateCourse(courseName, courseId);
     }
-    
+
+    public int getAllCourseDates(Date courseDate) throws SQLException
+    {
+        return courseDao.getAllCourseDates(courseDate);
+    }
+
 }
