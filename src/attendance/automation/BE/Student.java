@@ -17,16 +17,19 @@ public class Student extends Person
     private String date;
     private int courseAttended;
     private String studentPassword;
+    private String studentEducation
     
-    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended, String studentPassword)
+    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended, String studentPassword, String studentEducation)
     {
         super(id, name, email, course);
         this.attendance = attendance;
         this.date = date;
         this.courseAttended = courseAttended;
         this.studentPassword = studentPassword;
+        this.studentEducation = studentEducation;
     }
 
+    
     public String getStudentPassword() {
         return studentPassword;
     }
