@@ -5,6 +5,8 @@
  */
 package attendance.automation.BE;
 
+import java.util.Date;
+
 /**
  *
  * @author jigzi
@@ -16,14 +18,23 @@ public class Course {
     private String weekDay;
     private String selectClass;
     private int courseLength;
+    private Date courseDate;
 
-    public Course(int courseId, String courseName, String weekDay, String selectClass, int courseLength)
+    public Course(int courseId, String courseName, String weekDay, String selectClass, int courseLength, Date courseDate)
     {
         this.courseId = courseId;
         this.courseName = courseName;
         this.weekDay = weekDay;
         this.selectClass = selectClass;
         this.courseLength = courseLength;
+    }
+
+    public Date getCourseDate() {
+        return courseDate;
+    }
+
+    public void setCourseDate(Date courseDate) {
+        this.courseDate = courseDate;
     }
     
     public String getWeekDay() {

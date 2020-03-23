@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,7 +48,8 @@ public class CourseDAO
                 String weekDay = rs.getString("weekDay");
                 String className = rs.getString("className");
                 int courseLength = rs.getInt("courseLength");
-                Course course = new Course(courseId, courseName, weekDay, className, courseLength);
+                Date courseDate = rs.getDate("courseDate");
+                Course course = new Course(courseId, courseName, weekDay, className, courseLength, courseDate);
                 allCourses.add(course);
             }
             return allCourses;
