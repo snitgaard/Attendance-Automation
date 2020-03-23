@@ -47,7 +47,7 @@ public class StudentAttendanceOverviewController implements Initializable
     @FXML
     private Label studentAttendancePercentage;
 
-    StudentAttendanceController studentAtten = new StudentAttendanceController();
+    private StudentAttendanceController studentAtten = new StudentAttendanceController();
     
     /**
      * Initializes the controller class.
@@ -55,7 +55,6 @@ public class StudentAttendanceOverviewController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {   
-        studentAttendancePercentage.setText(92 + "%" + "");
         buildLineChart();
     }
 
@@ -105,5 +104,7 @@ public class StudentAttendanceOverviewController implements Initializable
         
         studentName.setText(selectedStudent.getName());
         studentEducation.setText(selectedStudent.getStudentEducation());
+        progressBar.setProgress(selectedStudent.getAttendance() / 100);
+        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
     }
 }
