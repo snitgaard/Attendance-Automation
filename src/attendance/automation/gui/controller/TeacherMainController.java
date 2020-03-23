@@ -46,6 +46,8 @@ public class TeacherMainController implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
     CourseModel courseModel;
+    @FXML
+    private ImageView btn_minimize;
 
     
 
