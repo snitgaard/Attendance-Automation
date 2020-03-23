@@ -14,17 +14,15 @@ import attendance.automation.BE.Person;
 public class Student extends Person
 {
     private double attendance;
-    private String date;
-    private int courseAttended;
+    private int semester;
     private String studentPassword;
     private String studentEducation;
     
-    public Student(int id, String name, String email, String course, double attendance, String date, int courseAttended, String studentPassword, String studentEducation)
+    public Student(int id, String name, String email, String course, double attendance, int semester, String studentPassword, String studentEducation)
     {
         super(id, name, email, course);
         this.attendance = attendance;
-        this.date = date;
-        this.courseAttended = courseAttended;
+        this.semester = semester;
         this.studentPassword = studentPassword;
         this.studentEducation = studentEducation;
     }
@@ -56,29 +54,15 @@ public class Student extends Person
         this.attendance = attendance;
     }
 
-    public String getDate()
-    {
-        return date;
+    public int getSemester() {
+        return semester;
     }
 
-    public void setDate(String date)
-    {
-        this.date = date;
+    public void setSemester(int semester) {
+        this.semester = semester;
     }
 
-    public int getCourseAttended()
-    {
-        return courseAttended;
-    }
 
-    public void setCourseAttended(int courseAttended)
-    {
-        this.courseAttended = courseAttended;
-    }
-    
-    
-
-    
     
     
 }

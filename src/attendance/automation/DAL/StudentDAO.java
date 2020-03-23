@@ -42,13 +42,12 @@ public class StudentDAO {
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
                 String course = rs.getString("course");
-                int attendance = rs.getInt(("attendance"));
-                String date = rs.getString("attendance");
-                int courseAttended = rs.getInt("courseAttended");
+                double attendance = rs.getDouble("attendance");
+                int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword, studentEducation);
+                Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
                 allStudents.add(student);
             }
             return allStudents;
@@ -93,13 +92,12 @@ public class StudentDAO {
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
                 String course = rs.getString("course");
-                int attendance = rs.getInt(("attendance"));
-                String date = rs.getString("attendance");
-                int courseAttended = rs.getInt("courseAttended");
+                double attendance = rs.getDouble("attendance");
+                int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword, studentEducation);
+                Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
                 selectedStudent.add(student);
         }
         return selectedStudent;
