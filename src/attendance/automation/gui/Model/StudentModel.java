@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class StudentModel {
     
-    private StudentManager StudentManager = new StudentManager();
+    private StudentManager studentManager = new StudentManager();
     
     public List<Student> getAllData()
     {
         try {
-            return StudentManager.getAllData();
+            return studentManager.getAllData();
         } catch (Exception e)
         {
             System.out.println(e);
@@ -34,16 +34,21 @@ public class StudentModel {
     
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
-        return StudentManager.checkLoginCredentials(studentEmail, studentPassword);
+        return studentManager.checkLoginCredentials(studentEmail, studentPassword);
     }
     
     public List<Student> getStudent(String studentEmail) throws SQLServerException
     {
-        return StudentManager.getStudent(studentEmail);
+        return studentManager.getStudent(studentEmail);
+    }
+    
+    public List<Student> getStudentsInCourse()
+    {
+        return studentManager
     }
     
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
-        return StudentManager.getSpecificStudent(studentEmail);
+        return studentManager.getSpecificStudent(studentEmail);
     }
 }

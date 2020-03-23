@@ -28,6 +28,9 @@ public class Course {
         this.selectClass = selectClass;
         this.courseLength = courseLength;
     }
+    
+    
+    
 
     public String getCourseDate() {
         return courseDate;

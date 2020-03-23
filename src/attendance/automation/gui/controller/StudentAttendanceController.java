@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,6 +97,13 @@ public class StudentAttendanceController implements Initializable {
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         } 
+    }
+
+    private void getCourseDate() throws SQLException
+    {
+        Date courseDate = new GregorianCalendar(2020, Calendar.MARCH, 23).getTime();
+        System.out.println(courseDate);
+        courseModel.getAllCourseDates(courseDate);
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
