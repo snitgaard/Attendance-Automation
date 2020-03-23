@@ -73,13 +73,14 @@ public class TeacherDAO {
     public List<Teacher> getTeacher(String teacherEmail) throws SQLException {
         try ( Connection con = dbCon.getConnection()) {
             String sql = "SELECT * FROM Teacher WHERE teacherEmail = ?";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, teacherEmail);
+            ResultSet rs = ps.executeQuery();
             ArrayList<Teacher> allTeachers = new ArrayList<>();
             while (rs.next()) {
-                int id = rs.getInt("Id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
+                int id = rs.getInt("teacherId");
+                String name = rs.getString("teacherName");
+                String email = rs.getString("teacherEmail");
                 String course = rs.getString("course");
                 String teacherPassword = rs.getString("teacherPassword");
 
