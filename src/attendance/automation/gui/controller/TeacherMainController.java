@@ -151,8 +151,7 @@ public class TeacherMainController implements Initializable
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/CourseWindow.fxml"));
         Parent root = (Parent) fxmlLoader.load();
 
-        Stage stage1 = (Stage) ancMain.getScene().getWindow();
-        stage1.close();
+        
         Object c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
