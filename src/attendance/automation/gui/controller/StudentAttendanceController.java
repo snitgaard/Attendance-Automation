@@ -5,7 +5,9 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
+import attendance.automation.gui.Model.StudentCourseModel;
 import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXProgressBar;
@@ -56,6 +58,8 @@ public class StudentAttendanceController implements Initializable
     private LoginController controller;
     private Student selectedStudent;
     private String IpAddress;
+    private StudentCourseModel studentCourseModel;
+    private Course selectedCourse;
 
     @FXML
     private ImageView btn_close;
@@ -148,13 +152,16 @@ public class StudentAttendanceController implements Initializable
     private void submitAttendance(ActionEvent event) throws SQLException {
         try {
             if (checker() == true) {
-                Date date = Calendar.getInstance().getTime();
+                /*Date date = Calendar.getInstance().getTime();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
                 String strDate = dateFormat.format(date);
-                System.out.println("Converted String: " + strDate);
+                System.out.println("Converted String: " + strDate);*/
 
-                int id = selectedStudent.getId();
-                this.studentModel.updateAttendance(strDate, id);
+                int attendance = 1;
+                int studentId = selectedStudent.getId();
+                int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
+                 
+                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
             }
         } catch (UnknownHostException ex) {
             System.out.println("Smth went wrong in the submitAttendance 1st catch");

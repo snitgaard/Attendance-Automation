@@ -30,10 +30,7 @@ public class StudentModel {
         }
     }
     
-    public boolean updateAttendance(String date, int id) throws SQLException
-    {
-        return StudentManager.updateAttendance(date, id);
-    }
+    
     
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {

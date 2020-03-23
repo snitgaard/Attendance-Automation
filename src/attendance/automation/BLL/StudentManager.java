@@ -45,10 +45,7 @@ public class StudentManager {
         return null;
     }
     
-    public boolean updateAttendance(String date, int id) throws SQLException
-    {
-        return studentDAO.updateAttendance(date, id);
-    }
+    
     
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
