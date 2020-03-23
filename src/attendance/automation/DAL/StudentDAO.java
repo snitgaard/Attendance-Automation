@@ -46,8 +46,9 @@ public class StudentDAO {
                 String date = rs.getString("attendance");
                 int courseAttended = rs.getInt("courseAttended");
                 String studentPassword = rs.getString("studentPassword");
+                String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword);
+                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword, studentEducation);
                 allStudents.add(student);
             }
             return allStudents;
@@ -96,8 +97,9 @@ public class StudentDAO {
                 String date = rs.getString("attendance");
                 int courseAttended = rs.getInt("courseAttended");
                 String studentPassword = rs.getString("studentPassword");
+                String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword);
+                Student student = new Student(id, name, email, course, attendance, date, courseAttended, studentPassword, studentEducation);
                 selectedStudent.add(student);
         }
         return selectedStudent;

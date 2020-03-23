@@ -54,8 +54,7 @@ public class StudentAttendanceOverviewController implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {
-        studentName.setText("Kasper Lillegaard");
+    {   
         studentAttendancePercentage.setText(92 + "%" + "");
         buildLineChart();
     }
@@ -80,6 +79,11 @@ public class StudentAttendanceOverviewController implements Initializable
 
         attendanceChart.getData().add(data);
     }
+    
+    private void updateDynamicData()
+    {
+        
+    }
 
     @FXML
     private void close_app(MouseEvent event) {
@@ -98,5 +102,8 @@ public class StudentAttendanceOverviewController implements Initializable
         this.studentModel = studentModel;
         this.controller = controller; 
         this.selectedStudent = selectedStudent;
+        
+        studentName.setText(selectedStudent.getName());
+        studentEducation.setText(selectedStudent.getStudentEducation());
     }
 }
