@@ -39,7 +39,7 @@ public class CourseManager {
         return courseDao.createCourse(courseName, weekDay, courseLength, selectClass);
     }
 
-    // This song tries to call getAllCourses method from courseDao
+    // This method tries to call getAllCourses method from courseDao
     public List<Course> getAllCourses()
     {
         try

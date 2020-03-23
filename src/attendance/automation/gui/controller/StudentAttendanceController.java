@@ -83,11 +83,21 @@ public class StudentAttendanceController implements Initializable
     public void initialize(URL url, ResourceBundle rb) {
         try {
             checker();
+            
+            for (int i = 0; i < 10; i++)
+            {
+                
+            }
+            
+            
+            
+            
+            
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
      //This method makes sure that we get the correct data object when logging in as a student
     void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent)
     {
