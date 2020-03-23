@@ -173,3 +173,9 @@ Teacher specific css
     -fx-background-color: #B2B2B2;
     -fx-background-radius: 5em;
 }
+
+.list-cell {
+    -fx-padding: 0px;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+}

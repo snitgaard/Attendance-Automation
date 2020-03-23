@@ -11,6 +11,7 @@ import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.StudentCourseModel;
 import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXToggleButton;
 import java.io.IOException;
@@ -30,6 +31,8 @@ import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,9 +45,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -81,6 +87,13 @@ public class StudentAttendanceController implements Initializable {
     private Label nameTag;
     @FXML
     private JFXDatePicker calendar;
+    @FXML
+    private AnchorPane studentPane;
+    
+    private ObservableList<JFXToggleButton> attButtons = FXCollections.observableArrayList();
+
+    @FXML
+    private JFXListView<JFXToggleButton> listView;
 
     /**
      * Initializes the controller class.
@@ -89,16 +102,19 @@ public class StudentAttendanceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         try {
             courseModel = new CourseModel();
-            
 
             checker();
+            calendar.setValue(LocalDate.now());
+            generateAttendanceButtons();
+            listView.setItems(attButtons);
 
             //courseModel.getAllCourseDates(courseDate);
         } catch (UnknownHostException ex) {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
 
     //This method makes sure that we get the correct data object when logging in as a student
     public void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent) throws SQLException {
@@ -109,9 +125,18 @@ public class StudentAttendanceController implements Initializable {
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-        calendar.setValue(LocalDate.now());
+        
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
-        System.out.println("Der er så mange instanser: " + courseModel.getAllCourseDates(calendar.getValue().toString()));
+
+    }
+
+    public void generateAttendanceButtons() throws SQLException 
+    {
+        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString()); i++) 
+        {
+            JFXToggleButton attButton = new JFXToggleButton();
+            attButtons.add(attButton);
+        }
 
     }
 
