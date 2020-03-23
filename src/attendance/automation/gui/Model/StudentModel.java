@@ -42,10 +42,10 @@ public class StudentModel {
         return studentManager.getStudent(studentEmail);
     }
     
-    public List<Student> getStudentsInCourse()
-    {
-        return studentManager
-    }
+//    public List<Student> getStudentsInCourse()
+//    {
+//        return studentManager
+//    }
     
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {

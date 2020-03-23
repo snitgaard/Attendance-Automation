@@ -99,12 +99,6 @@ public class StudentAttendanceController implements Initializable {
         } 
     }
 
-    private void getCourseDate() throws SQLException
-    {
-        Date courseDate = new GregorianCalendar(2020, Calendar.MARCH, 23).getTime();
-        System.out.println(courseDate);
-        courseModel.getAllCourseDates(courseDate);
-    }
 
     //This method makes sure that we get the correct data object when logging in as a student
     public void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent) throws SQLException {
