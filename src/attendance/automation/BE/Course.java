@@ -18,9 +18,9 @@ public class Course {
     private String weekDay;
     private String selectClass;
     private int courseLength;
-    private Date courseDate;
+    private String courseDate;
 
-    public Course(int courseId, String courseName, String weekDay, String selectClass, int courseLength, Date courseDate)
+    public Course(int courseId, String courseName, String weekDay, String selectClass, int courseLength, String courseDate)
     {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -29,13 +29,15 @@ public class Course {
         this.courseLength = courseLength;
     }
 
-    public Date getCourseDate() {
+    public String getCourseDate() {
         return courseDate;
     }
 
-    public void setCourseDate(Date courseDate) {
+    public void setCourseDate(String courseDate) {
         this.courseDate = courseDate;
     }
+
+    
     
     public String getWeekDay() {
         return weekDay;

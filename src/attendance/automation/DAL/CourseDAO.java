@@ -22,35 +22,30 @@ import java.util.List;
  *
  * @author jigzi
  */
-public class CourseDAO
-{
+public class CourseDAO {
 
     private DatabaseConnector dbCon;
 
-    public CourseDAO() throws IOException
-    {
+    public CourseDAO() throws IOException {
         dbCon = new DatabaseConnector();
     }
 
     /*
      * 
      */
-    public List<Course> getAllCourses() throws SQLException
-    {
-        try (Connection con = dbCon.getConnection())
-        {
+    public List<Course> getAllCourses() throws SQLException {
+        try (Connection con = dbCon.getConnection()) {
             String sql = "SELECT * FROM Course;";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<Course> allCourses = new ArrayList<>();
-            while (rs.next())
-            {
+            while (rs.next()) {
                 int courseId = rs.getInt("courseId");
                 String courseName = rs.getString("courseName");
                 String weekDay = rs.getString("weekDay");
                 String className = rs.getString("className");
                 int courseLength = rs.getInt("courseLength");
-                Date courseDate = rs.getDate("courseDate");
+                String courseDate = rs.getString("courseDate");
                 Course course = new Course(courseId, courseName, weekDay, className, courseLength, courseDate);
                 allCourses.add(course);
             }
@@ -60,20 +55,16 @@ public class CourseDAO
     }
 
     //Deletes the course from SQL Database
-    public void deleteCourse(Course course)
-    {
-        try (Connection con = dbCon.getConnection())
-        {
+    public void deleteCourse(Course course) {
+        try (Connection con = dbCon.getConnection()) {
             int courseId = course.getCourseId();
             String sql = "DELETE FROM Course WHERE courseId=?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, courseId);
             int affectedRows = ps.executeUpdate();
-            if (affectedRows != 1)
-            {
+            if (affectedRows != 1) {
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
@@ -84,10 +75,8 @@ public class CourseDAO
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String courseLength, String className)
-    {
-        try (Connection con = dbCon.getConnection())
-        {
+    public boolean createCourse(String courseName, String weekDay, String courseLength, String className) {
+        try (Connection con = dbCon.getConnection()) {
             String sql = "INSERT INTO Course (courseName, weekDay, courseLength, className) VALUES (?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
@@ -96,17 +85,14 @@ public class CourseDAO
             ps.setString(4, className);
             int affectedRows = ps.executeUpdate();
 
-            if (affectedRows == 1)
-            {
+            if (affectedRows == 1) {
                 ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     return true;
                 }
             }
 
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return false;
@@ -117,49 +103,34 @@ public class CourseDAO
     * The SQL statement will be run.
     * the course with the chosen courseId, will have its courseName changed
      */
-    public boolean updateCourse(String courseName, int courseId)
-    {
-        try (Connection con = dbCon.getConnection())
-        {
+    public boolean updateCourse(String courseName, int courseId) {
+        try (Connection con = dbCon.getConnection()) {
             String sql = "UPDATE Course SET courseName = ? WHERE courseId = ?;";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
             ps.setInt(2, courseId);
             ps.executeUpdate();
             return true;
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
     }
 
-    public int getAllCourseDates(Date courseDate) throws SQLException
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            ZoneId defaultZoneId = ZoneId.systemDefault();
-            LocalDate today = LocalDate.now();
-            Date currentDate = Date.from(today.atStartOfDay(defaultZoneId).toInstant());
+    public int getAllCourseDates(String courseDate) throws SQLException {
+        try (Connection con = dbCon.getConnection()) {
 
-            if (courseDate == currentDate)
-            {
-                String sql = "SELECT courseDate, count(*) as courseCount FROM Course\n"
-                        + "group by courseDate;";
-                Statement statement = con.createStatement();
-                ResultSet rs = statement.executeQuery(sql);
-                int courseCount = 0;
-                while (rs.next())
-                {
-                    courseCount++;
-                }
-                System.out.println(courseCount);
-                return courseCount;
+            String sql = "SELECT * FROM Course WHERE courseDate = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, courseDate);
+            ResultSet rs = ps.executeQuery();
+            int courseCount = 0;
+
+            while (rs.next()) {
+                courseCount++;
             }
-            else
-            {
-                return 0;
-            }
+
+            return courseCount;
 
         }
     }

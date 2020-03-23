@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import attendance.automation.BE.Student;
 import attendance.automation.BE.Teacher;
+import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
 import java.sql.SQLException;
@@ -65,6 +66,7 @@ public class LoginController implements Initializable
     
     private StudentModel studentModel; 
     private TeacherModel teacherModel;
+    private CourseModel courseModel; 
 
     /**
      * Initializes the controller class.
@@ -124,6 +126,7 @@ public class LoginController implements Initializable
             // Here the edit controller is given important data objects,
             // This secures that it is the correct ones we are working with.
             studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
+
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 

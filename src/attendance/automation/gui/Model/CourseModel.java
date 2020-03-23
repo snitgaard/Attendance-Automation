@@ -37,7 +37,7 @@ public class CourseModel {
         return allCourses;
     }
     
-    public int getAllCourseDates(Date courseDate) throws SQLException
+    public int getAllCourseDates(String courseDate) throws SQLException
     {
         return courseManager.getAllCourseDates(courseDate);
     }

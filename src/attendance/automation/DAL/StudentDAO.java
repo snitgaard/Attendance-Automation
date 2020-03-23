@@ -54,8 +54,6 @@ public class StudentDAO {
         }
     }
 
-    
-
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
 
@@ -67,7 +65,7 @@ public class StudentDAO {
 
             while (rs.next()) {
                 return true;
-                
+
             }
             return false;
 
@@ -76,11 +74,9 @@ public class StudentDAO {
             return false;
         }
     }
-    
-        
-        public List<Student> getStudent(String studentEmail) throws SQLServerException
-        {
-            try (Connection con = dbCon.getConnection()) {
+
+    public List<Student> getStudent(String studentEmail) throws SQLServerException {
+        try (Connection con = dbCon.getConnection()) {
 
             String sql = "SELECT * FROM Student WHERE studentEmail = ?";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -99,16 +95,16 @@ public class StudentDAO {
 
                 Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
                 selectedStudent.add(student);
-        }
-        return selectedStudent;
-            
+            }
+            return selectedStudent;
+
         } catch (SQLException ex) {
             return null;
         }
-        
-        }
-        public Student getSpecificStudent(String studentEmail) throws SQLServerException
-    {
+
+    }
+
+    public Student getSpecificStudent(String studentEmail) throws SQLServerException {
         return getStudent(studentEmail).get(0);
     }
 
