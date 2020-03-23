@@ -56,7 +56,7 @@ public class StudentDAO {
 
     public boolean updateAttendance(String date, int id) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
-            String sql = "UPDATE Student SET date = ? WHERE id = ?;";
+            String sql = "UPDATE Student SET date = ? WHERE studentId = ?;";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, date);
             ps.setInt(2, id);
