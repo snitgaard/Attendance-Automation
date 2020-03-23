@@ -155,8 +155,7 @@ public class CourseDAO
                 }
                 System.out.println(courseCount);
                 return courseCount;
-            }
-            else
+            } else
             {
                 return 0;
             }

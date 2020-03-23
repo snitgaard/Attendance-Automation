@@ -26,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,8 +73,7 @@ public class StudentAttendanceController implements Initializable
     private ImageView btn_close;
     private double xOffset = 0;
     private double yOffset = 0;
-    private Date courseDate = (2020 / 03 / 23 12:06:02);
-    
+
     @FXML
     private JFXProgressBar progressBar;
     @FXML
@@ -94,8 +94,7 @@ public class StudentAttendanceController implements Initializable
         try
         {
             checker();
-
-            courseModel.getAllCourseDates(courseDate);
+            getCourseDate();
         } catch (UnknownHostException ex)
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,6 +102,13 @@ public class StudentAttendanceController implements Initializable
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void getCourseDate() throws SQLException
+    {
+        Date courseDate = new GregorianCalendar(2020, Calendar.MARCH, 23).getTime();
+        System.out.println(courseDate);
+        courseModel.getAllCourseDates(courseDate);
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
