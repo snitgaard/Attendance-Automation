@@ -106,7 +106,7 @@ public class StudentAttendanceController implements Initializable {
             checker();
             calendar.setValue(LocalDate.now());
             generateAttendanceButtons();
-            listView.setItems(attButtons);
+            
 
             //courseModel.getAllCourseDates(courseDate);
         } catch (UnknownHostException ex) {
@@ -137,6 +137,13 @@ public class StudentAttendanceController implements Initializable {
             JFXToggleButton attButton = new JFXToggleButton();
             attButtons.add(attButton);
         }
+        
+        if (attButtons.isEmpty())
+        {
+            listView.setVisible(false);
+        }
+        listView.setItems(attButtons);
+        listView.setPrefHeight(attButtons.size() * 62);
 
     }
 
