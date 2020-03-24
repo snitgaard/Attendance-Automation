@@ -138,11 +138,12 @@ public class StudentAttendanceController implements Initializable {
             attButtons.add(attButton);
         }
         
+        listView.setItems(attButtons);
         if (attButtons.isEmpty())
         {
             listView.setVisible(false);
         }
-        listView.setItems(attButtons);
+        
         listView.setPrefHeight(attButtons.size() * 62);
 
     }
