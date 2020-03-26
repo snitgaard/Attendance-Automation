@@ -67,9 +67,9 @@ public class CourseManager
         return courseDao.updateCourse(courseName, courseId);
     }
 
-    public int getAllCourseDates(String courseDate) throws SQLException
+    public int getAllCourseDates(String courseDate, String className) throws SQLException
     {
-        return courseDao.getAllCourseDates(courseDate);
+        return courseDao.getAllCourseDates(courseDate, className);
     }
 
 }

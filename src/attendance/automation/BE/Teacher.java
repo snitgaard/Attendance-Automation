@@ -15,7 +15,7 @@ public class Teacher extends Person{
     
     public Teacher(int id, String name, String email, String course, String teacherPassword)
     {
-        super(id, name, email, course);
+        super(id, name, email);
         this.teacherPassword = teacherPassword;
     }
     
@@ -58,15 +58,7 @@ public class Teacher extends Person{
         this.email = email;
     }
 
-    public String getCourse()
-    {
-        return course;
-    }
-
-    public void setCourse(String course)
-    {
-        this.course = course;
-    }
+  
     
     
     

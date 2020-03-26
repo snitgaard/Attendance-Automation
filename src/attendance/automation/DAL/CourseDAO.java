@@ -117,12 +117,13 @@ public class CourseDAO {
         }
     }
 
-    public int getAllCourseDates(String courseDate) throws SQLException {
+    public int getAllCourseDates(String courseDate, String className) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
 
-            String sql = "SELECT * FROM Course WHERE courseDate = ?;";
+            String sql = "SELECT * FROM Course WHERE courseDate = ? AND className = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
+            ps.setString(2, className);
             ResultSet rs = ps.executeQuery();
             int courseCount = 0;
 
