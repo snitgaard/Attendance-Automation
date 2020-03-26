@@ -155,7 +155,7 @@ public class StudentAttendanceController implements Initializable {
     }
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException {
+    private void handleOverview(ActionEvent event) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();

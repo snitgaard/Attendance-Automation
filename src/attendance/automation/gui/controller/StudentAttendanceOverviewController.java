@@ -9,6 +9,8 @@ import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXProgressBar;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,7 +49,6 @@ public class StudentAttendanceOverviewController implements Initializable
     @FXML
     private Label studentAttendancePercentage;
 
-    private StudentAttendanceController studentAtten = new StudentAttendanceController();
     
     /**
      * Initializes the controller class.
@@ -56,6 +57,20 @@ public class StudentAttendanceOverviewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {   
         buildLineChart();
+        
+    }
+    
+    public void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent) throws SQLException {
+        this.studentModel = studentModel;
+        this.controller = controller;
+        this.selectedStudent = selectedStudent;
+
+        progressBar.setProgress(selectedStudent.getAttendance() / 100);
+        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
+        
+        System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
+        System.out.println(selectedStudent.getAttendance() + "what is going on");
+
     }
 
     private void buildLineChart()
@@ -96,15 +111,5 @@ public class StudentAttendanceOverviewController implements Initializable
         stage.setIconified(true);
     }
     
-    void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent)
-    {
-        this.studentModel = studentModel;
-        this.controller = controller; 
-        this.selectedStudent = selectedStudent;
-        
-        studentName.setText(selectedStudent.getName());
-        studentEducation.setText(selectedStudent.getStudentEducation());
-        progressBar.setProgress(selectedStudent.getAttendance() / 100);
-        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-    }
+    
 }
