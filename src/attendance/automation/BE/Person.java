@@ -15,14 +15,12 @@ public abstract class Person
     protected int id;
     protected String name;
     protected String email;
-    protected String course;
 
-    public Person(int id, String name, String email, String course)
+    public Person(int id, String name, String email)
     {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.course = course;
     }
 
     public int getId()
@@ -55,13 +53,5 @@ public abstract class Person
         this.email = email;
     }
 
-    public String getCourse()
-    {
-        return course;
-    }
-
-    public void setCourse(String course)
-    {
-        this.course = course;
-    }
+   
 }

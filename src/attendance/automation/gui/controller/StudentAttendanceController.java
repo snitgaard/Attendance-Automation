@@ -97,6 +97,8 @@ public class StudentAttendanceController implements Initializable
 
     @FXML
     private JFXListView<JFXToggleButton> listView;
+    @FXML
+    private Label studentClassName;
 
     /**
      * Initializes the controller class.
@@ -109,17 +111,14 @@ public class StudentAttendanceController implements Initializable
             courseModel = new CourseModel();
 
             checker();
-            calendar.setValue(LocalDate.now());
-            generateAttendanceButtons();
+            
+            
 
             //courseModel.getAllCourseDates(courseDate);
         } catch (UnknownHostException ex)
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -132,10 +131,15 @@ public class StudentAttendanceController implements Initializable
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-
+        studentClassName.setText(selectedStudent.getStudentClass());
+        calendar.setValue(LocalDate.now());
+            generateAttendanceButtons();
+        
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
+    
+  
 
     public void generateAttendanceButtons() throws SQLException
     {
@@ -198,8 +202,7 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException
-    {
+    private void handleOverview(ActionEvent event) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
