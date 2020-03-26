@@ -73,9 +73,11 @@ public class StudentAttendanceController implements Initializable {
 
     @FXML
     private ImageView btn_close;
+    
     private double xOffset = 0;
     private double yOffset = 0;
     private String courseDate;
+    private int attendance = 0;
 
     @FXML
     private JFXProgressBar progressBar;
@@ -201,12 +203,22 @@ public class StudentAttendanceController implements Initializable {
                 String strDate = dateFormat.format(date);
                 System.out.println("Converted String: " + strDate);*/
 
-                int attendance = 1;
+                attendance = 1;
                 int studentId = selectedStudent.getId();
                 int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
 
                 this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
             }
+            else if (checker() == false)
+            {
+                attendance = 0;
+                int studentId = selectedStudent.getId();
+                int courseId = selectedCourse.getCourseId();
+                
+                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+            }
+            
+            
         } catch (UnknownHostException ex) {
             System.out.println("Smth went wrong in the submitAttendance 1st catch");
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
