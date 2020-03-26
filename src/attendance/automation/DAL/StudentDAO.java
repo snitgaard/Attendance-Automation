@@ -41,7 +41,7 @@ public class StudentDAO {
                 int id = rs.getInt("studentId");
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
-                String course = rs.getString("course");
+                String course = rs.getString("class");
                 double attendance = rs.getDouble("attendance");
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
@@ -117,7 +117,7 @@ public class StudentDAO {
                 int id = rs.getInt("studentId");
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
-                String course = rs.getString("course");
+                String course = rs.getString("class");
                 double attendance = rs.getDouble("attendance");
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
