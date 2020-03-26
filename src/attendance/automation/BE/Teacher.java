@@ -18,7 +18,6 @@ public class Teacher extends Person{
         super(id, name, email);
         this.teacherPassword = teacherPassword;
     }
-    
 
     public String getTeacherPassword() {
         return teacherPassword;
