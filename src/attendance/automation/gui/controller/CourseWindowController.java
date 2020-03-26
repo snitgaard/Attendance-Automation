@@ -8,6 +8,7 @@ package attendance.automation.gui.controller;
 import attendance.automation.BE.Course;
 import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.CourseModel;
+import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -48,7 +49,11 @@ public class CourseWindowController implements Initializable
     @FXML
     private ImageView btn_close;
     @FXML
-    private TextField courseLengthField;
+    private TextField txt_startTime;
+    @FXML
+    private TextField txt_endTime;
+    @FXML
+    private JFXDatePicker datePicker;
 
     /**
      * Initializes the controller class.
@@ -65,8 +70,10 @@ public class CourseWindowController implements Initializable
     {
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
-        String courseLength = courseLengthField.getText();
-        Course selectClass = (Course) cb_selectClass.getSelectionModel().getSelectedItem();
+        String startTime = txt_startTime.getText();
+        String endTime = txt_endTime.getText();
+        Course className = (Course) cb_selectClass.getSelectionModel().getSelectedItem();
+        String courseDate = datePicker.getValue().toString();
 
         if (course.length() == 0 && weekDay.length() == 0)
         {
@@ -77,7 +84,7 @@ public class CourseWindowController implements Initializable
             txt_weekDay.setBorder(warning);
         } else
         {
-            courseModel.createCourses(course, weekDay, courseLength, selectClass + "");
+            courseModel.createCourses(course, weekDay, startTime, endTime, className + "", courseDate);
         }
 
     }

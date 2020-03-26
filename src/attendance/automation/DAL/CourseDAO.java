@@ -44,13 +44,13 @@ public class CourseDAO {
                 String courseName = rs.getString("courseName");
                 String weekDay = rs.getString("weekDay");
                 String className = rs.getString("className");
-                int courseLength = rs.getInt("courseLength");
+                String startTime = rs.getString("startTime");
+                String endTime = rs.getString("endTime");
                 String courseDate = rs.getString("courseDate");
-                Course course = new Course(courseId, courseName, weekDay, className, courseLength, courseDate);
+                Course course = new Course(courseId, courseName, weekDay, className, startTime, endTime, courseDate);
                 allCourses.add(course);
             }
             return allCourses;
-
         }
     }
 
@@ -75,14 +75,16 @@ public class CourseDAO {
     * The SQL statement will be run.
     * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String courseLength, String className) {
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate) {
         try (Connection con = dbCon.getConnection()) {
-            String sql = "INSERT INTO Course (courseName, weekDay, courseLength, className) VALUES (?,?,?,?);";
+            String sql = "INSERT INTO Course (courseName, weekDay, startTime, endTime, className, courseDate) VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
             ps.setString(2, weekDay);
-            ps.setString(3, courseLength);
-            ps.setString(4, className);
+            ps.setString(3, startTime);
+            ps.setString(4, endTime);
+            ps.setString(5, className);
+            ps.setString(6, courseDate);
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows == 1) {
@@ -117,13 +119,15 @@ public class CourseDAO {
         }
     }
 
-    public int getAllCourseDates(String courseDate) throws SQLException {
+    public int getAllCourseDates(String courseDate, String className) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
 
-            String sql = "SELECT * FROM Course WHERE courseDate = ?;";
+            String sql = "SELECT * FROM Course WHERE courseDate = ? AND className = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
+            ps.setString(2, className);
             ResultSet rs = ps.executeQuery();
+            
             int courseCount = 0;
 
             while (rs.next()) {
@@ -131,7 +135,25 @@ public class CourseDAO {
             }
 
             return courseCount;
+        }
+    }
+    
+        public List<String> getAllClassNames(String className) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
 
+            String sql = "SELECT Distinct className FROM Course;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, className);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<String> allClasses = new ArrayList<>();
+            while (rs.next())
+            {
+                className = rs.getString("className");
+                allClasses.add(className);
+            }
+            return allClasses;
         }
     }
 

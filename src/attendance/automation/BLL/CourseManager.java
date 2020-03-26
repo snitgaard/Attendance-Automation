@@ -37,9 +37,9 @@ public class CourseManager
     }
 
     // This method calls the createCourse method in the courseDao
-    public boolean createCourse(String courseName, String weekDay, String courseLength, String selectClass)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate)
     {
-        return courseDao.createCourse(courseName, weekDay, courseLength, selectClass);
+        return courseDao.createCourse(courseName, weekDay, startTime, endTime, className, courseDate);
     }
 
     // This method tries to call getAllCourses method from courseDao
@@ -67,9 +67,9 @@ public class CourseManager
         return courseDao.updateCourse(courseName, courseId);
     }
 
-    public int getAllCourseDates(String courseDate) throws SQLException
+    public int getAllCourseDates(String courseDate, String className) throws SQLException
     {
-        return courseDao.getAllCourseDates(courseDate);
+        return courseDao.getAllCourseDates(courseDate, className);
     }
 
 }

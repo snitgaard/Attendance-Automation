@@ -17,16 +17,18 @@ public class Course {
     private String courseName;
     private String weekDay;
     private String selectClass;
-    private int courseLength;
+    private String startTime;
+    private String endTime;
     private String courseDate;
 
-    public Course(int courseId, String courseName, String weekDay, String selectClass, int courseLength, String courseDate)
+    public Course(int courseId, String courseName, String weekDay, String selectClass, String startTime, String endTime, String courseDate)
     {
         this.courseId = courseId;
         this.courseName = courseName;
         this.weekDay = weekDay;
         this.selectClass = selectClass;
-        this.courseLength = courseLength;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
     
     
@@ -74,15 +76,27 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public int getCourseLength()
+    public String getStartTime()
     {
-        return courseLength;
+        return startTime;
     }
 
-    public void setCourseLength(int courseLength)
+    public void setStartTime(String startTime)
     {
-        this.courseLength = courseLength;
+        this.startTime = startTime;
     }
+
+    public String getEndTime()
+    {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime)
+    {
+        this.endTime = endTime;
+    }
+    
+    
 
     @Override
     public String toString()

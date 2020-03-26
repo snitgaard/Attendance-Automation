@@ -37,16 +37,16 @@ public class CourseModel {
         return allCourses;
     }
     
-    public int getAllCourseDates(String courseDate) throws SQLException
+    public int getAllCourseDates(String courseDate, String className) throws SQLException
     {
-        return courseManager.getAllCourseDates(courseDate);
+        return courseManager.getAllCourseDates(courseDate, className);
     }
 
 
     //This is what the controller calls when creating a Course. This calls a method in the CourseManager
-    public void createCourses(String courseName, String weekDay, String courseLength, String selectClass) throws DalException
+    public void createCourses(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate) throws DalException
     {
-        boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, courseLength, selectClass);
+        boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, className, courseDate);
         if (courseIsCreated)
         {
             System.out.println("Course Created");

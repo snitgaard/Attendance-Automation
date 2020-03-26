@@ -61,7 +61,8 @@ import javax.print.PrintException;
  *
  * @author The Best Group
  */
-public class StudentAttendanceController implements Initializable {
+public class StudentAttendanceController implements Initializable
+{
 
     private StudentModel studentModel;
     private LoginController controller;
@@ -73,7 +74,7 @@ public class StudentAttendanceController implements Initializable {
 
     @FXML
     private ImageView btn_close;
-    
+
     private double xOffset = 0;
     private double yOffset = 0;
     private String courseDate;
@@ -91,7 +92,7 @@ public class StudentAttendanceController implements Initializable {
     private JFXDatePicker calendar;
     @FXML
     private AnchorPane studentPane;
-    
+
     private ObservableList<JFXToggleButton> attButtons = FXCollections.observableArrayList();
 
     @FXML
@@ -101,25 +102,29 @@ public class StudentAttendanceController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        try
+        {
             courseModel = new CourseModel();
 
             checker();
             calendar.setValue(LocalDate.now());
             generateAttendanceButtons();
-            
 
             //courseModel.getAllCourseDates(courseDate);
-        } catch (UnknownHostException ex) {
+        } catch (UnknownHostException ex)
+        {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
-    public void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent) throws SQLException {
+    public void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent) throws SQLException
+    {
         this.studentModel = studentModel;
         this.controller = controller;
         this.selectedStudent = selectedStudent;
@@ -127,31 +132,74 @@ public class StudentAttendanceController implements Initializable {
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-        
+
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
 
-    public void generateAttendanceButtons() throws SQLException 
+    public void generateAttendanceButtons() throws SQLException
     {
-        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString()); i++) 
+        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), studentClassName.getText()); i++)
         {
             JFXToggleButton attButton = new JFXToggleButton();
             attButtons.add(attButton);
+            attButton.setOnMouseClicked(event ->
+            {
+                JFXToggleButton b = (JFXToggleButton) event.getSource();
+                try
+                {
+                    if (checker() == true)
+                    {
+                        b.setSelected(true);
+                        attendance = 1;
+                        System.out.println("TEST TRUE");
+//                        int studentId = selectedStudent.getId();
+//                        int courseId = selectedCourse.getCourseId();
+//
+//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+                    } else if (checker() == false)
+                    {
+                        b.setSelected(false);
+
+                        System.out.println("TEST FALSE");
+
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setAlwaysOnTop(true);
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Cannot submit attendance");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Current location does not match with the school");
+                        alert.initOwner(stage);
+                        alert.showAndWait();
+                        stage.setAlwaysOnTop(false);
+
+//                        attendance = 0;
+//                        int studentId = selectedStudent.getId();
+//                        int courseId = selectedCourse.getCourseId();
+//
+//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+                    }
+                } catch (UnknownHostException ex)
+                {
+                    Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
         }
-        
+
         listView.setItems(attButtons);
         if (attButtons.isEmpty())
         {
             listView.setVisible(false);
         }
-        
+
         listView.setPrefHeight(attButtons.size() * 62);
 
     }
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException {
+    private void handleOverview(ActionEvent event) throws IOException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
@@ -162,16 +210,20 @@ public class StudentAttendanceController implements Initializable {
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initStyle(StageStyle.TRANSPARENT);
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+        root.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)
+            {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        root.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(MouseEvent event)
+            {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
@@ -184,74 +236,83 @@ public class StudentAttendanceController implements Initializable {
     }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         System.exit(0);
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
-    @FXML
-    private void submitAttendance(ActionEvent event) throws SQLException {
-        try {
-            if (checker() == true) {
-                /*Date date = Calendar.getInstance().getTime();
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                String strDate = dateFormat.format(date);
-                System.out.println("Converted String: " + strDate);*/
+//    @FXML
+//    private void submitAttendance(ActionEvent event) throws SQLException
+//    {
+//        try
+//        {
+//            if (checker() == true)
+//            {
+//                /*Date date = Calendar.getInstance().getTime();
+//                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//                String strDate = dateFormat.format(date);
+//                System.out.println("Converted String: " + strDate);*/
+//
+//                attendance = 1;
+//                int studentId = selectedStudent.getId();
+//                int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
+//
+//                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+//            }
+//
+//        } catch (UnknownHostException ex)
+//        {
+//            System.out.println("Smth went wrong in the submitAttendance 1st catch");
+//            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        try
+//        {
+//            if (checker() == false)
+//            {
+//
+//                attendanceButton.setSelected(false);
+//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//                stage.setAlwaysOnTop(true);
+//                Alert alert = new Alert(AlertType.INFORMATION);
+//                alert.setTitle("Cannot submit attendance");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Current location does not match with the school");
+//                alert.initOwner(stage);
+//                alert.showAndWait();
+//                stage.setAlwaysOnTop(false);
+//
+//                attendance = 0;
+//                int studentId = selectedStudent.getId();
+//                int courseId = selectedCourse.getCourseId();
+//
+//                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+//
+//            }
+//
+//        } catch (UnknownHostException ex)
+//        {
+//            System.out.println("Smth went wrong in the submitAttendance 2d catch");
+//            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
-                attendance = 1;
-                int studentId = selectedStudent.getId();
-                int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
-
-                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
-            }
-            else if (checker() == false)
-            {
-                attendance = 0;
-                int studentId = selectedStudent.getId();
-                int courseId = selectedCourse.getCourseId();
-                
-                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
-            }
-            
-            
-        } catch (UnknownHostException ex) {
-            System.out.println("Smth went wrong in the submitAttendance 1st catch");
-            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            if (checker() == false) {
-
-                attendanceButton.setSelected(false);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setAlwaysOnTop(true);
-
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Cannot submit attendance");
-                alert.setHeaderText(null);
-                alert.setContentText("Current location does not match with the school");
-                alert.initOwner(stage);
-                alert.showAndWait();
-                stage.setAlwaysOnTop(false);
-            }
-
-        } catch (UnknownHostException ex) {
-            System.out.println("Smth went wrong in the submitAttendance 2d catch");
-            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private boolean checker() throws UnknownHostException {
+    private boolean checker() throws UnknownHostException
+    {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println(IpAddress);
 
         String[] adr = IpAddress.split("\\.");
-        for (int i = 0; i < adr.length - 1; i++) {
-            if (adr[0].equals("10") && adr[1].equals("176") && adr[2].equals("161")) {
+        for (int i = 0; i < adr.length - 1; i++)
+        {
+            if (adr[0].equals("10") && adr[1].equals("176") && adr[2].equals("161"))
+            {
                 System.out.println("Location matches the school");
                 return true;
             }
