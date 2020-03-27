@@ -71,5 +71,10 @@ public class CourseManager
     {
         return courseDao.getAllCourseDates(courseDate, className);
     }
+    
+    public List<String> getAllClassNames() throws SQLException
+    {
+        return courseDao.getAllClassNames();
+    }
 
 }
