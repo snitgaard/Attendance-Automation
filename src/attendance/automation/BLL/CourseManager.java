@@ -56,7 +56,7 @@ public class CourseManager
     }
 
     // This method calls the method deleteCourse in the courseDao
-    public void deleteSong(Course course) throws DalException
+    public void deleteCourse(Course course) throws DalException
     {
         courseDao.deleteCourse(course);
     }

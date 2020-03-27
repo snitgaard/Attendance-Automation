@@ -5,10 +5,53 @@
  */
 package attendance.automation.BLL;
 
+import attendance.automation.BE.Classes;
+import attendance.automation.DAL.ClassesDAO;
+import attendance.automation.DAL.DalException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author jigzi
  */
 public class ClassesManager {
+    private ClassesDAO classesDao;
     
+    public ClassesManager() throws IOException
+    {
+            classesDao = new ClassesDAO();
+    }
+    
+    public boolean createClasses(int classesId, String classesName, int studentId, int teacherId)
+    {
+        return classesDao.createClasses(classesId, classesName, studentId, teacherId);
+    }
+
+    public List<Classes> getAllClasses()
+    {
+        try
+        {
+            return classesDao.getAllClasses();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CourseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public void deleteClasses(Classes classes) throws DalException
+    {
+        classesDao.deleteClasses(classes);
+    }
+
+
+    public boolean updateClasses(String classesName, int classesId)
+    {
+        return classesDao.updateClasses(classesName, classesId);
+    }
 }

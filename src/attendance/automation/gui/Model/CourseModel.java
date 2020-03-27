@@ -58,7 +58,7 @@ public class CourseModel {
     //This is what the controller calls when deleting a course. This calls a method in the CourseManager
     public void deleteCourse(Course selectedCourse) throws DalException
     {
-        courseManager.deleteSong(selectedCourse);
+        courseManager.deleteCourse(selectedCourse);
         if (allCourses.remove(selectedCourse))
         {
             allCourses.remove(selectedCourse);

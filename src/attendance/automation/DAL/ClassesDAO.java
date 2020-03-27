@@ -50,7 +50,7 @@ public class ClassesDAO {
     }
     
     //Deletes the class from SQL Database
-    public void deleteCourse(Classes classes) {
+    public void deleteClasses(Classes classes) {
         try (Connection con = dbCon.getConnection()) {
             int classesId = classes.getClassesId();
             String sql = "DELETE FROM Course WHERE courseId=?;";
