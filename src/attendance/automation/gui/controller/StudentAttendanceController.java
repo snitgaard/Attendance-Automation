@@ -111,14 +111,12 @@ public class StudentAttendanceController implements Initializable
             courseModel = new CourseModel();
 
             checker();
-            
-            
 
             //courseModel.getAllCourseDates(courseDate);
         } catch (UnknownHostException ex)
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -133,13 +131,11 @@ public class StudentAttendanceController implements Initializable
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
         studentClassName.setText(selectedStudent.getStudentClass());
         calendar.setValue(LocalDate.now());
-            generateAttendanceButtons();
-        
+        generateAttendanceButtons();
+
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
-    
-  
 
     public void generateAttendanceButtons() throws SQLException
     {
@@ -150,6 +146,7 @@ public class StudentAttendanceController implements Initializable
             attButton.setOnMouseClicked(event ->
             {
                 JFXToggleButton b = (JFXToggleButton) event.getSource();
+                b.setText("test");
                 try
                 {
                     if (checker() == true)
@@ -202,7 +199,8 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException, SQLException {
+    private void handleOverview(ActionEvent event) throws IOException, SQLException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
@@ -305,7 +303,6 @@ public class StudentAttendanceController implements Initializable
 //            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     private boolean checker() throws UnknownHostException
     {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
