@@ -74,6 +74,7 @@ public class StudentAttendanceController implements Initializable
 
     @FXML
     private ImageView btn_close;
+    private Course course;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -142,11 +143,17 @@ public class StudentAttendanceController implements Initializable
         for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), studentClassName.getText()); i++)
         {
             JFXToggleButton attButton = new JFXToggleButton();
+            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).get(i));
             attButtons.add(attButton);
+
+            for (int j = 0; j < courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).size(); j++)
+            {
+                attButton.setText(attButton.getUserData() + "");
+            }
+            
             attButton.setOnMouseClicked(event ->
             {
                 JFXToggleButton b = (JFXToggleButton) event.getSource();
-                b.setText("test");
                 try
                 {
                     if (checker() == true)

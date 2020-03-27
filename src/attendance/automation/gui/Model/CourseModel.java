@@ -21,8 +21,8 @@ import javafx.collections.ObservableList;
  */
 public class CourseModel {
     private ObservableList<Course> allCourses;
-    private ObservableList<Course> allCourseDates;
     private ObservableList<String> allClassnames;
+    private ObservableList<Course> allStartEndTimes;
     private CourseManager courseManager;
 
     
@@ -80,5 +80,12 @@ public class CourseModel {
         allClassnames = FXCollections.observableArrayList();
         allClassnames.addAll(courseManager.getAllClassNames());
         return allClassnames;
+    }
+    
+    public ObservableList<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    {
+        allStartEndTimes = FXCollections.observableArrayList();
+        allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, className));
+        return allStartEndTimes;
     }
 }
