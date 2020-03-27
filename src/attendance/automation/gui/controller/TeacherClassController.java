@@ -45,8 +45,6 @@ public class TeacherClassController implements Initializable
     private Label nameOne;
     @FXML
     private Label nameThree;
-    @FXML
-    private Button StudentThree;
     private double xOffset = 0;
     private double yOffset = 0;
 

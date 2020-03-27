@@ -138,23 +138,22 @@ public class CourseDAO {
         }
     }
     
-        public List<String> getAllClassNames(String className) throws SQLException
+        public List<String> getAllClassNames() throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
-
             String sql = "SELECT Distinct className FROM Course;";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, className);
-            ResultSet rs = ps.executeQuery();
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
             ArrayList<String> allClasses = new ArrayList<>();
             while (rs.next())
             {
-                className = rs.getString("className");
+                String className = rs.getString("className");
                 allClasses.add(className);
             }
             return allClasses;
         }
     }
+       
 
 }
