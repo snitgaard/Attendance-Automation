@@ -101,14 +101,13 @@ public class StudentAttendanceController implements Initializable
     @FXML
     private Label studentClassName;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-                 
+
         try
         {
             courseModel = new CourseModel();
@@ -138,7 +137,6 @@ public class StudentAttendanceController implements Initializable
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
-
 
     @FXML
     private void handleOverview(ActionEvent event) throws IOException, SQLException
@@ -176,7 +174,7 @@ public class StudentAttendanceController implements Initializable
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-        
+
     }
 
     @FXML
@@ -191,23 +189,25 @@ public class StudentAttendanceController implements Initializable
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-    
-    
+
     public void generateAttendanceButtons() throws SQLException
     {
         for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), studentClassName.getText()); i++)
         {
             JFXToggleButton attButton = new JFXToggleButton();
             attButtons.add(attButton);
-            
-                    listView.setItems(attButtons);
-        if (attButtons.isEmpty())
-        {
-            listView.setVisible(false);
-        }
+            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).get(i));
+            attButton.setText(attButton.getUserData() + "");
 
-        listView.setPrefHeight(attButtons.size() * 62);
-        
+            listView.setItems(attButtons);
+
+            if (attButtons.isEmpty())
+            {
+                listView.setVisible(false);
+            }
+
+            listView.setPrefHeight(attButtons.size() * 62);
+
             {
                 try
                 {
@@ -226,7 +226,7 @@ public class StudentAttendanceController implements Initializable
                         attButton.setSelected(false);
                         attButton.setDisable(true);
                         System.out.println("TEST FALSE");
-                        
+
                         Stage onTop = (Stage) nameTag.getScene().getWindow();
                         onTop.setAlwaysOnTop(true);
                         Alert alert = new Alert(AlertType.INFORMATION);
@@ -237,7 +237,7 @@ public class StudentAttendanceController implements Initializable
                         alert.showAndWait();
 
                         attendance = 0;
-                        
+
 //                        int studentId = selectedStudent.getId();
 //                        int courseId = selectedCourse.getCourseId();
 //
