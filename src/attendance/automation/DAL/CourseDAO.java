@@ -180,7 +180,7 @@ public class CourseDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT courseId, startTime, endTime FROM Course WHERE courseDate = ? AND className = ?;";
+            String sql = "SELECT courseId, startTime, endTime, courseName FROM Course WHERE courseDate = ? AND className = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
             ps.setString(2, className);
@@ -188,6 +188,7 @@ public class CourseDAO
             int id = 0;
             String startTime = null;
             String endTime = null;
+            String courseName = null;
             ArrayList<Course> startEndTimes = new ArrayList<>();
 
             while (rs.next())
@@ -195,7 +196,8 @@ public class CourseDAO
                 id = rs.getInt("courseId");
                 startTime = rs.getString("startTime");
                 endTime = rs.getString(("endTime"));
-                Course course = new Course(id, startTime, endTime);
+                courseName = rs.getString("courseName");
+                Course course = new Course(id, startTime, endTime, courseName);
                 startEndTimes.add(course);
             }
             return startEndTimes;

@@ -127,11 +127,13 @@ public class StudentAttendanceController implements Initializable
         this.studentModel = studentModel;
         this.controller = controller;
         this.selectedStudent = selectedStudent;
+        this.selectedCourse = selectedCourse;
 
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
         studentClassName.setText(selectedStudent.getStudentClass());
+        
         calendar.setValue(LocalDate.now());
         generateAttendanceButtons();
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
@@ -217,10 +219,10 @@ public class StudentAttendanceController implements Initializable
                         attButton.setDisable(true);
                         attendance = 1;
                         System.out.println("TEST TRUE");
-//                        int studentId = selectedStudent.getId();
-//                        int courseId = selectedCourse.getCourseId();
-//
-//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+                        int studentId = selectedStudent.getId();
+                        int courseId = selectedCourse.getCourseId();
+
+                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
                     } else if (checker() == false)
                     {
                         attButton.setSelected(false);
@@ -238,10 +240,10 @@ public class StudentAttendanceController implements Initializable
 
                         attendance = 0;
 
-//                        int studentId = selectedStudent.getId();
-//                        int courseId = selectedCourse.getCourseId();
-//
-//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
+                        int studentId = selectedStudent.getId();
+                        int courseId = selectedCourse.getCourseId();
+
+                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
                     }
                 } catch (UnknownHostException ex)
                 {

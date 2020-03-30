@@ -31,17 +31,14 @@ public class Course {
         this.endTime = endTime;
     }
 
-    public Course(int courseId, String startTime, String endTime)
+    public Course(int courseId, String startTime, String endTime, String courseName)
     {
         this.courseId = courseId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.courseName = courseName;
     }
-    
-    
-    
-    
-    
+
 
     public String getCourseDate() {
         return courseDate;
@@ -110,7 +107,7 @@ public class Course {
     @Override
     public String toString()
     {
-        return startTime + " - " + endTime;
+        return startTime + " - " + endTime + ": " + courseName;
     }
 
 }
