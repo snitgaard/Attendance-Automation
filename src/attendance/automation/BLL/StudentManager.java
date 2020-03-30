@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Student;
 import attendance.automation.DAL.StudentDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,14 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author jigzi
  */
-public class StudentManager {
-    
+public class StudentManager
+{
+
     private StudentDAO studentDAO;
-    
-    public StudentManager() {
+
+    public StudentManager()
+    {
         try
         {
             studentDAO = new StudentDAO();
@@ -31,10 +33,10 @@ public class StudentManager {
             Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
 
-    public List<Student> getAllData() {
+
+    public List<Student> getAllData()
+    {
         try
         {
             return studentDAO.getAllStudents();
@@ -44,27 +46,26 @@ public class StudentManager {
         }
         return null;
     }
-    
-    
-    
+
+
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
         return studentDAO.checkLoginCredentials(studentEmail, studentPassword);
     }
-    
+
     public List<Student> getStudent(String studentEmail) throws SQLServerException
     {
         return studentDAO.getStudent(studentEmail);
     }
-    
+
     public List<Student> getStudentsInCourse(String course) throws SQLServerException
     {
         return studentDAO.getStudentsInCourse(course);
     }
-    
+
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return studentDAO.getSpecificStudent(studentEmail);
     }
-    
+
 }

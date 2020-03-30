@@ -7,54 +7,29 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
-import attendance.automation.gui.Model.CourseModel;
-import attendance.automation.gui.Model.StudentCourseModel;
-import attendance.automation.gui.Model.StudentModel;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXProgressBar;
-import com.jfoenix.controls.JFXToggleButton;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import attendance.automation.gui.Model.*;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javax.print.PrintException;
+import javafx.stage.*;
+
+import java.io.IOException;
+import java.net.*;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -142,7 +117,7 @@ public class StudentAttendanceController implements Initializable
     private void handleOverview(ActionEvent event) throws IOException, SQLException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
         // Here the edit controller is given important data objects,
         // This secures that it is the correct ones we are working with.
@@ -247,7 +222,7 @@ public class StudentAttendanceController implements Initializable
                 {
                     Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            };
+            }
 
         }
 
@@ -261,7 +236,7 @@ public class StudentAttendanceController implements Initializable
 
     }
 
-//    @FXML
+    //    @FXML
 //    private void submitAttendance(ActionEvent event) throws SQLException
 //    {
 //        try

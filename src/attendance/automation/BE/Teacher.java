@@ -6,14 +6,14 @@
 package attendance.automation.BE;
 
 /**
- *
  * @author The Best Group
  */
-public class Teacher extends Person{
-    
+public class Teacher extends Person
+{
+
     private String teacherPassword;
     private String teacherClass;
-    
+
     public Teacher(int id, String name, String email, String course, String teacherPassword, String teacherClass)
     {
         super(id, name, email);
@@ -21,20 +21,24 @@ public class Teacher extends Person{
         this.teacherClass = teacherClass;
     }
 
-    public String getTeacherClass() {
+    public String getTeacherClass()
+    {
         return teacherClass;
     }
 
-    public void setTeacherClass(String teacherClass) {
+    public void setTeacherClass(String teacherClass)
+    {
         this.teacherClass = teacherClass;
     }
 
-    
-    public String getTeacherPassword() {
+
+    public String getTeacherPassword()
+    {
         return teacherPassword;
     }
 
-    public void setTeacherPassword(String teacherPassword) {
+    public void setTeacherPassword(String teacherPassword)
+    {
         this.teacherPassword = teacherPassword;
     }
 
@@ -68,9 +72,5 @@ public class Teacher extends Person{
         this.email = email;
     }
 
-  
-    
-    
-    
-    
+
 }

@@ -9,13 +9,6 @@ import attendance.automation.BE.Course;
 import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.CourseModel;
 import com.jfoenix.controls.JFXDatePicker;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,13 +17,15 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -40,9 +35,8 @@ import javafx.stage.Stage;
 public class CourseWindowController implements Initializable
 {
 
-    private CourseModel courseModel;
     Course course;
-
+    private CourseModel courseModel;
     @FXML
     private TextField txt_courseName;
     @FXML

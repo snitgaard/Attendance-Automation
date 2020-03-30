@@ -8,15 +8,14 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Course;
 import attendance.automation.DAL.CourseDAO;
 import attendance.automation.DAL.DalException;
+
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author jigzi
  */
 public class CourseManager
@@ -71,12 +70,12 @@ public class CourseManager
     {
         return courseDao.getAllCourseDates(courseDate, className);
     }
-    
+
     public List<String> getAllClassNames() throws SQLException
     {
         return courseDao.getAllClassNames();
     }
-    
+
     public List<Course> getStartEndTime(String courseDate, String className) throws SQLException
     {
         return courseDao.getStartEndTime(courseDate, className);

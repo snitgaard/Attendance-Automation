@@ -5,33 +5,26 @@
  */
 package attendance.automation.gui.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.chart.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
  *
  * @author The Best Group
  */
-public class TeacherStudentController implements Initializable {
+public class TeacherStudentController implements Initializable
+{
 
     @FXML
     private AnchorPane ancMain;
@@ -46,37 +39,40 @@ public class TeacherStudentController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         buildBarChart();
-    }    
+    }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         System.exit(0);
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-    
+
     @FXML
     private void showTeacherMain() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        
+        Parent root = fxmlLoader.load();
+
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
-            stage1.close();
-            Object c = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setAlwaysOnTop(true);
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.show();
+        stage1.close();
+        Object c = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setAlwaysOnTop(true);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
 
 
         root.setOnMousePressed(new EventHandler<MouseEvent>()
@@ -98,7 +94,7 @@ public class TeacherStudentController implements Initializable {
             }
         });
     }
-    
+
     private void buildBarChart()
     {
         CategoryAxis xAxis = new CategoryAxis();
@@ -116,7 +112,7 @@ public class TeacherStudentController implements Initializable {
         data.getData().add(new XYChart.Data("Wednesday", 75));
         data.getData().add(new XYChart.Data("Thursday", 100));
         data.getData().add(new XYChart.Data("Friday", 36));
-        
+
         attendanceChart.setMinHeight(300);
 
         attendanceChart.getData().add(data);

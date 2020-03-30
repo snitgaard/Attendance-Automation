@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package attendance.automation.DAL;
-        
+
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
@@ -14,10 +14,10 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- *
  * @author The Cowboys
  */
-public class DatabaseConnector {
+public class DatabaseConnector
+{
     private SQLServerDataSource dataSource;
 
     /*This method reads a file in our github folder, the file consists of data needed to get on our database.
@@ -35,8 +35,8 @@ public class DatabaseConnector {
     }
 
     /*
-    *This method returns the data created in the constructor above
-    */
+     *This method returns the data created in the constructor above
+     */
     Connection getConnection() throws SQLServerException
     {
         return dataSource.getConnection();
