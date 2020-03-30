@@ -74,6 +74,7 @@ public class StudentAttendanceController implements Initializable
 
     @FXML
     private ImageView btn_close;
+    private Course course;
 
     private double xOffset = 0;
     private double yOffset = 0;
@@ -113,14 +114,12 @@ public class StudentAttendanceController implements Initializable
             courseModel = new CourseModel();
 
             checker();
-            
-            
 
             //courseModel.getAllCourseDates(courseDate);
         } catch (UnknownHostException ex)
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -139,12 +138,11 @@ public class StudentAttendanceController implements Initializable
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
-    
-  
 
 
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException, SQLException {
+    private void handleOverview(ActionEvent event) throws IOException, SQLException
+    {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
@@ -317,7 +315,6 @@ public class StudentAttendanceController implements Initializable
 //            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-
     private boolean checker() throws UnknownHostException
     {
         IpAddress = InetAddress.getLocalHost().getHostAddress();

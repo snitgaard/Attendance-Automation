@@ -56,7 +56,7 @@ public class CourseManager
     }
 
     // This method calls the method deleteCourse in the courseDao
-    public void deleteSong(Course course) throws DalException
+    public void deleteCourse(Course course) throws DalException
     {
         courseDao.deleteCourse(course);
     }
@@ -70,6 +70,16 @@ public class CourseManager
     public int getAllCourseDates(String courseDate, String className) throws SQLException
     {
         return courseDao.getAllCourseDates(courseDate, className);
+    }
+    
+    public List<String> getAllClassNames() throws SQLException
+    {
+        return courseDao.getAllClassNames();
+    }
+    
+    public List<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    {
+        return courseDao.getStartEndTime(courseDate, className);
     }
 
 }

@@ -6,6 +6,7 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.gui.Model.StudentModel;
+import attendance.automation.gui.Model.TeacherModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +34,7 @@ import javafx.stage.StageStyle;
 public class TeacherClassController implements Initializable
 {
 
+    private TeacherModel teacherModel;
     @FXML
     private ImageView btn_close;
     @FXML
@@ -57,6 +59,8 @@ public class TeacherClassController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         studentOverview();
+        generateClasses();
+        teacherModel = new TeacherModel();
     }
 
     @FXML
@@ -146,9 +150,15 @@ public class TeacherClassController implements Initializable
         });
     }
     
+    private void generateClasses()
+    {
+        //TODO
+    }
+    
     private void studentOverview()
     {
         nameOne.setText(model.getAllData().get(0).toString());
+        System.out.println("hvad er det her" + nameOne);
         nameTwo.setText(model.getAllData().get(1).toString());
         nameThree.setText(model.getAllData().get(2).toString());
         nameFour.setText(model.getAllData().get(3).toString());

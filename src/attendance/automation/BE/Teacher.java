@@ -12,13 +12,24 @@ package attendance.automation.BE;
 public class Teacher extends Person{
     
     private String teacherPassword;
+    private String teacherClass;
     
-    public Teacher(int id, String name, String email, String course, String teacherPassword)
+    public Teacher(int id, String name, String email, String course, String teacherPassword, String teacherClass)
     {
         super(id, name, email);
         this.teacherPassword = teacherPassword;
+        this.teacherClass = teacherClass;
     }
 
+    public String getTeacherClass() {
+        return teacherClass;
+    }
+
+    public void setTeacherClass(String teacherClass) {
+        this.teacherClass = teacherClass;
+    }
+
+    
     public String getTeacherPassword() {
         return teacherPassword;
     }

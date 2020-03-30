@@ -10,7 +10,10 @@ import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.CourseModel;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,7 +48,7 @@ public class CourseWindowController implements Initializable
     @FXML
     private TextField txt_weekDay;
     @FXML
-    private ComboBox<Course> cb_selectClass;
+    private ComboBox<String> cb_selectClass;
     @FXML
     private ImageView btn_close;
     @FXML
@@ -62,7 +65,13 @@ public class CourseWindowController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         courseModel = new CourseModel();
-        cb_selectClass.setItems(courseModel.getAllCourses());
+        try
+        {
+            cb_selectClass.setItems(courseModel.getAllClassNames());
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -72,7 +81,7 @@ public class CourseWindowController implements Initializable
         String weekDay = txt_weekDay.getText();
         String startTime = txt_startTime.getText();
         String endTime = txt_endTime.getText();
-        Course className = (Course) cb_selectClass.getSelectionModel().getSelectedItem();
+        String className = cb_selectClass.getSelectionModel().getSelectedItem();
         String courseDate = datePicker.getValue().toString();
 
         if (course.length() == 0 && weekDay.length() == 0)
