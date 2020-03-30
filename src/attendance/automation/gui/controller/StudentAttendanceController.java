@@ -225,8 +225,8 @@ public class StudentAttendanceController implements Initializable
 //                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
                     } else if (checker() == false)
                     {
-                         attButton.setSelected(false);
-                         attButton.setDisable(true);
+                        attButton.setSelected(false);
+                        attButton.setDisable(true);
                         System.out.println("TEST FALSE");
                         
                         Stage onTop = (Stage) nameTag.getScene().getWindow();
