@@ -6,54 +6,63 @@
 package attendance.automation.BE;
 
 /**
- *
  * @author jigzi
  */
-public class Classes {
-    
+public class Classes
+{
+
     private int classesId;
     private String classesName;
     private int studentId;
     private int teacherId;
 
-    public Classes(int classesId, String classesName, int studentId, int teacherId) {
+    public Classes(int classesId, String classesName, int studentId, int teacherId)
+    {
         this.classesId = classesId;
         this.classesName = classesName;
         this.studentId = studentId;
         this.teacherId = teacherId;
     }
 
-    public int getClassesId() {
+    public int getClassesId()
+    {
         return classesId;
     }
 
-    public void setClassesId(int classesId) {
+    public void setClassesId(int classesId)
+    {
         this.classesId = classesId;
     }
 
-    public String getClassesName() {
+    public String getClassesName()
+    {
         return classesName;
     }
 
-    public void setClassesName(String classesName) {
+    public void setClassesName(String classesName)
+    {
         this.classesName = classesName;
     }
 
-    public int getStudentId() {
+    public int getStudentId()
+    {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(int studentId)
+    {
         this.studentId = studentId;
     }
 
-    public int getTeacherId() {
+    public int getTeacherId()
+    {
         return teacherId;
     }
 
-    public void setTeacherId(int teacherId) {
+    public void setTeacherId(int teacherId)
+    {
         this.teacherId = teacherId;
     }
-    
-    
+
+
 }

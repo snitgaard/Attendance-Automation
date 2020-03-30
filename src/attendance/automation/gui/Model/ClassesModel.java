@@ -8,19 +8,20 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Classes;
 import attendance.automation.BLL.ClassesManager;
 import attendance.automation.DAL.DalException;
-import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
+
 /**
- *
  * @author jigzi
  */
-public class ClassesModel {
-        private ObservableList<Classes> allClasses;
+public class ClassesModel
+{
+    private ObservableList<Classes> allClasses;
     private ClassesManager classesManager;
 
-    
+
     public ClassesModel() throws IOException
     {
         classesManager = new ClassesManager();
@@ -33,7 +34,6 @@ public class ClassesModel {
         allClasses.addAll(classesManager.getAllClasses());
         return allClasses;
     }
-    
 
 
     public void createClasses(int classesId, String classesName, int studentId, int teacherId) throws DalException
@@ -55,7 +55,7 @@ public class ClassesModel {
         }
     }
 
-   
+
     public void updateClasses(String classesName, int classesId)
     {
         boolean classesIsUpdated = classesManager.updateClasses(classesName, classesId);

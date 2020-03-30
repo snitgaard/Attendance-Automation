@@ -12,17 +12,20 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -31,7 +34,7 @@ import javafx.stage.Stage;
  */
 public class StudentAttendanceOverviewController implements Initializable
 {
-    
+
     private StudentModel studentModel;
     private StudentAttendanceController controller;
     private Student selectedStudent;
@@ -49,27 +52,29 @@ public class StudentAttendanceOverviewController implements Initializable
     @FXML
     private Label studentAttendancePercentage;
 
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
-    {   
+    {
         buildLineChart();
-        
     }
-    
-    public void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent) throws SQLException {
+
+    public void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent) throws SQLException
+    {
         this.studentModel = studentModel;
         this.controller = controller;
         this.selectedStudent = selectedStudent;
 
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-        
+
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
         System.out.println(selectedStudent.getAttendance() + "what is going on");
+        
+        updateDynamicData();
 
     }
 
@@ -93,23 +98,26 @@ public class StudentAttendanceOverviewController implements Initializable
 
         attendanceChart.getData().add(data);
     }
-    
+
     private void updateDynamicData()
     {
-        
+        studentName.setText(selectedStudent.getName());
+        studentEducation.setText(selectedStudent.getStudentEducation());
     }
 
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-    
-    
+
+
 }

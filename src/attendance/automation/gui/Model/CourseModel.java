@@ -8,24 +8,22 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Course;
 import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
-import com.jfoenix.controls.JFXTextField;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 /**
- *
  * @author jigzi
  */
-public class CourseModel {
+public class CourseModel
+{
     private ObservableList<Course> allCourses;
     private ObservableList<String> allClassnames;
     private ObservableList<Course> allStartEndTimes;
     private CourseManager courseManager;
 
-    
+
     public CourseModel()
     {
         courseManager = new CourseManager();
@@ -38,7 +36,7 @@ public class CourseModel {
         allCourses.addAll(courseManager.getAllCourses());
         return allCourses;
     }
-    
+
     public int getAllCourseDates(String courseDate, String className) throws SQLException
     {
         return courseManager.getAllCourseDates(courseDate, className);
@@ -74,14 +72,14 @@ public class CourseModel {
             System.out.println("course Is Updated");
         }
     }
-    
+
     public ObservableList<String> getAllClassNames() throws SQLException
     {
         allClassnames = FXCollections.observableArrayList();
         allClassnames.addAll(courseManager.getAllClassNames());
         return allClassnames;
     }
-    
+
     public ObservableList<Course> getStartEndTime(String courseDate, String className) throws SQLException
     {
         allStartEndTimes = FXCollections.observableArrayList();

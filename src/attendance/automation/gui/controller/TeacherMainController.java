@@ -7,25 +7,19 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.CourseModel;
-import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -34,22 +28,20 @@ import javafx.stage.StageStyle;
  */
 public class TeacherMainController implements Initializable
 {
-    
+
+    CourseModel courseModel;
     private TeacherModel teacherModel;
     private LoginController controller;
     private Teacher selectedTeacher;
-
     @FXML
     private ImageView btn_close;
     @FXML
     private AnchorPane ancMain;
     private double xOffset = 0;
     private double yOffset = 0;
-    CourseModel courseModel;
     @FXML
     private ImageView btn_minimize;
 
-    
 
     /**
      * Initializes the controller class.
@@ -77,7 +69,7 @@ public class TeacherMainController implements Initializable
     private void showTeacherCourse() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
 
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
         stage1.close();
@@ -114,7 +106,7 @@ public class TeacherMainController implements Initializable
     private void showTeacherClass() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
 
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
         stage1.close();
@@ -151,9 +143,9 @@ public class TeacherMainController implements Initializable
     private void createCourse(ActionEvent event) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/CourseWindow.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
 
-        
+
         Object c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -162,7 +154,7 @@ public class TeacherMainController implements Initializable
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-        
+
         root.setOnMousePressed(new EventHandler<MouseEvent>()
         {
             @Override
@@ -183,7 +175,8 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher) {
+    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher)
+    {
         this.teacherModel = teacherModel;
         this.controller = controller;
         this.selectedTeacher = selectedTeacher;

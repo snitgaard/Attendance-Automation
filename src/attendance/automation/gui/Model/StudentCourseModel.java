@@ -6,20 +6,20 @@
 package attendance.automation.gui.Model;
 
 import attendance.automation.BLL.StudentCourseManager;
-import attendance.automation.BLL.StudentManager;
+
 import java.sql.SQLException;
 
 /**
- *
  * @author Mads
  */
-public class StudentCourseModel {
-    
+public class StudentCourseModel
+{
+
     private StudentCourseManager studentCourseManager = new StudentCourseManager();
-    
+
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {
         return studentCourseManager.updateAttendance(attendance, studentId, courseId);
     }
-    
+
 }

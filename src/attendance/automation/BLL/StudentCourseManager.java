@@ -6,20 +6,22 @@
 package attendance.automation.BLL;
 
 import attendance.automation.DAL.StudentCourseDAO;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Mads
  */
-public class StudentCourseManager {
-    
-     private StudentCourseDAO studentCourseDAO;
-    
-    public StudentCourseManager() {
+public class StudentCourseManager
+{
+
+    private StudentCourseDAO studentCourseDAO;
+
+    public StudentCourseManager()
+    {
         try
         {
             studentCourseDAO = new StudentCourseDAO();
@@ -28,10 +30,10 @@ public class StudentCourseManager {
             Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {
         return studentCourseDAO.updateAttendance(attendance, studentId, courseId);
     }
-    
+
 }

@@ -6,7 +6,6 @@
 package attendance.automation.BE;
 
 /**
- *
  * @author jigzi
  */
 public abstract class Person
@@ -53,5 +52,5 @@ public abstract class Person
         this.email = email;
     }
 
-   
+
 }

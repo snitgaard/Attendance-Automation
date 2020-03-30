@@ -5,10 +5,7 @@
  */
 package attendance.automation.BE;
 
-import attendance.automation.BE.Person;
-
 /**
- *
  * @author CSnit
  */
 public class Student extends Person
@@ -18,7 +15,7 @@ public class Student extends Person
     private String studentPassword;
     private String studentEducation;
     private String studentClass;
-    
+
     public Student(int id, String name, String email, String studentClass, double attendance, int semester, String studentPassword, String studentEducation)
     {
         super(id, name, email);
@@ -26,31 +23,37 @@ public class Student extends Person
         this.semester = semester;
         this.studentPassword = studentPassword;
         this.studentEducation = studentEducation;
-        this.studentClass = studentClass; 
-    }
-
-    public String getStudentClass() {
-        return studentClass;
-    }
-
-    public void setStudentClass(String studentClass) {
         this.studentClass = studentClass;
     }
 
-    public String getStudentEducation() {
+    public String getStudentClass()
+    {
+        return studentClass;
+    }
+
+    public void setStudentClass(String studentClass)
+    {
+        this.studentClass = studentClass;
+    }
+
+    public String getStudentEducation()
+    {
         return studentEducation;
     }
 
-    public void setStudentEducation(String studentEducation) {
+    public void setStudentEducation(String studentEducation)
+    {
         this.studentEducation = studentEducation;
     }
 
-    
-    public String getStudentPassword() {
+
+    public String getStudentPassword()
+    {
         return studentPassword;
     }
 
-    public void setStudentPassword(String studentPassword) {
+    public void setStudentPassword(String studentPassword)
+    {
         this.studentPassword = studentPassword;
     }
 
@@ -64,15 +67,15 @@ public class Student extends Person
         this.attendance = attendance;
     }
 
-    public int getSemester() {
+    public int getSemester()
+    {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(int semester)
+    {
         this.semester = semester;
     }
 
 
-    
-    
 }

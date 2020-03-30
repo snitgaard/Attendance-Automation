@@ -6,12 +6,13 @@
 package attendance.automation.DAL;
 
 /**
- *
  * @author jigzi
  */
-public class DalException extends Exception {
+public class DalException extends Exception
+{
 
-    public DalException() {
+    public DalException()
+    {
     }
-    
+
 }

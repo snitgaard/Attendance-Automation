@@ -7,24 +7,18 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.stage.*;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -34,6 +28,7 @@ import javafx.stage.StageStyle;
 public class TeacherClassController implements Initializable
 {
 
+    StudentModel model = new StudentModel();
     private TeacherModel teacherModel;
     @FXML
     private ImageView btn_close;
@@ -49,8 +44,6 @@ public class TeacherClassController implements Initializable
     private Label nameThree;
     private double xOffset = 0;
     private double yOffset = 0;
-
-    StudentModel model = new StudentModel();
 
     /**
      * Initializes the controller class.
@@ -80,17 +73,17 @@ public class TeacherClassController implements Initializable
     private void showTeacherMain() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        Parent root = fxmlLoader.load();
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
-            stage1.close();
-            Object c = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setAlwaysOnTop(true);
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.show();
+        stage1.close();
+        Object c = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setAlwaysOnTop(true);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
 
 
         root.setOnMousePressed(new EventHandler<MouseEvent>()
@@ -117,17 +110,17 @@ public class TeacherClassController implements Initializable
     private void showTeacherStudent() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherStudent.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-            Stage stage1 = (Stage) ancMain.getScene().getWindow();
-            stage1.close();
-            Object c = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initStyle(StageStyle.TRANSPARENT);
-            stage.setAlwaysOnTop(true);
-            stage.setResizable(false);
-            stage.setScene(new Scene(root));
-            stage.show();
+        Parent root = fxmlLoader.load();
+        Stage stage1 = (Stage) ancMain.getScene().getWindow();
+        stage1.close();
+        Object c = fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setAlwaysOnTop(true);
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
 
 
         root.setOnMousePressed(new EventHandler<MouseEvent>()
@@ -149,12 +142,12 @@ public class TeacherClassController implements Initializable
             }
         });
     }
-    
+
     private void generateClasses()
     {
         //TODO
     }
-    
+
     private void studentOverview()
     {
         nameOne.setText(model.getAllData().get(0).toString());
