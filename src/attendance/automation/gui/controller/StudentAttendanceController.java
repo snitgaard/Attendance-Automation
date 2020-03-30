@@ -145,11 +145,12 @@ public class StudentAttendanceController implements Initializable
             JFXToggleButton attButton = new JFXToggleButton();
             attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).get(i));
             attButtons.add(attButton);
+            attButton.setText(attButton.getUserData() + "");
 
-            for (int j = 0; j < courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).size(); j++)
-            {
-                attButton.setText(attButton.getUserData() + "");
-            }
+//            for (int j = 0; j < courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).size(); j++)
+//            {
+//                
+//            }
             
             attButton.setOnMouseClicked(event ->
             {
