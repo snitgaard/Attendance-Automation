@@ -188,7 +188,7 @@ public class StudentAttendanceController implements Initializable {
             try {
                 JFXToggleButton attButton = new JFXToggleButton();
                 attButtons.add(attButton);
-                attButton.setUserData(courseModel.getStartEndTime(selectedCourse.getCourseId(), calendar.getValue().toString(), studentClassName.getText()).get(i));
+                attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), studentClassName.getText()).get(i));
                 System.out.println("det fucking her" + attButton.getUserData());
                 attButton.setText(attButton.getUserData() + "");
                 
