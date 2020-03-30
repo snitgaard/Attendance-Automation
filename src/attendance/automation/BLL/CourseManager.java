@@ -76,9 +76,9 @@ public class CourseManager
         return courseDao.getAllClassNames();
     }
 
-    public List<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    public List<Course> getStartEndTime(int courseId, String courseDate, String className) throws SQLException
     {
-        return courseDao.getStartEndTime(courseDate, className);
+        return courseDao.getStartEndTime(courseId, courseDate, className);
     }
 
 }

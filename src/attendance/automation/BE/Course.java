@@ -29,9 +29,8 @@ public class Course
         this.endTime = endTime;
     }
 
-    public Course(int courseId, String startTime, String endTime, String courseName)
+    public Course(String startTime, String endTime, String courseName)
     {
-        this.courseId = courseId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.courseName = courseName;
