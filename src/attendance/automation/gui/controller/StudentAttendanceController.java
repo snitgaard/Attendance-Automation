@@ -213,7 +213,7 @@ public class StudentAttendanceController implements Initializable
                 {
                     if (checker() == true)
                     {
-                        attButton.setSelected(false);
+                        attButton.setSelected(true);
                         attButton.setDisable(true);
                         attendance = 1;
                         System.out.println("TEST TRUE");
@@ -323,7 +323,7 @@ public class StudentAttendanceController implements Initializable
         String[] adr = IpAddress.split("\\.");
         for (int i = 0; i < adr.length - 1; i++)
         {
-            if (adr[0].equals("10") && adr[1].equals("176") && adr[2].equals("161"))
+            if (adr[0].equals("172") && adr[1].equals("17") && adr[2].equals("176"))
             {
                 System.out.println("Location matches the school");
                 return true;
