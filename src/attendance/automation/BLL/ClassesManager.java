@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Classes;
 import attendance.automation.DAL.ClassesDAO;
 import attendance.automation.DAL.DalException;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -16,17 +17,17 @@ import java.util.logging.Logger;
 
 
 /**
- *
  * @author jigzi
  */
-public class ClassesManager {
+public class ClassesManager
+{
     private ClassesDAO classesDao;
-    
+
     public ClassesManager() throws IOException
     {
-            classesDao = new ClassesDAO();
+        classesDao = new ClassesDAO();
     }
-    
+
     public boolean createClasses(int classesId, String classesName, int studentId, int teacherId)
     {
         return classesDao.createClasses(classesId, classesName, studentId, teacherId);

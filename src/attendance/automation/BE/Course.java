@@ -5,14 +5,12 @@
  */
 package attendance.automation.BE;
 
-import java.util.Date;
-
 /**
- *
  * @author jigzi
  */
-public class Course {
-    
+public class Course
+{
+
     private int courseId;
     private String courseName;
     private String weekDay;
@@ -40,45 +38,54 @@ public class Course {
     }
 
 
-    public String getCourseDate() {
+    public String getCourseDate()
+    {
         return courseDate;
     }
 
-    public void setCourseDate(String courseDate) {
+    public void setCourseDate(String courseDate)
+    {
         this.courseDate = courseDate;
     }
 
-    
-    
-    public String getWeekDay() {
+
+    public String getWeekDay()
+    {
         return weekDay;
     }
 
-    public void setWeekDay(String weekDay) {
+    public void setWeekDay(String weekDay)
+    {
         this.weekDay = weekDay;
     }
 
-    public String getSelectClass() {
+    public String getSelectClass()
+    {
         return selectClass;
     }
 
-    public void setSelectClass(String selectClass) {
+    public void setSelectClass(String selectClass)
+    {
         this.selectClass = selectClass;
     }
 
-    public int getCourseId() {
+    public int getCourseId()
+    {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(int courseId)
+    {
         this.courseId = courseId;
     }
 
-    public String getCourseName() {
+    public String getCourseName()
+    {
         return courseName;
     }
 
-    public void setCourseName(String courseName) {
+    public void setCourseName(String courseName)
+    {
         this.courseName = courseName;
     }
 
@@ -101,8 +108,7 @@ public class Course {
     {
         this.endTime = endTime;
     }
-    
-    
+
 
     @Override
     public String toString()

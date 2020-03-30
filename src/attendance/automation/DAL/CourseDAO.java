@@ -6,21 +6,13 @@
 package attendance.automation.DAL;
 
 import attendance.automation.BE.Course;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
- *
  * @author jigzi
  */
 public class CourseDAO
@@ -34,7 +26,7 @@ public class CourseDAO
     }
 
     /*
-     * 
+     *
      */
     public List<Course> getAllCourses() throws SQLException
     {
@@ -80,10 +72,10 @@ public class CourseDAO
         }
     }
 
-    /* 
-    * If called this method will create a connection between the database and the program
-    * The SQL statement will be run.
-    * A new course will be given with the name chosen.
+    /*
+     * If called this method will create a connection between the database and the program
+     * The SQL statement will be run.
+     * A new course will be given with the name chosen.
      */
     public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate)
     {
@@ -115,10 +107,10 @@ public class CourseDAO
         return false;
     }
 
-    /* 
-    * If called this method will create a connection between the database and the program
-    * The SQL statement will be run.
-    * the course with the chosen courseId, will have its courseName changed
+    /*
+     * If called this method will create a connection between the database and the program
+     * The SQL statement will be run.
+     * the course with the chosen courseId, will have its courseName changed
      */
     public boolean updateCourse(String courseName, int courseId)
     {
