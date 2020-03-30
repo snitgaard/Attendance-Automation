@@ -168,16 +168,16 @@ public class CourseDAO
         }
     }
 
-    public List<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    public List<Course> getStartEndTime(int courseId, String courseDate, String className) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT courseId, startTime, endTime, courseName FROM Course WHERE courseDate = ? AND className = ?;";
+            String sql = "SELECT startTime, endTime, courseName FROM Course WHERE courseId =" + courseId + "AND courseDate = ? AND className = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, courseDate);
-            ps.setString(2, className);
+            ps.setInt(1, courseId);
+            ps.setString(2, courseDate);
+            ps.setString(3, className);
             ResultSet rs = ps.executeQuery();
-            int id = 0;
             String startTime = null;
             String endTime = null;
             String courseName = null;
@@ -185,11 +185,10 @@ public class CourseDAO
 
             while (rs.next())
             {
-                id = rs.getInt("courseId");
                 startTime = rs.getString("startTime");
                 endTime = rs.getString(("endTime"));
                 courseName = rs.getString("courseName");
-                Course course = new Course(id, startTime, endTime, courseName);
+                Course course = new Course(startTime, endTime, courseName);
                 startEndTimes.add(course);
             }
             return startEndTimes;
