@@ -8,6 +8,12 @@ package attendance.automation.gui.controller;
 import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXProgressBar;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -54,7 +60,6 @@ public class StudentAttendanceOverviewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         buildLineChart();
-
     }
 
     public void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent) throws SQLException
@@ -68,6 +73,8 @@ public class StudentAttendanceOverviewController implements Initializable
 
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
         System.out.println(selectedStudent.getAttendance() + "what is going on");
+        
+        updateDynamicData();
 
     }
 
@@ -94,7 +101,8 @@ public class StudentAttendanceOverviewController implements Initializable
 
     private void updateDynamicData()
     {
-
+        studentName.setText(selectedStudent.getName());
+        studentEducation.setText(selectedStudent.getStudentEducation());
     }
 
     @FXML
