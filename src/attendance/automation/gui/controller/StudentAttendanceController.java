@@ -110,6 +110,7 @@ public class StudentAttendanceController implements Initializable {
 
         try {
             courseModel = new CourseModel();
+            studentCourseModel = new StudentCourseModel();
 
             checker();
 
@@ -200,16 +201,13 @@ public class StudentAttendanceController implements Initializable {
                 listView.setPrefHeight(attButtons.size() * 62);
                 
                 
-                
-                
-                
                 String time1 = LocalTime.now().toString();
                 Date date1 = new SimpleDateFormat("HH:mm").parse(time1);
                 Calendar calendar1 = Calendar.getInstance();
                 calendar1.setTime(date1);
                 calendar1.add(Calendar.DATE, 1);
                 
-                Date date2 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(0, 4).trim());
+                Date date2 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(0, 5).trim());
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTime(date2);
                 calendar2.add(Calendar.DATE, 1);
@@ -219,18 +217,17 @@ public class StudentAttendanceController implements Initializable {
                 calendar3.setTime(date3);
                 calendar3.add(Calendar.DATE, 1);
                 
-                
+      
                 
                 Date x = calendar1.getTime();
-                System.out.println(calendar1.getTime());
-                System.out.println(calendar2.getTime());
-                System.out.println(calendar3.getTime());
+                
+                
                 {
                     try {
                         if (checker() == true && x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
                             attButton.setSelected(true);
                             attButton.setDisable(true);
-                            attendance = 1;
+                            studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), studentClassName.getText(), attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST TRUE");
 //                        int studentId = selectedStudent.getId();
 //                        int courseId = selectedCourse.getCourseId();
@@ -239,6 +236,7 @@ public class StudentAttendanceController implements Initializable {
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
+                            studentCourseModel.updateAttendance(0, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), studentClassName.getText(), attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST FALSE");
                             
                             Stage onTop = (Stage) nameTag.getScene().getWindow();

@@ -35,5 +35,15 @@ public class StudentCourseManager
     {
         return studentCourseDAO.updateAttendance(attendance, studentId, courseId);
     }
+    
+    public int getCourseId(String courseDate, String className, String startTime) throws SQLException
+    {
+        return studentCourseDAO.getCourseId(courseDate, className, startTime);
+    }
+    
+    public int getStudentId(String studentName) throws SQLException
+    {
+        return studentCourseDAO.getStudentId(studentName);
+    }
 
 }
