@@ -39,13 +39,13 @@ public class StudentDAO
                 int id = rs.getInt("studentId");
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
-                String course = rs.getString("class");
+                int classId = rs.getInt("classId");
                 double attendance = rs.getDouble("attendance");
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
+                Student student = new Student(id, name, email, classId, attendance, semester, studentPassword, studentEducation);
                 allStudents.add(student);
             }
             return allStudents;
@@ -92,12 +92,13 @@ public class StudentDAO
                 int id = rs.getInt("studentId");
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
+                int classId = rs.getInt("classId");
                 double attendance = rs.getDouble("attendance");
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
+                Student student = new Student(id, name, email, classId, attendance, semester, studentPassword, studentEducation);
                 selectedStudents.add(student);
             }
             return selectedStudents;
@@ -124,13 +125,13 @@ public class StudentDAO
                 int id = rs.getInt("studentId");
                 String name = rs.getString("studentName");
                 String email = rs.getString("studentEmail");
-                String course = rs.getString("class");
+                int classId = rs.getInt("classId");
                 double attendance = rs.getDouble("attendance");
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
 
-                Student student = new Student(id, name, email, course, attendance, semester, studentPassword, studentEducation);
+                Student student = new Student(id, name, email, classId, attendance, semester, studentPassword, studentEducation);
                 selectedStudent.add(student);
             }
             return selectedStudent;

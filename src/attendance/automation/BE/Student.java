@@ -14,26 +14,24 @@ public class Student extends Person
     private int semester;
     private String studentPassword;
     private String studentEducation;
-    private String studentClass;
+    private int classId;
 
-    public Student(int id, String name, String email, String studentClass, double attendance, int semester, String studentPassword, String studentEducation)
+    public Student(int id, String name, String email, int classId, double attendance, int semester, String studentPassword, String studentEducation)
     {
         super(id, name, email);
         this.attendance = attendance;
         this.semester = semester;
         this.studentPassword = studentPassword;
         this.studentEducation = studentEducation;
-        this.studentClass = studentClass;
+        this.classId = classId;
     }
 
-    public String getStudentClass()
-    {
-        return studentClass;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setStudentClass(String studentClass)
-    {
-        this.studentClass = studentClass;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
     public String getStudentEducation()
