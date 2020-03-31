@@ -64,5 +64,13 @@ public class Classes
         this.teacherId = teacherId;
     }
 
+    @Override
+    public String toString()
+    {
+        return classesName;
+    }
+    
+    
+
 
 }

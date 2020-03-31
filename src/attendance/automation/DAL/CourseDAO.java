@@ -41,11 +41,11 @@ public class CourseDAO
                 int courseId = rs.getInt("courseId");
                 String courseName = rs.getString("courseName");
                 String weekDay = rs.getString("weekDay");
-                String className = rs.getString("className");
+                int classId = rs.getInt("classId");
                 String startTime = rs.getString("startTime");
                 String endTime = rs.getString("endTime");
                 String courseDate = rs.getString("courseDate");
-                Course course = new Course(courseId, courseName, weekDay, className, startTime, endTime, courseDate);
+                Course course = new Course(courseId, courseName, weekDay, classId, startTime, endTime, courseDate);
                 allCourses.add(course);
             }
             return allCourses;
@@ -77,17 +77,17 @@ public class CourseDAO
      * The SQL statement will be run.
      * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate)
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "INSERT INTO Course (courseName, weekDay, startTime, endTime, className, courseDate) VALUES (?,?,?,?,?,?);";
+            String sql = "INSERT INTO Course (courseName, weekDay, startTime, endTime, classId, courseDate) VALUES (?,?,?,?,?,?);";
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, courseName);
             ps.setString(2, weekDay);
             ps.setString(3, startTime);
             ps.setString(4, endTime);
-            ps.setString(5, className);
+            ps.setInt(5, classId);
             ps.setString(6, courseDate);
             int affectedRows = ps.executeUpdate();
 
@@ -129,15 +129,15 @@ public class CourseDAO
         }
     }
 
-    public int getAllCourseDates(String courseDate, String className) throws SQLException
+    public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
 
-            String sql = "SELECT * FROM Course WHERE courseDate = ? AND className = ?;";
+            String sql = "SELECT * FROM Course WHERE courseDate = ? AND classId = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
-            ps.setString(2, className);
+            ps.setInt(2, classId);
             ResultSet rs = ps.executeQuery();
 
             int courseCount = 0;
@@ -155,27 +155,27 @@ public class CourseDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT Distinct className FROM Course;";
+            String sql = "SELECT Distinct classId FROM Course;";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<String> allClasses = new ArrayList<>();
             while (rs.next())
             {
-                String className = rs.getString("className");
-                allClasses.add(className);
+                int classId = rs.getInt("classId");
+                allClasses.add(classId + "");
             }
             return allClasses;
         }
     }
 
-    public List<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    public List<Course> getStartEndTime(String courseDate, int classId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT startTime, endTime, courseName FROM Course WHERE courseDate = ? AND className = ?;";
+            String sql = "SELECT startTime, endTime, courseName FROM Course WHERE courseDate = ? AND classId = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
-            ps.setString(2, className);
+            ps.setInt(2, classId);
             ResultSet rs = ps.executeQuery();
             String startTime = null;
             String endTime = null;

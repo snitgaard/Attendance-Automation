@@ -32,7 +32,7 @@ public class ClassesDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT * FROM Course;";
+            String sql = "SELECT * FROM Class;";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             ArrayList<Classes> allClasses = new ArrayList<>();

@@ -75,7 +75,7 @@ public class CourseWindowController implements Initializable
         String weekDay = txt_weekDay.getText();
         String startTime = txt_startTime.getText();
         String endTime = txt_endTime.getText();
-        String className = cb_selectClass.getSelectionModel().getSelectedItem();
+        int classId = cb_selectClass.getSelectionModel().getSelectedItem();
         String courseDate = datePicker.getValue().toString();
 
         if (course.length() == 0 && weekDay.length() == 0)
@@ -87,7 +87,7 @@ public class CourseWindowController implements Initializable
             txt_weekDay.setBorder(warning);
         } else
         {
-            courseModel.createCourses(course, weekDay, startTime, endTime, className + "", courseDate);
+            courseModel.createCourses(course, weekDay, startTime, endTime, classId, courseDate);
         }
 
     }

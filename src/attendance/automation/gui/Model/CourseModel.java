@@ -37,16 +37,16 @@ public class CourseModel
         return allCourses;
     }
 
-    public int getAllCourseDates(String courseDate, String className) throws SQLException
+    public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {
-        return courseManager.getAllCourseDates(courseDate, className);
+        return courseManager.getAllCourseDates(courseDate, classId);
     }
 
 
     //This is what the controller calls when creating a Course. This calls a method in the CourseManager
-    public void createCourses(String courseName, String weekDay, String startTime, String endTime, String className, String courseDate) throws DalException
+    public void createCourses(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws DalException
     {
-        boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, className, courseDate);
+        boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
         if (courseIsCreated)
         {
             System.out.println("Course Created");
@@ -80,10 +80,10 @@ public class CourseModel
         return allClassnames;
     }
 
-    public ObservableList<Course> getStartEndTime(String courseDate, String className) throws SQLException
+    public ObservableList<Course> getStartEndTime(String courseDate, int classId) throws SQLException
     {
         allStartEndTimes = FXCollections.observableArrayList();
-        allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, className));
+        allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, classId));
         return allStartEndTimes;
     }
 }
