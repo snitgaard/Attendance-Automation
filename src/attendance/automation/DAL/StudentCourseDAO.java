@@ -27,8 +27,13 @@ public class StudentCourseDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "INSERT INTO StudentAttendance (courseId, studentId, attended) VALUES (?,?,?)";
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); 
+            String sql = "BEGIN \n"
+                    + "IF NOT EXISTS (SELECT * FROM StudentAttendance WHERE courseId = ? AND studentId = ? AND  attended = ?) \n"
+                    + "BEGIN \n"
+                    + "INSERT INTO StudentAttendance (courseId, studentId, attended) VALUES (?,?,?) \n"
+                    + "END \n"
+                    + "END";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, courseId);
             ps.setInt(2, studentId);
             ps.setInt(3, attendance);
@@ -48,7 +53,7 @@ public class StudentCourseDAO
             return false;
         }
     }
-    
+
     public int getCourseId(String courseDate, String className, String startTime) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
@@ -59,19 +64,19 @@ public class StudentCourseDAO
             ps.setString(2, className);
             ps.setString(3, startTime);
             ResultSet rs = ps.executeQuery();
-            
+
             int courseId = 0;
-          
+
             while (rs.next())
             {
                 courseId = rs.getInt("courseId");
             }
             System.out.println(courseId + "DET ER HER DET ER");
             return courseId;
-            
+
         }
     }
-    
+
     public int getStudentId(String studentName) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
@@ -80,17 +85,17 @@ public class StudentCourseDAO
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, studentName);
             ResultSet rs = ps.executeQuery();
-            
+
             int studentId = 0;
-          
+
             while (rs.next())
             {
                 studentId = rs.getInt("studentId");
             }
 
             return studentId;
-            
-        } 
+
+        }
     }
 
 }

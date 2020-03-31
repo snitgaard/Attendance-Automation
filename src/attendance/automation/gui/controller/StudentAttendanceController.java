@@ -221,18 +221,14 @@ public class StudentAttendanceController implements Initializable {
                 
                 Date x = calendar1.getTime();
                 
-                
                 {
                     try {
                         if (checker() == true && x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
                             attButton.setSelected(true);
                             attButton.setDisable(true);
+                            
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), studentClassName.getText(), attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST TRUE");
-//                        int studentId = selectedStudent.getId();
-//                        int courseId = selectedCourse.getCourseId();
-//
-//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
@@ -247,13 +243,6 @@ public class StudentAttendanceController implements Initializable {
                             alert.initOwner(onTop);
                             alert.setContentText("Current location does not match with the school");
                             alert.showAndWait();
-                            
-                            attendance = 0;
-                            
-//                        int studentId = selectedStudent.getId();
-//                        int courseId = selectedCourse.getCourseId();
-//
-//                        this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
                         }
                         
                     } catch (UnknownHostException ex) {
@@ -282,6 +271,10 @@ public class StudentAttendanceController implements Initializable {
         listView.setPrefHeight(attButtons.size() * 62);
 
     }
+    
+    
+    
+    
 
     //    @FXML
 //    private void submitAttendance(ActionEvent event) throws SQLException
