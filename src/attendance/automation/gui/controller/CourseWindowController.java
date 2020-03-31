@@ -7,8 +7,10 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.DAL.DalException;
+import attendance.automation.gui.Model.ClassesModel;
 import attendance.automation.gui.Model.CourseModel;
 import com.jfoenix.controls.JFXDatePicker;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,6 +39,7 @@ public class CourseWindowController implements Initializable
 
     Course course;
     private CourseModel courseModel;
+    private ClassesModel classesModel;
     @FXML
     private TextField txt_courseName;
     @FXML
@@ -61,8 +64,10 @@ public class CourseWindowController implements Initializable
         courseModel = new CourseModel();
         try
         {
-            cb_selectClass.setItems(courseModel.getAllClassNames());
-        } catch (SQLException ex)
+            classesModel = new ClassesModel();
+            cb_selectClass.setItems(classesModel.getAllClasses());
+            
+        } catch (IOException ex)
         {
             Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +80,7 @@ public class CourseWindowController implements Initializable
         String weekDay = txt_weekDay.getText();
         String startTime = txt_startTime.getText();
         String endTime = txt_endTime.getText();
-        int classId = cb_selectClass.getSelectionModel().getSelectedItem();
+        String classId = cb_selectClass.getSelectionModel().getSelectedItem();
         String courseDate = datePicker.getValue().toString();
 
         if (course.length() == 0 && weekDay.length() == 0)

@@ -77,7 +77,7 @@ public class CourseDAO
      * The SQL statement will be run.
      * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String classId, String courseDate)
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -87,7 +87,7 @@ public class CourseDAO
             ps.setString(2, weekDay);
             ps.setString(3, startTime);
             ps.setString(4, endTime);
-            ps.setInt(5, classId);
+            ps.setString(5, classId);
             ps.setString(6, courseDate);
             int affectedRows = ps.executeUpdate();
 

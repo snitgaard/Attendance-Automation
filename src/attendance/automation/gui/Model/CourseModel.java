@@ -44,7 +44,7 @@ public class CourseModel
 
 
     //This is what the controller calls when creating a Course. This calls a method in the CourseManager
-    public void createCourses(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws DalException
+    public void createCourses(String courseName, String weekDay, String startTime, String endTime, String classId, String courseDate) throws DalException
     {
         boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
         if (courseIsCreated)

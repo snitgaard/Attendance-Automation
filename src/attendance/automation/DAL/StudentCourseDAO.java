@@ -37,6 +37,9 @@ public class StudentCourseDAO
             ps.setInt(1, courseId);
             ps.setInt(2, studentId);
             ps.setInt(3, attendance);
+            ps.setInt(4, courseId);
+            ps.setInt(5, studentId);
+            ps.setInt(6, attendance);
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 1)
             {
@@ -49,19 +52,18 @@ public class StudentCourseDAO
             return false;
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
             return false;
         }
     }
 
-    public int getCourseId(String courseDate, String className, String startTime) throws SQLException
+    public int getCourseId(String courseDate, int classId, String startTime) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "SELECT courseId FROM Course WHERE courseDate = ? AND className = ? AND startTime = ?;";
+            String sql = "SELECT courseId FROM Course WHERE courseDate = ? AND classId = ? AND startTime = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseDate);
-            ps.setString(2, className);
+            ps.setInt(2, classId);
             ps.setString(3, startTime);
             ResultSet rs = ps.executeQuery();
 

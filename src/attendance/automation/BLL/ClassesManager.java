@@ -33,7 +33,7 @@ public class ClassesManager
         return classesDao.createClasses(classesId, classesName, studentId, teacherId);
     }
 
-    public List<Classes> getAllClasses()
+    public List<String> getAllClasses()
     {
         try
         {

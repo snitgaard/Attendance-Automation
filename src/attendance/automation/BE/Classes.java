@@ -39,4 +39,12 @@ public class Classes
     {
         this.classesName = classesName;
     }
+
+    @Override
+    public String toString()
+    {
+        return classesName;
+    }
+    
+    
 }

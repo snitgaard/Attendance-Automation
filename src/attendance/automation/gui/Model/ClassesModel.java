@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class ClassesModel
 {
-    private ObservableList<Classes> allClasses;
+    private ObservableList<String> allClasses;
     private ClassesManager classesManager;
 
 
@@ -28,7 +28,7 @@ public class ClassesModel
     }
 
 
-    public ObservableList<Classes> getAllClasses()
+    public ObservableList<String> getAllClasses()
     {
         allClasses = FXCollections.observableArrayList();
         allClasses.addAll(classesManager.getAllClasses());

@@ -22,9 +22,9 @@ public class StudentCourseModel
         return studentCourseManager.updateAttendance(attendance, studentId, courseId);
     }
     
-    public int getCourseId(String courseDate, String className, String startTime) throws SQLException
+    public int getCourseId(String courseDate, int classId, String startTime) throws SQLException
     {
-        return studentCourseManager.getCourseId(courseDate, className, startTime);
+        return studentCourseManager.getCourseId(courseDate, classId, startTime);
     }
     
     public int getStudentId(String studentName) throws SQLException

@@ -28,21 +28,21 @@ public class ClassesDAO
     /*
      *
      */
-    public List<Classes> getAllClasses() throws SQLException
+    public List<String> getAllClasses() throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
             String sql = "SELECT * FROM Class;";
             Statement statement = con.createStatement();
             ResultSet rs = statement.executeQuery(sql);
-            ArrayList<Classes> allClasses = new ArrayList<>();
+            ArrayList<String> allClasses = new ArrayList<>();
             while (rs.next())
             {
                 int classesId = rs.getInt("classId");
                 String classesName = rs.getString("className");
 
                 Classes classes = new Classes(classesId, classesName);
-                allClasses.add(classes);
+                allClasses.add(classes + "");
             }
             return allClasses;
         }
