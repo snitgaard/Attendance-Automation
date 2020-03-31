@@ -41,9 +41,9 @@ public class TeacherDAO
                 String email = rs.getString("email");
                 String course = rs.getString("course");
                 String teacherPassword = rs.getString("teacherPassword");
-                String teacherClass = rs.getString("teacherClass");
+                int classId = rs.getInt("classId");
 
-                Teacher teacher = new Teacher(id, name, email, course, teacherPassword, teacherClass);
+                Teacher teacher = new Teacher(id, name, email, course, teacherPassword, classId);
                 allTeachers.add(teacher);
             }
             return allTeachers;
@@ -92,9 +92,9 @@ public class TeacherDAO
                 String email = rs.getString("teacherEmail");
                 String course = rs.getString("course");
                 String teacherPassword = rs.getString("teacherPassword");
-                String teacherClass = rs.getString("teacherClass");
-
-                Teacher teacher = new Teacher(id, name, email, course, teacherPassword, teacherClass);
+                int classId = rs.getInt("classId");
+                
+                Teacher teacher = new Teacher(id, name, email, course, teacherPassword, classId);
                 allTeachers.add(teacher);
             }
             return allTeachers;
