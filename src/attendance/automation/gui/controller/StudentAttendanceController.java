@@ -129,7 +129,7 @@ public class StudentAttendanceController implements Initializable {
         nameTag.setText(selectedStudent.getName());
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
-        studentClassName.setText(selectedStudent.getStudentClass());
+        studentClassName.setText(selectedStudent.getClassId()+"");
         
         calendar.setValue(LocalDate.now());
         generateAttendanceButtons();
