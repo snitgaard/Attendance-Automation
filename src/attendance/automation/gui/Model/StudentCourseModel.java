@@ -21,5 +21,15 @@ public class StudentCourseModel
     {
         return studentCourseManager.updateAttendance(attendance, studentId, courseId);
     }
+    
+    public int getCourseId(String courseDate, String className, String startTime) throws SQLException
+    {
+        return studentCourseManager.getCourseId(courseDate, className, startTime);
+    }
+    
+    public int getStudentId(String studentName) throws SQLException
+    {
+        return studentCourseManager.getStudentId(studentName);
+    }
 
 }

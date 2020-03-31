@@ -80,10 +80,10 @@ public class CourseModel
         return allClassnames;
     }
 
-    public ObservableList<Course> getStartEndTime(int courseId, String courseDate, String className) throws SQLException
+    public ObservableList<Course> getStartEndTime(String courseDate, String className) throws SQLException
     {
         allStartEndTimes = FXCollections.observableArrayList();
-        allStartEndTimes.addAll(courseManager.getStartEndTime(courseId, courseDate, className));
+        allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, className));
         return allStartEndTimes;
     }
 }
