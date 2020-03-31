@@ -5,10 +5,8 @@
  */
 package attendance.automation.DAL;
 
-import attendance.automation.BE.Course;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  * @author Mads
@@ -44,10 +42,7 @@ public class StudentCourseDAO
             if (affectedRows == 1)
             {
                 ResultSet rs = ps.getGeneratedKeys();
-                if (rs.next())
-                {
-                    return true;
-                }
+                return rs.next();
             }
             return false;
         } catch (SQLException ex)

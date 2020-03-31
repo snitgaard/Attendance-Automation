@@ -7,32 +7,6 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
-import attendance.automation.gui.Model.CourseModel;
-import attendance.automation.gui.Model.StudentCourseModel;
-import attendance.automation.gui.Model.StudentModel;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXProgressBar;
-import com.jfoenix.controls.JFXToggleButton;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import attendance.automation.gui.Model.*;
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
@@ -52,8 +26,11 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.*;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.time.LocalTime;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,6 +42,7 @@ import java.util.logging.Logger;
 public class StudentAttendanceController implements Initializable
 {
 
+    public static final long MSEC_SINCE_EPOCH = System.currentTimeMillis();
     private StudentModel studentModel;
     private LoginController controller;
     private Student selectedStudent;
@@ -72,17 +50,13 @@ public class StudentAttendanceController implements Initializable
     private StudentCourseModel studentCourseModel;
     private Course selectedCourse;
     private CourseModel courseModel;
-
     @FXML
     private ImageView btn_close;
     private Course course;
-
     private double xOffset = 0;
     private double yOffset = 0;
     private String courseDate;
     private int attendance = 0;
-    public static final long MSEC_SINCE_EPOCH = System.currentTimeMillis();
-
     @FXML
     private JFXProgressBar progressBar;
     @FXML
@@ -246,8 +220,7 @@ public class StudentAttendanceController implements Initializable
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST TRUE");
-                        }
-                        else if (checker() == true && !x.after(calendar2.getTime()) && x.before(calendar3.getTime()))
+                        } else if (checker() == true && !x.after(calendar2.getTime()) && x.before(calendar3.getTime()))
                         {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
@@ -275,7 +248,7 @@ public class StudentAttendanceController implements Initializable
                         Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                };
+                }
             } catch (ParseException ex)
             {
                 Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);

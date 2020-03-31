@@ -21,15 +21,17 @@ public class Teacher extends Person
         this.classId = classId;
     }
 
-    public int getClassId() {
+    public int getClassId()
+    {
         return classId;
     }
 
-    public void setClassId(int classId) {
+    public void setClassId(int classId)
+    {
         this.classId = classId;
     }
 
-    
+
     public String getTeacherPassword()
     {
         return teacherPassword;
