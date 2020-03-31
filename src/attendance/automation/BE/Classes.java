@@ -13,15 +13,11 @@ public class Classes
 
     private int classesId;
     private String classesName;
-    private int studentId;
-    private int teacherId;
 
-    public Classes(int classesId, String classesName, int studentId, int teacherId)
+    public Classes(int classesId, String classesName)
     {
         this.classesId = classesId;
         this.classesName = classesName;
-        this.studentId = studentId;
-        this.teacherId = teacherId;
     }
 
     public int getClassesId()
@@ -43,26 +39,4 @@ public class Classes
     {
         this.classesName = classesName;
     }
-
-    public int getStudentId()
-    {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId)
-    {
-        this.studentId = studentId;
-    }
-
-    public int getTeacherId()
-    {
-        return teacherId;
-    }
-
-    public void setTeacherId(int teacherId)
-    {
-        this.teacherId = teacherId;
-    }
-
-
 }

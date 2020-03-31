@@ -40,10 +40,8 @@ public class ClassesDAO
             {
                 int classesId = rs.getInt("classId");
                 String classesName = rs.getString("className");
-                int studentId = rs.getInt("studentId");
-                int teacherId = rs.getInt("teacherId");
 
-                Classes classes = new Classes(classesId, classesName, studentId, teacherId);
+                Classes classes = new Classes(classesId, classesName);
                 allClasses.add(classes);
             }
             return allClasses;
