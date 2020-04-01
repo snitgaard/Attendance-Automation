@@ -7,7 +7,6 @@ package attendance.automation.BLL;
 
 import attendance.automation.BE.Teacher;
 import attendance.automation.DAL.TeacherDAO;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.SQLException;

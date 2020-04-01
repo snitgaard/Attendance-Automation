@@ -93,7 +93,7 @@ public class TeacherDAO
                 String course = rs.getString("course");
                 String teacherPassword = rs.getString("teacherPassword");
                 int classId = rs.getInt("classId");
-                
+
                 Teacher teacher = new Teacher(id, name, email, course, teacherPassword, classId);
                 allTeachers.add(teacher);
             }

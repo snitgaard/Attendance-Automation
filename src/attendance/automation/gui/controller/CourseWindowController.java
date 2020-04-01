@@ -10,7 +10,6 @@ import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.ClassesModel;
 import attendance.automation.gui.Model.CourseModel;
 import com.jfoenix.controls.JFXDatePicker;
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,8 +22,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +65,7 @@ public class CourseWindowController implements Initializable
         {
             classesModel = new ClassesModel();
             cb_selectClass.setItems(classesModel.getAllClasses());
-            
+
         } catch (IOException ex)
         {
             Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
