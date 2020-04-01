@@ -30,6 +30,11 @@ public class StudentCourseManager
             Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public int getAttendance(int studentId, int courseId) throws SQLException
+    {
+        return studentCourseDAO.getAttendance(studentId, courseId);
+    }
 
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {

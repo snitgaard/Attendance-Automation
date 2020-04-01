@@ -272,6 +272,18 @@ public class StudentAttendanceController implements Initializable {
                     Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
+                for (JFXToggleButton attBut : attButtons) {
+                    if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
+                    {
+                        attBut.setSelected(true);
+                    }
+                    else
+                    {
+                        attBut.setSelected(false);
+                    }
+        
+                }
+                
                 attButton.setDisable(true);
             }
 

@@ -16,6 +16,11 @@ public class StudentCourseModel
 {
 
     private StudentCourseManager studentCourseManager = new StudentCourseManager();
+    
+    public int getAttendance(int studentId, int courseId) throws SQLException
+    {
+        return studentCourseManager.getAttendance(studentId, courseId);
+    }
 
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {

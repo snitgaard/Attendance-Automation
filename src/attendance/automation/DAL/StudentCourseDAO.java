@@ -21,6 +21,26 @@ public class StudentCourseDAO
         dbCon = new DatabaseConnector();
     }
     
+    public int getAttendance(int studentId, int courseId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            int attended = -1; 
+            String sql = "SELECT attended FROM StudentAttendance WHERE studentId = ? AND courseId = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, studentId);
+            ps.setInt(2, courseId);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next())
+            {
+                attended = rs.getInt("attended");
+            }
+            
+            return attended;
+        }
+    }
+    
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
