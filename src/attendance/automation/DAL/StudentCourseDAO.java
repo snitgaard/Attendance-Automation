@@ -22,7 +22,7 @@ public class StudentCourseDAO
     {
         dbCon = new DatabaseConnector();
     }
-
+    
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
