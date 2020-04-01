@@ -77,6 +77,7 @@ public class StudentAttendanceController implements Initializable {
     private JFXListView<JFXToggleButton> listView;
     @FXML
     private Label studentClassName;
+    private JFXToggleButton attButton;
 
     /**
      * Initializes the controller class.
@@ -84,16 +85,10 @@ public class StudentAttendanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        try {
-            courseModel = new CourseModel();
-            studentCourseModel = new StudentCourseModel();
+        courseModel = new CourseModel();
+        studentCourseModel = new StudentCourseModel();
 
-            checker();
-
-            //courseModel.getAllCourseDates(courseDate);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //courseModel.getAllCourseDates(courseDate);
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -163,73 +158,14 @@ public class StudentAttendanceController implements Initializable {
         String studentId = studentClassName.getText();
         int realStudentId = Integer.parseInt(studentId);
         for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), realStudentId); i++) {
-            try {
-                JFXToggleButton attButton = new JFXToggleButton();
-                attButtons.add(attButton);
-                attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realStudentId).get(i));
-                System.out.println("det fucking her" + attButton.getUserData());
-                attButton.setText(attButton.getUserData() + "");
 
-                String time1 = LocalTime.now().toString();
-                Date date1 = new SimpleDateFormat("HH:mm").parse(time1);
-                Calendar calendar1 = Calendar.getInstance();
-                calendar1.setTime(date1);
-                calendar1.add(Calendar.DATE, 1);
+            attButton = new JFXToggleButton();
+            attButtons.add(attButton);
+            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realStudentId).get(i));
+            System.out.println("det fucking her" + attButton.getUserData());
+            attButton.setText(attButton.getUserData() + "");
 
-                Date date2 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(0, 5).trim());
-                Calendar calendar2 = Calendar.getInstance();
-                calendar2.setTime(date2);
-                calendar2.add(Calendar.DATE, 1);
-
-                Date date3 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(8, 13).trim());
-                Calendar calendar3 = Calendar.getInstance();
-                calendar3.setTime(date3);
-                calendar3.add(Calendar.DATE, 1);
-
-                Date x = calendar1.getTime();
-
-                if (calendar.getValue().toString().equals(LocalDate.now().toString())) {
-                    try {
-                        if (checker() == true) {
-                            if (x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
-                                attButton.setSelected(true);
-                                attButton.setDisable(true);
-
-                                studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
-                                System.out.println("TEST TRUE");
-                            } else if (!x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
-                                attButton.setSelected(false);
-                                attButton.setDisable(true);
-
-                                System.out.println("TEST TRUE");
-                            } else {
-                                attButton.setSelected(false);
-                                attButton.setDisable(true);
-                                studentCourseModel.updateAttendance(0, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
-                                System.out.println("TEST FALSE");
-
-                            }
-                        } else {
-                            Stage onTop = (Stage) nameTag.getScene().getWindow();
-                            onTop.setAlwaysOnTop(true);
-                            Alert alert = new Alert(AlertType.INFORMATION);
-                            alert.setTitle("Cannot submit attendance");
-                            alert.setHeaderText(null);
-                            alert.initOwner(onTop);
-                            alert.setContentText("Current location does not match with the school");
-                            alert.showAndWait();
-                        }
-
-                    } catch (UnknownHostException ex) {
-                        Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else {
-                    attButton.setDisable(true);
-                }
-
-            } catch (ParseException ex) {
-                Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            checkDate();
 
         }
 
@@ -248,60 +184,6 @@ public class StudentAttendanceController implements Initializable {
 
     }
 
-    //    @FXML
-//    private void submitAttendance(ActionEvent event) throws SQLException
-//    {
-//        try
-//        {
-//            if (checker() == true)
-//            {
-//                /*Date date = Calendar.getInstance().getTime();
-//                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-//                String strDate = dateFormat.format(date);
-//                System.out.println("Converted String: " + strDate);*/
-//
-//                attendance = 1;
-//                int studentId = selectedStudent.getId();
-//                int courseId = selectedCourse.getCourseId(); //LAV METODE TIL DETTE I SCENEBUILDER UD FRA KNAPPER ELLER NOGET
-//
-//                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
-//            }
-//
-//        } catch (UnknownHostException ex)
-//        {
-//            System.out.println("Smth went wrong in the submitAttendance 1st catch");
-//            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        try
-//        {
-//            if (checker() == false)
-//            {
-//
-//                attendanceButton.setSelected(false);
-//                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//                stage.setAlwaysOnTop(true);
-//                Alert alert = new Alert(AlertType.INFORMATION);
-//                alert.setTitle("Cannot submit attendance");
-//                alert.setHeaderText(null);
-//                alert.setContentText("Current location does not match with the school");
-//                alert.initOwner(stage);
-//                alert.showAndWait();
-//                stage.setAlwaysOnTop(false);
-//
-//                attendance = 0;
-//                int studentId = selectedStudent.getId();
-//                int courseId = selectedCourse.getCourseId();
-//
-//                this.studentCourseModel.updateAttendance(attendance, studentId, courseId);
-//
-//            }
-//
-//        } catch (UnknownHostException ex)
-//        {
-//            System.out.println("Smth went wrong in the submitAttendance 2d catch");
-//            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
     private boolean checker() throws UnknownHostException {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
         System.out.println(IpAddress);
@@ -330,6 +212,73 @@ public class StudentAttendanceController implements Initializable {
         if (!attButtons.isEmpty()) {
             listView.setVisible(true);
         }
+    }
+
+    private void checkDate() throws SQLException {
+        String studentId = studentClassName.getText();
+        int realStudentId = Integer.parseInt(studentId);
+        try {
+            String time1 = LocalTime.now().toString();
+            Date date1 = new SimpleDateFormat("HH:mm").parse(time1);
+            Calendar calendar1 = Calendar.getInstance();
+            calendar1.setTime(date1);
+            calendar1.add(Calendar.DATE, 1);
+
+            Date date2 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(0, 5).trim());
+            Calendar calendar2 = Calendar.getInstance();
+            calendar2.setTime(date2);
+            calendar2.add(Calendar.DATE, 1);
+
+            Date date3 = new SimpleDateFormat("HH:mm").parse(attButton.getUserData().toString().substring(8, 13).trim());
+            Calendar calendar3 = Calendar.getInstance();
+            calendar3.setTime(date3);
+            calendar3.add(Calendar.DATE, 1);
+
+            Date x = calendar1.getTime();
+
+            if (calendar.getValue().toString().equals(LocalDate.now().toString())) {
+                try {
+                    if (checker() == true) {
+                        if (x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
+                            attButton.setSelected(true);
+                            attButton.setDisable(true);
+
+                            studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
+                            System.out.println("TEST TRUE");
+                        } else if (!x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
+                            attButton.setSelected(false);
+                            attButton.setDisable(true);
+
+                            System.out.println("TEST TRUE");
+                        } else {
+                            attButton.setSelected(false);
+                            attButton.setDisable(true);
+                            studentCourseModel.updateAttendance(0, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
+                            System.out.println("TEST FALSE");
+
+                        }
+                    } else {
+                        Stage onTop = (Stage) nameTag.getScene().getWindow();
+                        onTop.setAlwaysOnTop(true);
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Cannot submit attendance");
+                        alert.setHeaderText(null);
+                        alert.initOwner(onTop);
+                        alert.setContentText("Current location does not match with the school");
+                        alert.showAndWait();
+                    }
+
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                attButton.setDisable(true);
+            }
+
+        } catch (ParseException ex) {
+            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }
