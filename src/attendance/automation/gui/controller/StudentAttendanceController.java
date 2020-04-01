@@ -170,17 +170,6 @@ public class StudentAttendanceController implements Initializable {
                 System.out.println("det fucking her" + attButton.getUserData());
                 attButton.setText(attButton.getUserData() + "");
 
-                Comparator<JFXToggleButton> byUserData = (JFXToggleButton b1, JFXToggleButton b2) -> b1.getUserData().toString().compareTo(b2.getUserData().toString());
-                Collections.sort(attButtons, byUserData);
-
-                listView.setItems(attButtons);
-
-                if (attButtons.isEmpty()) {
-                    listView.setVisible(false);
-                }
-
-                listView.setPrefHeight(attButtons.size() * 62);
-
                 String time1 = LocalTime.now().toString();
                 Date date1 = new SimpleDateFormat("HH:mm").parse(time1);
                 Calendar calendar1 = Calendar.getInstance();
@@ -244,16 +233,18 @@ public class StudentAttendanceController implements Initializable {
 
         }
 
-        {
-
-        }
+        Comparator<JFXToggleButton> byUserData = (JFXToggleButton b1, JFXToggleButton b2) -> b1.getUserData().toString().compareTo(b2.getUserData().toString());
+        Collections.sort(attButtons, byUserData);
 
         listView.setItems(attButtons);
+
         if (attButtons.isEmpty()) {
             listView.setVisible(false);
         }
 
         listView.setPrefHeight(attButtons.size() * 62);
+
+        listView.setItems(attButtons);
 
     }
 
