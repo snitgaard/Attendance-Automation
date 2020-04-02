@@ -244,15 +244,10 @@ public class StudentAttendanceController implements Initializable {
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST TRUE");
-                        } else if (!x.after(calendar2.getTime()) && x.before(calendar3.getTime())) {
-                            attButton.setSelected(false);
-                            attButton.setDisable(true);
-
-                            System.out.println("TEST TRUE");
+                        
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
-                            studentCourseModel.updateAttendance(0, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
                             System.out.println("TEST FALSE");
 
                         }

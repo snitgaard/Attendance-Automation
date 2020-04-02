@@ -88,8 +88,8 @@ public class CourseModel
         return allStartEndTimes;
     }
     
-    public Course getSpecificCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime,  String courseDate) throws SQLServerException
     {
-        return courseManager.getSpecificCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
+        return courseManager.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
     }
 }

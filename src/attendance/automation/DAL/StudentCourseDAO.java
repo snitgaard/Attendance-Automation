@@ -46,26 +46,13 @@ public class StudentCourseDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-            String sql = "BEGIN \n"
-                    + "IF NOT EXISTS (SELECT * FROM StudentAttendance WHERE courseId = ? AND studentId = ? AND  attended = ?) \n"
-                    + "BEGIN \n"
-                    + "INSERT INTO StudentAttendance (courseId, studentId, attended) VALUES (?,?,?) \n"
-                    + "END \n"
-                    + "END";
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            String sql = "UPDATE StudentAttendance SET attended WHERE courseId = ? AND studentId = ?";
+                    
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, courseId);
             ps.setInt(2, studentId);
-            ps.setInt(3, attendance);
-            ps.setInt(4, courseId);
-            ps.setInt(5, studentId);
-            ps.setInt(6, attendance);
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 1)
-            {
-                ResultSet rs = ps.getGeneratedKeys();
-                return rs.next();
-            }
-            return false;
+            ps.executeUpdate();
+            return true;
         } catch (SQLException ex)
         {
             return false;

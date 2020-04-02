@@ -195,24 +195,25 @@ public class CourseDAO
         }
     }
 
-    public List<Course> getCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    public List<Course> getCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws SQLServerException
     {
         try (Connection con = dbCon.getConnection())
         {
 
-            String sql = "SELECT * FROM Student WHERE courseName = ? AND weekDay = ? AND startTime = ? AND endTime = ? AND classId = ? AND courseDate = ?;";
+            String sql = "SELECT * FROM Course WHERE courseName = ? AND weekDay = ? AND classId = ? AND startTime = ? AND endTime = ? AND courseDate = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseName);
             ps.setString(2, weekDay);
-            ps.setString(3, startTime);
-            ps.setString(4, endTime);
-            ps.setInt(5, classId);
+            ps.setInt(3, classId);
+            ps.setString(4, startTime);
+            ps.setString(5, endTime);
             ps.setString(6, courseDate);
             ResultSet rs = ps.executeQuery();
             ArrayList<Course> courseList = new ArrayList<>();
             while (rs.next())
             {
-                Course course = new Course(classId, courseName, weekDay, classId, startTime, endTime, courseDate);
+                int courseId = rs.getInt("courseId");
+                Course course = new Course(courseId, courseName, weekDay, classId, startTime, endTime, courseDate);
                 courseList.add(course);
             }
             return courseList;
@@ -224,9 +225,9 @@ public class CourseDAO
 
     }
 
-    public Course getSpecificCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime,  String courseDate) throws SQLServerException
     {
-        return getCourse(courseName, weekDay, startTime, endTime, classId, courseDate).get(0);
+        return getCourse(courseName, weekDay, classId, startTime, endTime, courseDate).get(0).getCourseId();
     }
 
 }

@@ -37,15 +37,14 @@ import java.util.logging.Logger;
  *
  * @author CSnit
  */
-public class CourseWindowController implements Initializable
-{
+public class CourseWindowController implements Initializable {
 
     Course course;
     private CourseModel courseModel;
     private ClassesModel classesModel;
     private StudentCourseModel studentCourseModel;
     private StudentModel studentModel;
-    
+
     @FXML
     private TextField txt_courseName;
     @FXML
@@ -65,25 +64,21 @@ public class CourseWindowController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
+    public void initialize(URL url, ResourceBundle rb) {
         courseModel = new CourseModel();
-        try
-        {
+        try {
             classesModel = new ClassesModel();
             studentModel = new StudentModel();
             studentCourseModel = new StudentCourseModel();
             cb_selectClass.setItems(classesModel.getAllClasses());
 
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void createCourse(ActionEvent event) throws DalException, SQLException
-    {
+    private void createCourse(ActionEvent event) throws DalException, SQLException {
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
         String startTime = txt_startTime.getText();
@@ -91,50 +86,43 @@ public class CourseWindowController implements Initializable
         String className = cb_selectClass.getSelectionModel().getSelectedItem();
         String courseDate = datePicker.getValue().toString();
 
-        if (course.length() == 0 && weekDay.length() == 0)
-        {
+        if (course.length() == 0 && weekDay.length() == 0) {
             Border warning = new Border(new BorderStroke(Color.RED,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(2)));
 
             txt_courseName.setBorder(warning);
             txt_weekDay.setBorder(warning);
-        } else
-        {
+        } else {
             int classId = classesModel.getClassId(className);
             courseModel.createCourses(course, weekDay, startTime, endTime, classId, courseDate);
-            
-            
-            
-            for (Student student : studentModel.getStudentClass(classesModel.getClassId(className)))
-            {
-                System.out.println(courseModel.getSpecificCourse(courseDate, weekDay, startTime, endTime, classesModel.getClassId(className), courseDate) + "Er det her???");
-                
-                studentCourseModel.createAttendance(courseModel.getSpecificCourse(courseDate, weekDay, startTime, endTime, classesModel.getClassId(className), 
-                        courseDate).getCourseId(), student.getId(), 0);
+
+            System.out.println(courseModel.getSpecificCourse("SCO", "Thursday", 1, "15:00", "17:00", "2020-04-02") + "Er det her???");
+
+            for (Student student : studentModel.getStudentClass(classesModel.getClassId(className))) {
+
+                studentCourseModel.createAttendance(courseModel.getSpecificCourse(course, weekDay, classesModel.getClassId(className), startTime, endTime,
+                        courseDate), student.getId(), 0);
             }
-            
+
         }
-
-    }
-    
-    
-    
-    @FXML
-    private void cb_selectClass(ActionEvent event)
-    {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
 
     }
 
     @FXML
-    private void close_app(MouseEvent event)
-    {
+    private void cb_selectClass(ActionEvent event) {
+
+    }
+
+    @FXML
+    private void close_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
     @FXML
-    private void minimize_app(MouseEvent event)
-    {
+    private void minimize_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
