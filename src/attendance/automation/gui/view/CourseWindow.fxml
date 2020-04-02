@@ -14,15 +14,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="372.0" prefWidth="37.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.CourseWindowController">
    <children>
+      <TextField fx:id="txt_courseName" layoutX="114.0" layoutY="115.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter course name" />
+      <TextField fx:id="txt_weekDay" layoutX="114.0" layoutY="153.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter weekday" />
+      <TextField fx:id="txt_startTime" layoutX="114.0" layoutY="193.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter start time" />
+      <TextField fx:id="txt_endTime" layoutX="114.0" layoutY="231.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter end time" />
+      <JFXDatePicker fx:id="datePicker" layoutX="114.0" layoutY="273.0" prefHeight="28.0" prefWidth="158.0" />
+      <ComboBox fx:id="cb_selectClass" layoutX="114.0" layoutY="316.0" onAction="#cb_selectClass" prefHeight="25.0" prefWidth="158.0" promptText="Select class" />
+      <Button layoutX="301.0" layoutY="316.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
       <Label layoutX="85.0" layoutY="56.0" text="Create new course">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Button layoutX="301.0" layoutY="316.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
-      <TextField fx:id="txt_courseName" layoutX="114.0" layoutY="115.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter course name" />
-      <TextField fx:id="txt_weekDay" layoutX="114.0" layoutY="153.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter weekday" />
-      <ComboBox fx:id="cb_selectClass" layoutX="114.0" layoutY="316.0" onAction="#cb_selectClass" prefHeight="25.0" prefWidth="158.0" promptText="Select class" />
       <ImageView fx:id="btn_close" fitHeight="18.0" fitWidth="15.0" layoutX="385.0" layoutY="14.0" onMouseClicked="#close_app" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -42,8 +45,5 @@
             <ColorAdjust brightness="0.21" />
          </effect>
       </ImageView>
-      <TextField fx:id="txt_endTime" layoutX="114.0" layoutY="231.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter end time" />
-      <TextField fx:id="txt_startTime" layoutX="114.0" layoutY="193.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter start time" />
-      <JFXDatePicker fx:id="datePicker" layoutX="114.0" layoutY="273.0" prefHeight="28.0" prefWidth="158.0" />
    </children>
 </AnchorPane>

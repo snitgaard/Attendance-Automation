@@ -103,8 +103,6 @@ public class StudentAttendanceController implements Initializable {
         studentClassName.setText(selectedStudent.getClassId() + "");
 
         calendar.setValue(LocalDate.now());
-        //generateAttendanceButtons();
-        System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
 
     }
 
@@ -162,7 +160,6 @@ public class StudentAttendanceController implements Initializable {
             attButton = new JFXToggleButton();
             attButtons.add(attButton);
             attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realStudentId).get(i));
-            System.out.println("det fucking her" + attButton.getUserData());
             attButton.setText(attButton.getUserData() + "");
             
             checkDate();
@@ -190,11 +187,9 @@ public class StudentAttendanceController implements Initializable {
         String[] adr = IpAddress.split("\\.");
         for (int i = 0; i < adr.length - 1; i++) {
             if (adr[0].equals("172") && adr[1].equals("17") && adr[2].equals("176")) {
-                System.out.println("Location matches the school");
                 return true;
             }
         }
-        System.out.println("Location does not match the school");
         return false;
     }
 
@@ -243,12 +238,10 @@ public class StudentAttendanceController implements Initializable {
                             attButton.setDisable(true);
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
-                            System.out.println("TEST TRUE");
                         
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
-                            System.out.println("TEST FALSE");
 
                         }
                     } else {
