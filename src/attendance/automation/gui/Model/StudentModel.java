@@ -20,7 +20,7 @@ public class StudentModel
 
     private StudentManager studentManager = new StudentManager();
 
-    public List<Student> getAllData()
+    public List<Student> getAllStudents()
     {
         try
         {
@@ -51,5 +51,10 @@ public class StudentModel
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return studentManager.getSpecificStudent(studentEmail);
+    }
+    
+    public List<Student> getStudentClass(int classId) throws SQLException
+    {
+        return studentManager.getStudentClass(classId);
     }
 }

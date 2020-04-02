@@ -5,6 +5,7 @@
  */
 package attendance.automation.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.*;
 
@@ -20,27 +21,27 @@ public class StudentCourseDAO
     {
         dbCon = new DatabaseConnector();
     }
-    
+
     public int getAttendance(int studentId, int courseId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
-            int attended = -1; 
+            int attended = -1;
             String sql = "SELECT attended FROM StudentAttendance WHERE studentId = ? AND courseId = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, studentId);
             ps.setInt(2, courseId);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next())
             {
                 attended = rs.getInt("attended");
             }
-            
+
             return attended;
         }
     }
-    
+
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
@@ -115,4 +116,27 @@ public class StudentCourseDAO
         }
     }
 
+    public boolean createAttendance(int courseId, int studentId, int attended)
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "INSERT INTO StudentAttendance (courseId, studentId, attended) VALUES (?,?,?);";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, courseId);
+            ps.setInt(2, studentId);
+            ps.setInt(3, attended);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 1)
+            {
+                ResultSet rs = ps.getGeneratedKeys();
+                return rs.next();
+            }
+            return false;
+        } catch (SQLException ex)
+        {
+            return false;
+        }
+
+    }
 }

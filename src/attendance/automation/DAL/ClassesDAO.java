@@ -6,6 +6,7 @@
 package attendance.automation.DAL;
 
 import attendance.automation.BE.Classes;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -121,6 +122,24 @@ public class ClassesDAO
         {
             ex.printStackTrace();
             return false;
+        }
+    }
+
+    public int getClassId(String classesName) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT classId FROM Class WHERE className = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, classesName);
+            ResultSet rs = ps.executeQuery();
+            int classId = 0;
+            
+            while (rs.next())
+            {
+                classId = rs.getInt("classId");
+            }
+            return classId;
         }
     }
 }

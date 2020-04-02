@@ -6,6 +6,7 @@
 package attendance.automation.DAL;
 
 import attendance.automation.BE.Course;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -77,7 +78,7 @@ public class CourseDAO
      * The SQL statement will be run.
      * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String classId, String courseDate)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate)
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -87,7 +88,7 @@ public class CourseDAO
             ps.setString(2, weekDay);
             ps.setString(3, startTime);
             ps.setString(4, endTime);
-            ps.setString(5, classId);
+            ps.setInt(5, classId);
             ps.setString(6, courseDate);
             int affectedRows = ps.executeUpdate();
 
@@ -192,6 +193,40 @@ public class CourseDAO
             }
             return startEndTimes;
         }
+    }
+
+    public List<Course> getCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+
+            String sql = "SELECT * FROM Student WHERE courseName = ? AND weekDay = ? AND startTime = ? AND endTime = ? AND classId = ? AND courseDate = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, courseName);
+            ps.setString(2, weekDay);
+            ps.setString(3, startTime);
+            ps.setString(4, endTime);
+            ps.setInt(5, classId);
+            ps.setString(6, courseDate);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Course> courseList = new ArrayList<>();
+            while (rs.next())
+            {
+                Course course = new Course(classId, courseName, weekDay, classId, startTime, endTime, courseDate);
+                courseList.add(course);
+            }
+            return courseList;
+
+        } catch (SQLException ex)
+        {
+            return null;
+        }
+
+    }
+
+    public Course getSpecificCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    {
+        return getCourse(courseName, weekDay, startTime, endTime, classId, courseDate).get(0);
     }
 
 }

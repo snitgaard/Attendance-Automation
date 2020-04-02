@@ -164,9 +164,8 @@ public class StudentAttendanceController implements Initializable {
             attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realStudentId).get(i));
             System.out.println("det fucking her" + attButton.getUserData());
             attButton.setText(attButton.getUserData() + "");
-
+            
             checkDate();
-
         }
 
         Comparator<JFXToggleButton> byUserData = (JFXToggleButton b1, JFXToggleButton b2) -> b1.getUserData().toString().compareTo(b2.getUserData().toString());

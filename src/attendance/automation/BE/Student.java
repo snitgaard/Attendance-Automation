@@ -10,6 +10,7 @@ package attendance.automation.BE;
  */
 public class Student extends Person
 {
+
     private double attendance;
     private int semester;
     private String studentPassword;
@@ -24,6 +25,11 @@ public class Student extends Person
         this.studentPassword = studentPassword;
         this.studentEducation = studentEducation;
         this.classId = classId;
+    }
+
+    public Student(int id)
+    {
+        super(id);
     }
 
     public int getClassId()
@@ -45,7 +51,6 @@ public class Student extends Person
     {
         this.studentEducation = studentEducation;
     }
-
 
     public String getStudentPassword()
     {
@@ -76,6 +81,5 @@ public class Student extends Person
     {
         this.semester = semester;
     }
-
 
 }

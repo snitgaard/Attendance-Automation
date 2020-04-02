@@ -36,5 +36,10 @@ public class StudentCourseModel
     {
         return studentCourseManager.getStudentId(studentName);
     }
+    
+    public boolean createAttendance(int courseId, int studentId, int attended)
+    {
+        return studentCourseManager.createAttendance(courseId, studentId, attended);
+    }
 
 }

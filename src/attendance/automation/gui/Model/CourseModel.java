@@ -8,6 +8,7 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Course;
 import attendance.automation.BLL.CourseManager;
 import attendance.automation.DAL.DalException;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -44,7 +45,7 @@ public class CourseModel
 
 
     //This is what the controller calls when creating a Course. This calls a method in the CourseManager
-    public void createCourses(String courseName, String weekDay, String startTime, String endTime, String classId, String courseDate) throws DalException
+    public void createCourses(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws DalException
     {
         boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
         if (courseIsCreated)
@@ -85,5 +86,10 @@ public class CourseModel
         allStartEndTimes = FXCollections.observableArrayList();
         allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, classId));
         return allStartEndTimes;
+    }
+    
+    public Course getSpecificCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    {
+        return courseManager.getSpecificCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
     }
 }

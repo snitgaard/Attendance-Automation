@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Course;
 import attendance.automation.DAL.CourseDAO;
 import attendance.automation.DAL.DalException;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class CourseManager
     }
 
     // This method calls the createCourse method in the courseDao
-    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, String classId, String courseDate)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate)
     {
         return courseDao.createCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
     }
@@ -79,6 +80,11 @@ public class CourseManager
     public List<Course> getStartEndTime(String courseDate, int classId) throws SQLException
     {
         return courseDao.getStartEndTime(courseDate, classId);
+    }
+    
+    public Course getSpecificCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws SQLServerException
+    {
+        return courseDao.getSpecificCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
     }
 
 }

@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * @author jigzi
@@ -63,5 +64,10 @@ public class ClassesModel
         {
             System.out.println("classes Is Updated");
         }
+    }
+    
+    public int getClassId(String classesName) throws SQLException
+    {
+        return classesManager.getClassId(classesName);
     }
 }

@@ -109,7 +109,6 @@ public class StudentDAO
         }
     }
 
-
     public List<Student> getStudent(String studentEmail) throws SQLServerException
     {
         try (Connection con = dbCon.getConnection())
@@ -146,6 +145,27 @@ public class StudentDAO
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return getStudent(studentEmail).get(0);
+    }
+
+    public List<Student> getStudentClass(int classId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT studentId FROM Student WHERE classId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, classId);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Student> studentList = new ArrayList<>();
+
+            int studentId = 0;
+            while (rs.next())
+            {
+                studentId = rs.getInt("studentId");
+                Student students = new Student(studentId);
+                studentList.add(students);
+            }
+            return studentList;
+        }
     }
 
 }

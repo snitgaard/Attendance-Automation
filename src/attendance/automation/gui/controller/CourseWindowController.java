@@ -6,9 +6,12 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
+import attendance.automation.BE.Student;
 import attendance.automation.DAL.DalException;
 import attendance.automation.gui.Model.ClassesModel;
 import attendance.automation.gui.Model.CourseModel;
+import attendance.automation.gui.Model.StudentCourseModel;
+import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +27,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +43,9 @@ public class CourseWindowController implements Initializable
     Course course;
     private CourseModel courseModel;
     private ClassesModel classesModel;
+    private StudentCourseModel studentCourseModel;
+    private StudentModel studentModel;
+    
     @FXML
     private TextField txt_courseName;
     @FXML
@@ -64,6 +71,8 @@ public class CourseWindowController implements Initializable
         try
         {
             classesModel = new ClassesModel();
+            studentModel = new StudentModel();
+            studentCourseModel = new StudentCourseModel();
             cb_selectClass.setItems(classesModel.getAllClasses());
 
         } catch (IOException ex)
@@ -73,13 +82,13 @@ public class CourseWindowController implements Initializable
     }
 
     @FXML
-    private void createCourse(ActionEvent event) throws DalException
+    private void createCourse(ActionEvent event) throws DalException, SQLException
     {
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
         String startTime = txt_startTime.getText();
         String endTime = txt_endTime.getText();
-        String classId = cb_selectClass.getSelectionModel().getSelectedItem();
+        String className = cb_selectClass.getSelectionModel().getSelectedItem();
         String courseDate = datePicker.getValue().toString();
 
         if (course.length() == 0 && weekDay.length() == 0)
@@ -91,11 +100,25 @@ public class CourseWindowController implements Initializable
             txt_weekDay.setBorder(warning);
         } else
         {
+            int classId = classesModel.getClassId(className);
             courseModel.createCourses(course, weekDay, startTime, endTime, classId, courseDate);
+            
+            
+            
+            for (Student student : studentModel.getStudentClass(classesModel.getClassId(className)))
+            {
+                System.out.println(courseModel.getSpecificCourse(courseDate, weekDay, startTime, endTime, classesModel.getClassId(className), courseDate) + "Er det her???");
+                
+                studentCourseModel.createAttendance(courseModel.getSpecificCourse(courseDate, weekDay, startTime, endTime, classesModel.getClassId(className), 
+                        courseDate).getCourseId(), student.getId(), 0);
+            }
+            
         }
 
     }
-
+    
+    
+    
     @FXML
     private void cb_selectClass(ActionEvent event)
     {

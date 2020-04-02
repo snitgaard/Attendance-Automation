@@ -55,4 +55,9 @@ public class ClassesManager
     {
         return classesDao.updateClasses(classesName, classesId);
     }
+    
+    public int getClassId(String classesName) throws SQLException
+    {
+        return classesDao.getClassId(classesName);
+    }
 }

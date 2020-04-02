@@ -67,5 +67,10 @@ public class StudentManager
     {
         return studentDAO.getSpecificStudent(studentEmail);
     }
+    
+    public List<Student> getStudentClass(int classId) throws SQLException
+    {
+        return studentDAO.getStudentClass(classId);
+    }
 
 }

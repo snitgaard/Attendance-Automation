@@ -54,10 +54,10 @@ public class TeacherCourseController implements Initializable
 
     private void studentOverview()
     {
-        nameOne.setText(model.getAllData().get(0).toString());
-        nameTwo.setText(model.getAllData().get(1).toString());
-        nameThree.setText(model.getAllData().get(2).toString());
-        nameFour.setText(model.getAllData().get(3).toString());
+        nameOne.setText(model.getAllStudents().get(0).toString());
+        nameTwo.setText(model.getAllStudents().get(1).toString());
+        nameThree.setText(model.getAllStudents().get(2).toString());
+        nameFour.setText(model.getAllStudents().get(3).toString());
     }
 
     @FXML

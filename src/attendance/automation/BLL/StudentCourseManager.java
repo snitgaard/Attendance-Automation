@@ -50,5 +50,10 @@ public class StudentCourseManager
     {
         return studentCourseDAO.getStudentId(studentName);
     }
+    
+    public boolean createAttendance(int courseId, int studentId, int attended)
+    {
+        return studentCourseDAO.createAttendance(courseId, studentId, attended);
+    }
 
 }
