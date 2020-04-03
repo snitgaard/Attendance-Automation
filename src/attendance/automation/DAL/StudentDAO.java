@@ -167,5 +167,18 @@ public class StudentDAO
             return studentList;
         }
     }
+    
+    public boolean updateAttendace(double attendance, int studentId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "UPDATE Student SET attendance = ? WHERE studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, attendance);
+            ps.setInt(2, studentId);
+            ps.executeUpdate();
+            return true;
+        }
+    }
 
 }

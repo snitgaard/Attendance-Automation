@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author jigzi
@@ -92,4 +93,6 @@ public class CourseModel
     {
         return courseManager.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
     }
+    
+    
 }

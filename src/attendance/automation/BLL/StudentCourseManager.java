@@ -24,7 +24,7 @@ public class StudentCourseManager
 {
 
     private StudentCourseDAO studentCourseDAO;
-    private Course course;
+    private CourseManager courseManager;
 
     public StudentCourseManager()
     {
@@ -62,28 +62,34 @@ public class StudentCourseManager
         return studentCourseDAO.createAttendance(courseId, studentId, attended);
     }
 
-    public List<Course> getAttendanceFromCourse(int studentId) throws SQLException
+//    public List<Course> getAttendanceFromCourse(int studentId) throws SQLException
+//    {
+//        List<Course> courseIds = studentCourseDAO.getAttendanceFromCourse(studentId);
+//        List<Course> result = new ArrayList<>();
+//
+//        LocalDate todaysDate = LocalDate.now();
+//
+//        for (Course course : courseIds)
+//        {
+//            if (course.getCourseDate() != null)
+//            {
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//                LocalDate localCourseDate = LocalDate.parse(course.getCourseDate(), formatter);
+//
+//                if (localCourseDate.isBefore(todaysDate) == true)
+//                {
+//                    result.add(ints);
+//                }
+//            }
+//        }
+//        System.out.println(result + "er det her nigga");
+//        return result;
+//    }
+    
+    public int getAllCourseIds(int courseId, int studentId) throws SQLException
     {
-        List<Course> courseIds = studentCourseDAO.getAttendanceFromCourse(studentId);
-        List<Course> result = new ArrayList<>();
-
-        LocalDate todaysDate = LocalDate.now();
-
-        for (Course course : courseIds)
-        {
-            if (course.getCourseDate() != null)
-            {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate localCourseDate = LocalDate.parse(course.getCourseDate(), formatter);
-
-                if (localCourseDate.isBefore(todaysDate) == true)
-                {
-                    result.add(ints);
-                }
-            }
-        }
-        System.out.println(result + "er det her nigga");
-        return result;
+        
+        return studentCourseDAO.getAttendanceFromCourses(courseId, studentId);
     }
 
 }

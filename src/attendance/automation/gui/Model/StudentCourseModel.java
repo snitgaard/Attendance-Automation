@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.Model;
 
+import attendance.automation.BE.Course;
 import attendance.automation.BLL.StudentCourseManager;
 
 import java.sql.SQLException;
@@ -43,9 +44,15 @@ public class StudentCourseModel
         return studentCourseManager.createAttendance(courseId, studentId, attended);
     }
     
-    public List<Integer> getAttendanceFromCourse(int studentId) throws SQLException
+//    public List<Integer> getAttendanceFromCourse(int studentId) throws SQLException
+//    {
+//        return studentCourseManager.getAttendanceFromCourse(studentId);
+//    }
+    
+    public int getAllCourseIds(int courseId, int studentId) throws SQLException
     {
-        return studentCourseManager.getAttendanceFromCourse(studentId);
+        return studentCourseManager.getAllCourseIds(courseId, studentId);
     }
+    
 
 }

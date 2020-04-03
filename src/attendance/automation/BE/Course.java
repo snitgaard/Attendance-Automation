@@ -27,6 +27,7 @@ public class Course
         this.classId = classId;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.courseDate = courseDate;
     }
 
     public Course(String startTime, String endTime, String courseName)
@@ -36,9 +37,10 @@ public class Course
         this.courseName = courseName;
     }
 
-    public Course(int courseId)
+    public Course(int courseId, String courseDate)
     {
         this.courseId = courseId;
+        this.courseDate = courseDate;
     }
     
     
@@ -121,5 +123,6 @@ public class Course
     {
         return startTime + " - " + endTime + ": " + courseName;
     }
-
+    
+    
 }

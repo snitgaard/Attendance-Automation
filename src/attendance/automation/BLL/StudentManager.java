@@ -72,5 +72,10 @@ public class StudentManager
     {
         return studentDAO.getStudentClass(classId);
     }
+    
+    public boolean updateAttendance(double attendance, int studentId) throws SQLException
+    {
+        return studentDAO.updateAttendace(attendance, studentId);
+    }
 
 }

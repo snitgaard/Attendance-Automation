@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,14 +88,7 @@ public class StudentAttendanceController implements Initializable {
 
         courseModel = new CourseModel();
         studentCourseModel = new StudentCourseModel();
-        
-        try
-        {
-            getAttendanceFromCourse();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -104,16 +98,51 @@ public class StudentAttendanceController implements Initializable {
         this.selectedStudent = selectedStudent;
 
         nameTag.setText(selectedStudent.getName());
-        progressBar.setProgress(selectedStudent.getAttendance() / 100);
-        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
+
         studentClassName.setText(selectedStudent.getClassId() + "");
 
+        getAttendanceFromCourse();
+
         calendar.setValue(LocalDate.now());
+
     }
-    
-    public void getAttendanceFromCourse() throws SQLException
-    {
-        studentCourseModel.getAttendanceFromCourse(1);
+
+    public void getAttendanceFromCourse() throws SQLException {
+//        studentCourseModel.getAttendanceFromCourse(1);
+        List<Course> courseIds = courseModel.getAllCourses();
+        List<Course> result = new ArrayList<>();
+
+        LocalDate todaysDate = LocalDate.now();
+
+        for (Course courses : courseIds) {
+            if (courses.getCourseDate() != null) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localCourseDate = LocalDate.parse(courses.getCourseDate(), formatter);
+
+                if (localCourseDate.isBefore(todaysDate)) {
+                    result.add(courses);
+                }
+
+            }
+        }
+        int studentId = selectedStudent.getId();
+        double attendedCounter = 0;
+        double notAttendedCounter = 0;
+
+        for (int i = 0; i < result.size(); i++) {
+            if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1) {
+                attendedCounter++;
+            } else if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 0) {
+                notAttendedCounter++;
+            }
+
+        }
+        
+        double realAttendance = attendedCounter / notAttendedCounter;
+        studentModel.updateAttendance(realAttendance * 100, studentId);
+        progressBar.setProgress(realAttendance);
+        studentAttendancePercentage.setText(realAttendance * 100 + " %");
+
     }
 
     @FXML
@@ -163,15 +192,15 @@ public class StudentAttendanceController implements Initializable {
 
     public void generateAttendanceButtons() throws SQLException {
 
-        String studentId = studentClassName.getText();
-        int realStudentId = Integer.parseInt(studentId);
-        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), realStudentId); i++) {
+        String classId = studentClassName.getText();
+        int realClassId = Integer.parseInt(classId);
+        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), realClassId); i++) {
 
             attButton = new JFXToggleButton();
             attButtons.add(attButton);
-            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realStudentId).get(i));
+            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realClassId).get(i));
             attButton.setText(attButton.getUserData() + "");
-            
+
             checkDate();
         }
 
@@ -248,7 +277,7 @@ public class StudentAttendanceController implements Initializable {
                             attButton.setDisable(true);
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
-                        
+
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
@@ -270,17 +299,14 @@ public class StudentAttendanceController implements Initializable {
                 }
             } else {
                 for (JFXToggleButton attBut : attButtons) {
-                    if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
-                    {
+                    if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1) {
                         attBut.setSelected(true);
-                    }
-                    else
-                    {
+                    } else {
                         attBut.setSelected(false);
                     }
-        
+
                 }
-                
+
                 attButton.setDisable(true);
             }
 

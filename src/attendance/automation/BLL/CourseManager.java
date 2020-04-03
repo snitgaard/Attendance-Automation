@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Course;
 import attendance.automation.DAL.CourseDAO;
 import attendance.automation.DAL.DalException;
+import attendance.automation.DAL.StudentCourseDAO;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
@@ -26,8 +27,8 @@ public class CourseManager
 {
 
     private CourseDAO courseDao;
-    private Course course;
-
+    private StudentCourseDAO studentCourseDao;
+    
     public CourseManager()
     {
 
@@ -91,27 +92,6 @@ public class CourseManager
         return courseDao.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
     }
     
-    public List<Course> getAllCourseIds(String courseDate) throws SQLException
-    {
-        List<Course> courseIds = courseDao.getAllCourseIds(courseDate);
-        List<Course> result = new ArrayList<>();
-        
-        LocalDate todaysDate = LocalDate.now();
-        
-        for (Course courses : courseIds)
-        {
-            if (courseDate != null)
-            {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate localCourseDate = LocalDate.parse(course.getCourseDate(), formatter);
-                
-                if (localCourseDate.isBefore(todaysDate))
-                {
-                    result.add(courses);
-                }
-            }
-        }
-        return result;
-    }
+   
 
 }

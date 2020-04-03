@@ -49,6 +49,7 @@ public class CourseDAO
                 Course course = new Course(courseId, courseName, weekDay, classId, startTime, endTime, courseDate);
                 allCourses.add(course);
             }
+            System.out.println(allCourses + "DET ER HEAFHeaswgfewayhfaewjgvheawghvfaweghjfeawghffeawhgf");
             return allCourses;
         }
     }
@@ -229,25 +230,26 @@ public class CourseDAO
         return getCourse(courseName, weekDay, classId, startTime, endTime, courseDate).get(0).getCourseId();
     }
     
-     public List<Course> getAllCourseIds(String courseDate) throws SQLException
+     public List<Course> getAllCourseIds() throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {
 
-            String sql = "SELECT courseId FROM Course WHERE courseDate = ?;";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, courseDate);
-            ResultSet rs = ps.executeQuery();
+            String sql = "SELECT courseId, courseDate FROM Course;";
+
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
             ArrayList<Course> courseIdList = new ArrayList<>();
             
             while (rs.next())
             {
                 int courseId = rs.getInt("courseId");
-                Course course = new Course(courseId);
+                String courseDate = rs.getString("courseDate");
+                Course course = new Course(courseId, courseDate);
                 courseIdList.add(course);
                 
             }
-
+            System.out.println(courseIdList + "DET ER HER ENERGJEWGNEWGHSEGHESRGHESRGJERSGRHSE");
             return courseIdList;
         }
     }

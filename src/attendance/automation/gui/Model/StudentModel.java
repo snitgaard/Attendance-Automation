@@ -57,4 +57,9 @@ public class StudentModel
     {
         return studentManager.getStudentClass(classId);
     }
+    
+    public boolean updateAttendance(double attendance, int studentId) throws SQLException
+    {
+        return studentManager.updateAttendance(attendance, studentId);
+    }
 }
