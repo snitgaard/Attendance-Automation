@@ -48,9 +48,9 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="13.0" layoutY="81.0" prefHeight="559.0" prefWidth="575.0">
+      <ScrollPane layoutX="13.0" layoutY="81.0" prefHeight="560.0" prefWidth="575.0">
          <content>
-            <VBox>
+            <VBox prefHeight="480.0" prefWidth="550.0">
                <children>
                   <Label text="My courses">
                      <font>

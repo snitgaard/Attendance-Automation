@@ -12,11 +12,13 @@ public class Teacher extends Person
 {
 
     private String teacherPassword;
+    private int courseId;
     private int classId;
 
-    public Teacher(int id, String name, String email, String course, String teacherPassword, int classId)
+    public Teacher(int id, String name, String email, int courseId, String teacherPassword, int classId)
     {
         super(id, name, email);
+        this.courseId = courseId;
         this.teacherPassword = teacherPassword;
         this.classId = classId;
     }
@@ -31,6 +33,13 @@ public class Teacher extends Person
         this.classId = classId;
     }
 
+    public int getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
 
     public String getTeacherPassword()
     {
