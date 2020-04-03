@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="ancMain" prefHeight="582.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassController">
+<AnchorPane id="AnchorPane" fx:id="ancMain" prefHeight="637.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassController">
     <stylesheets>
         <URL value="@/attendance/automation/gui/css/Style.css" />
     </stylesheets>
@@ -51,11 +51,11 @@
          <font>
             <Font size="30.0" />
          </font></Label>
-      <ScrollPane layoutX="13.0" layoutY="79.0" prefHeight="479.0" prefWidth="575.0" style="-fx-padding: 0; -fx-background-insets: 0;">
+      <ScrollPane layoutX="13.0" layoutY="79.0" prefHeight="530.0" prefWidth="575.0" style="-fx-padding: 0; -fx-background-insets: 0;">
          <content>
             <VBox>
                <children>
-                  <HBox alignment="CENTER" styleClass="box">
+                  <HBox alignment="CENTER" prefHeight="69.0" prefWidth="550.0" styleClass="box">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
