@@ -199,7 +199,6 @@ public class CourseDAO
     {
         try (Connection con = dbCon.getConnection())
         {
-
             String sql = "SELECT * FROM Course WHERE courseName = ? AND weekDay = ? AND classId = ? AND startTime = ? AND endTime = ? AND courseDate = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, courseName);
@@ -229,5 +228,29 @@ public class CourseDAO
     {
         return getCourse(courseName, weekDay, classId, startTime, endTime, courseDate).get(0).getCourseId();
     }
+    
+     public List<Course> getAllCourseIds(String courseDate) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+
+            String sql = "SELECT courseId FROM Course WHERE courseDate = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, courseDate);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Course> courseIdList = new ArrayList<>();
+            
+            while (rs.next())
+            {
+                int courseId = rs.getInt("courseId");
+                Course course = new Course(courseId);
+                courseIdList.add(course);
+                
+            }
+
+            return courseIdList;
+        }
+    }
+    
 
 }

@@ -5,10 +5,15 @@
  */
 package attendance.automation.BLL;
 
+import attendance.automation.BE.Course;
 import attendance.automation.DAL.StudentCourseDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +24,7 @@ public class StudentCourseManager
 {
 
     private StudentCourseDAO studentCourseDAO;
+    private Course course;
 
     public StudentCourseManager()
     {
@@ -30,7 +36,7 @@ public class StudentCourseManager
             Logger.getLogger(StudentManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public int getAttendance(int studentId, int courseId) throws SQLException
     {
         return studentCourseDAO.getAttendance(studentId, courseId);
@@ -50,10 +56,34 @@ public class StudentCourseManager
     {
         return studentCourseDAO.getStudentId(studentName);
     }
-    
+
     public boolean createAttendance(int courseId, int studentId, int attended)
     {
         return studentCourseDAO.createAttendance(courseId, studentId, attended);
+    }
+
+    public List<Course> getAttendanceFromCourse(int studentId) throws SQLException
+    {
+        List<Course> courseIds = studentCourseDAO.getAttendanceFromCourse(studentId);
+        List<Course> result = new ArrayList<>();
+
+        LocalDate todaysDate = LocalDate.now();
+
+        for (Course course : courseIds)
+        {
+            if (course.getCourseDate() != null)
+            {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localCourseDate = LocalDate.parse(course.getCourseDate(), formatter);
+
+                if (localCourseDate.isBefore(todaysDate) == true)
+                {
+                    result.add(ints);
+                }
+            }
+        }
+        System.out.println(result + "er det her nigga");
+        return result;
     }
 
 }

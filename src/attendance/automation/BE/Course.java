@@ -36,6 +36,13 @@ public class Course
         this.courseName = courseName;
     }
 
+    public Course(int courseId)
+    {
+        this.courseId = courseId;
+    }
+    
+    
+
 
     public String getCourseDate()
     {

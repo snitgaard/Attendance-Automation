@@ -8,6 +8,7 @@ package attendance.automation.gui.Model;
 import attendance.automation.BLL.StudentCourseManager;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author Mads
@@ -40,6 +41,11 @@ public class StudentCourseModel
     public boolean createAttendance(int courseId, int studentId, int attended)
     {
         return studentCourseManager.createAttendance(courseId, studentId, attended);
+    }
+    
+    public List<Integer> getAttendanceFromCourse(int studentId) throws SQLException
+    {
+        return studentCourseManager.getAttendanceFromCourse(studentId);
     }
 
 }
