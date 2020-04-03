@@ -5,9 +5,12 @@
  */
 package attendance.automation.DAL;
 
+import attendance.automation.BE.Course;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Mads
@@ -47,7 +50,7 @@ public class StudentCourseDAO
         try (Connection con = dbCon.getConnection())
         {
             String sql = "UPDATE StudentAttendance SET attended WHERE courseId = ? AND studentId = ?";
-                    
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, courseId);
             ps.setInt(2, studentId);
@@ -126,4 +129,29 @@ public class StudentCourseDAO
         }
 
     }
+
+    public List<Course> getAttendanceFromCourse(int studentId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT courseDate, attended FROM StudentAttendance as studentattendance \n"
+                    + "JOIN Course as course ON studentattendance.courseId = course.courseId\n"
+                    + "WHERE studentattendance.studentId = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, studentId);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Course> attendanceList = new ArrayList<>();
+
+            while (rs.next())
+            {
+                int attendance = rs.getInt("attended");
+                rs.getString("courseDate");
+                attendanceList.add(attendance);
+            }
+            System.out.println(attendanceList + "yup");
+            return attendanceList;
+
+        }
+    }
+
 }

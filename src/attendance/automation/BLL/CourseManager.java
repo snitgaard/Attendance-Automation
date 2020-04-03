@@ -12,6 +12,9 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +26,7 @@ public class CourseManager
 {
 
     private CourseDAO courseDao;
+    private Course course;
 
     public CourseManager()
     {
@@ -85,6 +89,29 @@ public class CourseManager
     public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime,  String courseDate) throws SQLServerException
     {
         return courseDao.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
+    }
+    
+    public List<Course> getAllCourseIds(String courseDate) throws SQLException
+    {
+        List<Course> courseIds = courseDao.getAllCourseIds(courseDate);
+        List<Course> result = new ArrayList<>();
+        
+        LocalDate todaysDate = LocalDate.now();
+        
+        for (Course courses : courseIds)
+        {
+            if (courseDate != null)
+            {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate localCourseDate = LocalDate.parse(course.getCourseDate(), formatter);
+                
+                if (localCourseDate.isBefore(todaysDate))
+                {
+                    result.add(courses);
+                }
+            }
+        }
+        return result;
     }
 
 }

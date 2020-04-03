@@ -87,8 +87,14 @@ public class StudentAttendanceController implements Initializable {
 
         courseModel = new CourseModel();
         studentCourseModel = new StudentCourseModel();
-
-        //courseModel.getAllCourseDates(courseDate);
+        
+        try
+        {
+            getAttendanceFromCourse();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
@@ -103,7 +109,11 @@ public class StudentAttendanceController implements Initializable {
         studentClassName.setText(selectedStudent.getClassId() + "");
 
         calendar.setValue(LocalDate.now());
-
+    }
+    
+    public void getAttendanceFromCourse() throws SQLException
+    {
+        studentCourseModel.getAttendanceFromCourse(1);
     }
 
     @FXML
