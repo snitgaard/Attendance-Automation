@@ -42,11 +42,12 @@ public class StudentCourseDAO {
 
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException {
         try (Connection con = dbCon.getConnection()) {
-            String sql = "UPDATE StudentAttendance SET attended WHERE courseId = ? AND studentId = ?";
+            String sql = "UPDATE StudentAttendance SET attended = ? WHERE courseId = ? AND studentId = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, courseId);
-            ps.setInt(2, studentId);
+            ps.setInt(1, attendance);
+            ps.setInt(2, courseId);
+            ps.setInt(3, studentId);
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {

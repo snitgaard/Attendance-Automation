@@ -100,10 +100,10 @@ public class StudentAttendanceController implements Initializable {
         nameTag.setText(selectedStudent.getName());
 
         studentClassName.setText(selectedStudent.getClassId() + "");
+        
+        calendar.setValue(LocalDate.now());
 
         getAttendanceFromCourse();
-
-        calendar.setValue(LocalDate.now());
 
     }
 
@@ -119,7 +119,7 @@ public class StudentAttendanceController implements Initializable {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localCourseDate = LocalDate.parse(courses.getCourseDate(), formatter);
 
-                if (localCourseDate.isBefore(todaysDate)) {
+                if (localCourseDate.isBefore(todaysDate) || localCourseDate.equals(todaysDate)) {
                     result.add(courses);
                 }
 
@@ -139,9 +139,11 @@ public class StudentAttendanceController implements Initializable {
         }
         
         double realAttendance = attendedCounter / notAttendedCounter;
+        double attendancePercentage = realAttendance * 100;
+        String roundedAttendance = String.format("%.2f", attendancePercentage);
         studentModel.updateAttendance(realAttendance * 100, studentId);
         progressBar.setProgress(realAttendance);
-        studentAttendancePercentage.setText(realAttendance * 100 + " %");
+        studentAttendancePercentage.setText(roundedAttendance + " %");
 
     }
 
