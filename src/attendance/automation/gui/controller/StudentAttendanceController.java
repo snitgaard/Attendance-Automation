@@ -101,9 +101,9 @@ public class StudentAttendanceController implements Initializable {
 
         studentClassName.setText(selectedStudent.getClassId() + "");
 
-        getAttendanceFromCourse();
-
         calendar.setValue(LocalDate.now());
+
+        getAttendanceFromCourse();
 
     }
 
@@ -119,7 +119,7 @@ public class StudentAttendanceController implements Initializable {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localCourseDate = LocalDate.parse(courses.getCourseDate(), formatter);
 
-                if (localCourseDate.isBefore(todaysDate)) {
+                if (localCourseDate.isBefore(todaysDate) || localCourseDate.equals(todaysDate)) {
                     result.add(courses);
                 }
 
@@ -132,16 +132,16 @@ public class StudentAttendanceController implements Initializable {
         for (int i = 0; i < result.size(); i++) {
             if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1) {
                 attendedCounter++;
-            } else if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 0) {
-                notAttendedCounter++;
             }
 
         }
-        
-        double realAttendance = attendedCounter / notAttendedCounter;
+
+        double realAttendance = attendedCounter / result.size();
+        double attendancePercentage = realAttendance * 100;
+        String roundedAttendance = String.format("%.2f", attendancePercentage);
         studentModel.updateAttendance(realAttendance * 100, studentId);
         progressBar.setProgress(realAttendance);
-        studentAttendancePercentage.setText(realAttendance * 100 + " %");
+        studentAttendancePercentage.setText(roundedAttendance + " %");
 
     }
 
@@ -278,6 +278,9 @@ public class StudentAttendanceController implements Initializable {
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
 
+                        } else if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1) {
+                            attButton.setSelected(true);
+                            attButton.setDisable(true);
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
