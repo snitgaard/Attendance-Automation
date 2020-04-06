@@ -48,7 +48,7 @@
       </Label>
       <ScrollPane layoutX="13.0" layoutY="81.0" prefHeight="560.0" prefWidth="575.0">
          <content>
-            <JFXListView fx:id="classListView" prefHeight="554.0" prefWidth="562.0" />
+            <JFXListView fx:id="classListView" prefHeight="44.0" prefWidth="567.0" />
          </content>
       </ScrollPane>
       <Button layoutX="482.0" layoutY="41.0" mnemonicParsing="false" onAction="#createCourse" text="Create course" />

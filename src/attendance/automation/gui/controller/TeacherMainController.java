@@ -208,24 +208,18 @@ public class TeacherMainController implements Initializable
 
     public void generateClassButtons() throws SQLException
     {
-
-        for (int i = 0; i < classesModel.getAllClasses().size(); i++)
+        for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++)
         {
+            System.out.println(classesModel.getAllClasses());
             classButton = new JFXButton();
             classButtons.add(classButton);
             classButton.setText(classesModel.getClassName(i));
-
         }
-
         Comparator<JFXButton> sortByName = (JFXButton b1, JFXButton b2) -> b1.getText().compareTo(b2.getText());
-        
         Collections.sort(classButtons, sortByName);
-
         classListView.setItems(classButtons);
-
-
-        classListView.setPrefHeight(classButtons.size() * 62);
-
+        classButton.setPrefHeight(30.3);
+        classListView.setPrefHeight(classButtons.size() * classButton.getPrefHeight());
         classListView.setItems(classButtons);
 
     }
