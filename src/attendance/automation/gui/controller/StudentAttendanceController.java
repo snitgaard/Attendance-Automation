@@ -100,7 +100,7 @@ public class StudentAttendanceController implements Initializable {
         nameTag.setText(selectedStudent.getName());
 
         studentClassName.setText(selectedStudent.getClassId() + "");
-        
+
         calendar.setValue(LocalDate.now());
 
         getAttendanceFromCourse();
@@ -132,13 +132,11 @@ public class StudentAttendanceController implements Initializable {
         for (int i = 0; i < result.size(); i++) {
             if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1) {
                 attendedCounter++;
-            } else if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 0) {
-                notAttendedCounter++;
             }
 
         }
-        
-        double realAttendance = attendedCounter / notAttendedCounter;
+
+        double realAttendance = attendedCounter / result.size();
         double attendancePercentage = realAttendance * 100;
         String roundedAttendance = String.format("%.2f", attendancePercentage);
         studentModel.updateAttendance(realAttendance * 100, studentId);
@@ -280,6 +278,9 @@ public class StudentAttendanceController implements Initializable {
 
                             studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
 
+                        } else if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1) {
+                            attButton.setSelected(true);
+                            attButton.setDisable(true);
                         } else {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
