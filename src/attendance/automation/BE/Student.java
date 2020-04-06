@@ -26,7 +26,7 @@ public class Student extends Person
         this.studentEducation = studentEducation;
         this.classId = classId;
     }
-
+    
     public Student(int id)
     {
         super(id);

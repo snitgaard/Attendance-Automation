@@ -26,6 +26,13 @@ public abstract class Person
     {
         this.id = id;
     }
+
+    public Person(String name)
+    {
+        this.name = name;
+    }
+    
+    
     
 
     public int getId()

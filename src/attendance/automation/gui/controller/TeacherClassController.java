@@ -5,6 +5,7 @@
  */
 package attendance.automation.gui.controller;
 
+import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
 import javafx.event.EventHandler;
@@ -19,6 +20,10 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -28,22 +33,26 @@ import java.util.ResourceBundle;
 public class TeacherClassController implements Initializable
 {
 
-    StudentModel model = new StudentModel();
+    StudentModel studentModel = new StudentModel();
     private TeacherModel teacherModel;
     @FXML
     private ImageView btn_close;
     @FXML
     private AnchorPane ancMain;
-    @FXML
     private Label nameFour;
-    @FXML
     private Label nameTwo;
-    @FXML
     private Label nameOne;
-    @FXML
     private Label nameThree;
     private double xOffset = 0;
     private double yOffset = 0;
+    @FXML
+    private TableView<Student> attendanceView;
+    @FXML
+    private TableColumn<Student, String> nameTable;
+    @FXML
+    private TableColumn<Student, String> classTable;
+    @FXML
+    private TableColumn<Student, Double> attendanceTable;
 
     /**
      * Initializes the controller class.
@@ -54,6 +63,27 @@ public class TeacherClassController implements Initializable
         studentOverview();
         generateClasses();
         teacherModel = new TeacherModel();
+        
+        attendanceView.setItems(studentModel.getAllStudents());
+        nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
+        classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
+        attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        studentList();
+    }
+
+    public void studentList()
+    {
+        studentModel.getAllStudents().addListener((ListChangeListener<Student>) c ->
+        {
+            while (c.next())
+            {
+                if (c.wasRemoved() || c.wasAdded())
+                {
+                    attendanceView.refresh();
+                }
+            }
+        });
+
     }
 
     @FXML
@@ -105,7 +135,6 @@ public class TeacherClassController implements Initializable
         });
     }
 
-    @FXML
     private void showTeacherStudent() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherStudent.fxml"));
@@ -148,10 +177,5 @@ public class TeacherClassController implements Initializable
 
     private void studentOverview()
     {
-        nameOne.setText(model.getAllStudents().get(0).toString());
-        System.out.println("hvad er det her" + nameOne);
-        nameTwo.setText(model.getAllStudents().get(1).toString());
-        nameThree.setText(model.getAllStudents().get(2).toString());
-        nameFour.setText(model.getAllStudents().get(3).toString());
     }
 }

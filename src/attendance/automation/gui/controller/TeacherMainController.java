@@ -6,8 +6,12 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Teacher;
+import attendance.automation.gui.Model.ClassesModel;
 import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.TeacherModel;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
@@ -19,7 +23,15 @@ import javafx.stage.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -30,9 +42,13 @@ public class TeacherMainController implements Initializable
 {
 
     CourseModel courseModel;
+
     private TeacherModel teacherModel;
     private LoginController controller;
+    private ClassesModel classesModel;
     private Teacher selectedTeacher;
+    private JFXButton classButton;
+    private ObservableList<JFXButton> classButtons = FXCollections.observableArrayList();
     @FXML
     private ImageView btn_close;
     @FXML
@@ -41,7 +57,8 @@ public class TeacherMainController implements Initializable
     private double yOffset = 0;
     @FXML
     private ImageView btn_minimize;
-
+    @FXML
+    private JFXListView<JFXButton> classListView;
 
     /**
      * Initializes the controller class.
@@ -49,7 +66,17 @@ public class TeacherMainController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        try
+        {
+            classesModel = new ClassesModel();
+            generateClassButtons();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -65,7 +92,6 @@ public class TeacherMainController implements Initializable
         stage.setIconified(true);
     }
 
-    @FXML
     private void showTeacherCourse() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
@@ -102,7 +128,6 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    @FXML
     private void showTeacherClass() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
@@ -145,7 +170,6 @@ public class TeacherMainController implements Initializable
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/CourseWindow.fxml"));
         Parent root = fxmlLoader.load();
 
-
         Object c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -181,4 +205,29 @@ public class TeacherMainController implements Initializable
         this.controller = controller;
         this.selectedTeacher = selectedTeacher;
     }
+
+    public void generateClassButtons() throws SQLException
+    {
+
+        for (int i = 0; i < classesModel.getAllClasses().size(); i++)
+        {
+            classButton = new JFXButton();
+            classButtons.add(classButton);
+            classButton.setText(classesModel.getClassName(i));
+
+        }
+
+        Comparator<JFXButton> sortByName = (JFXButton b1, JFXButton b2) -> b1.getText().compareTo(b2.getText());
+        
+        Collections.sort(classButtons, sortByName);
+
+        classListView.setItems(classButtons);
+
+
+        classListView.setPrefHeight(classButtons.size() * 62);
+
+        classListView.setItems(classButtons);
+
+    }
+
 }

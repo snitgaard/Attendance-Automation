@@ -134,7 +134,7 @@ public class ClassesDAO
             ps.setString(1, classesName);
             ResultSet rs = ps.executeQuery();
             int classId = 0;
-            
+
             while (rs.next())
             {
                 classId = rs.getInt("classId");
@@ -142,4 +142,22 @@ public class ClassesDAO
             return classId;
         }
     }
+
+    public String getClassName(int classesId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT className FROM Class WHERE classId = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, classesId);
+            ResultSet rs = ps.executeQuery();
+            String className = "";
+            while (rs.next())
+            {
+                className = rs.getString("className");
+            }
+            return className;
+        }
+    }
+
 }

@@ -11,6 +11,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.SQLException;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * @author The Best Group
@@ -19,19 +21,14 @@ public class StudentModel
 {
 
     private StudentManager studentManager = new StudentManager();
+    private ObservableList<Student> allStudents;
 
-    public List<Student> getAllStudents()
+    public ObservableList<Student> getAllStudents()
     {
-        try
-        {
-            return studentManager.getAllData();
-        } catch (Exception e)
-        {
-            System.out.println(e);
-            return null;
-        }
+            allStudents = FXCollections.observableArrayList();
+            allStudents.addAll(studentManager.getAllData());
+            return allStudents;
     }
-
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
@@ -47,17 +44,16 @@ public class StudentModel
 //    {
 //        return studentManager
 //    }
-
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return studentManager.getSpecificStudent(studentEmail);
     }
-    
+
     public List<Student> getStudentClass(int classId) throws SQLException
     {
         return studentManager.getStudentClass(classId);
     }
-    
+
     public boolean updateAttendance(double attendance, int studentId) throws SQLException
     {
         return studentManager.updateAttendance(attendance, studentId);

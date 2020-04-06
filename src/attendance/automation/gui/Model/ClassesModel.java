@@ -70,4 +70,9 @@ public class ClassesModel
     {
         return classesManager.getClassId(classesName);
     }
+    
+    public String getClassName(int classesId) throws SQLException
+    {
+        return classesManager.getClassName(classesId);
+    }
 }

@@ -51,6 +51,7 @@ public class StudentDAO
             return allStudents;
         }
     }
+   
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {

@@ -46,6 +46,7 @@ public class StudentManager
         }
         return null;
     }
+   
 
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
