@@ -60,10 +60,10 @@ public class StudentModel
         return studentManager.updateAttendance(attendance, studentId);
     }
 
-    public ObservableList<Student> getAllStudentsClass(int classId) throws SQLException
+    public ObservableList<Student> getAllStudentsClass(String className) throws SQLException
     {
         allStudentsClass = FXCollections.observableArrayList();
-        allStudentsClass.addAll(studentManager.getAllStudentsClass(classId));
+        allStudentsClass.addAll(studentManager.getAllStudentsClass(className));
         return allStudentsClass;
     }
 }

@@ -193,7 +193,7 @@ public class TeacherMainController implements Initializable {
         for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++) {
             classButton = new JFXButton();
             classButtons.add(classButton);
-            classButton.setText(classesModel.getClassName(i) + " - " + i);
+            classButton.setText(classesModel.getClassName(i));
             
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
                         Parent root = fxmlLoader.load();

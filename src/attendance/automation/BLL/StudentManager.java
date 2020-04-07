@@ -76,9 +76,9 @@ public class StudentManager
         return studentDAO.updateAttendace(attendance, studentId);
     }
 
-    public List<Student> getAllStudentsClass(int classId) throws SQLException
+    public List<Student> getAllStudentsClass(String className) throws SQLException
     {
-        return studentDAO.getAllStudentsClass(classId);
+        return studentDAO.getAllStudentsClass(className);
     }
 
 }

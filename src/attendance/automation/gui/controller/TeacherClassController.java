@@ -85,9 +85,9 @@ public class TeacherClassController implements Initializable
         this.controller = controller;
         this.selectedClass = selectedClass;
         this.classButton = classButton;
-        System.out.println(classButton.getText().substring(10).trim());
-        int realUserData = Integer.parseInt(classButton.getText().substring(10));
-        attendanceView.setItems(studentModel.getAllStudentsClass(realUserData));
+//        System.out.println(classButton.getText().substring(10).trim());
+//        int realUserData = Integer.parseInt(classButton.getText().substring(10));
+        attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
         
     }
 
