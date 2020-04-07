@@ -64,6 +64,6 @@ public class StudentModel
     {
         allStudentsClass = FXCollections.observableArrayList();
         allStudentsClass.addAll(studentManager.getAllStudentsClass(classId));
-        return allStudents;
+        return allStudentsClass;
     }
 }

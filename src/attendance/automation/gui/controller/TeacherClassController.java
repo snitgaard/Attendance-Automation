@@ -38,7 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class TeacherClassController implements Initializable
 {
 
-    StudentModel studentModel = new StudentModel();
+    private StudentModel studentModel;
     private TeacherModel teacherModel;
     private TeacherMainController controller;
     private Class selectedClass;
@@ -68,27 +68,26 @@ public class TeacherClassController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        teacherModel = new TeacherModel();
-
-        nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
-        classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
-        attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        
+            teacherModel = new TeacherModel();
+            
+            
+            nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
+            classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
+            attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        
     }
 
-    public void etEllerAndet() throws SQLException
-    {
-        int realUserData = Integer.parseInt(classButton.getUserData() + "");
-        attendanceView.setItems(studentModel.getAllStudentsClass(realUserData));
-        System.out.println(realUserData);
-    }
 
-    void ApplyImportantData(TeacherModel teacherModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException
+    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException
     {
-        this.teacherModel = teacherModel;
+        this.studentModel = studentModel;
         this.controller = controller;
         this.selectedClass = selectedClass;
         this.classButton = classButton;
-        etEllerAndet();
+        System.out.println(classButton.getText().substring(10).trim());
+        int realUserData = Integer.parseInt(classButton.getText().substring(10));
+        attendanceView.setItems(studentModel.getAllStudentsClass(realUserData));
         
     }
 

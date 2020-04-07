@@ -8,6 +8,7 @@ package attendance.automation.gui.controller;
 import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.ClassesModel;
 import attendance.automation.gui.Model.CourseModel;
+import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
@@ -38,8 +39,7 @@ import javafx.scene.control.Button;
  *
  * @author The Best Group
  */
-public class TeacherMainController implements Initializable
-{
+public class TeacherMainController implements Initializable {
 
     CourseModel courseModel;
 
@@ -49,6 +49,7 @@ public class TeacherMainController implements Initializable
     private Teacher selectedTeacher;
     private Class selectedClass;
     private JFXButton classButton;
+    private StudentModel studentModel;
     private ObservableList<JFXButton> classButtons = FXCollections.observableArrayList();
     @FXML
     private ImageView btn_close;
@@ -65,36 +66,30 @@ public class TeacherMainController implements Initializable
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        try
-        {
+    public void initialize(URL url, ResourceBundle rb) {
+        try {
             classesModel = new ClassesModel();
+            studentModel = new StudentModel();
             generateClassButtons();
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void close_app(MouseEvent event)
-    {
+    private void close_app(MouseEvent event) {
         System.exit(0);
     }
 
     @FXML
-    private void minimize_app(MouseEvent event)
-    {
+    private void minimize_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
-    private void showTeacherCourse() throws IOException
-    {
+    private void showTeacherCourse() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -109,33 +104,28 @@ public class TeacherMainController implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
     }
 
-    private void showTeacherClass() throws IOException, SQLException
-    {
+    private void showTeacherClass() throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
         Parent root = fxmlLoader.load();
 
         TeacherClassController taecherClassController = fxmlLoader.getController();
-        taecherClassController.ApplyImportantData(teacherModel, this, selectedClass, classButton);
+        taecherClassController.ApplyImportantData(studentModel, this, selectedClass, classButton);
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
         stage1.close();
         Object c = fxmlLoader.getController();
@@ -147,20 +137,16 @@ public class TeacherMainController implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
@@ -168,8 +154,7 @@ public class TeacherMainController implements Initializable
     }
 
     @FXML
-    private void createCourse(ActionEvent event) throws IOException
-    {
+    private void createCourse(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/CourseWindow.fxml"));
         Parent root = fxmlLoader.load();
 
@@ -182,82 +167,75 @@ public class TeacherMainController implements Initializable
         stage.setScene(new Scene(root));
         stage.show();
 
-        root.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 xOffset = event.getSceneX();
                 yOffset = event.getSceneY();
             }
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event)
-            {
+            public void handle(MouseEvent event) {
                 stage.setX(event.getScreenX() - xOffset);
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
     }
 
-    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher)
-    {
+    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher) {
         this.teacherModel = teacherModel;
         this.controller = controller;
         this.selectedTeacher = selectedTeacher;
     }
 
-    public void generateClassButtons() throws SQLException, IOException
-    {
-        for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++)
-        {
+    public void generateClassButtons() throws SQLException, IOException {
+        for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++) {
             classButton = new JFXButton();
             classButtons.add(classButton);
-            classButton.setText(classesModel.getClassName(i));
-            classButton.setUserData(i);
-
+            classButton.setText(classesModel.getClassName(i) + " - " + i);
+            
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
-            Parent root = fxmlLoader.load();
-
-            TeacherClassController teacherClassController = fxmlLoader.getController();
-            teacherClassController.ApplyImportantData(teacherModel, this, selectedClass, classButton);
-
-            classButton.setOnMouseClicked(event ->
-            {
-                JFXButton b = (JFXButton) event.getSource();
+                        Parent root = fxmlLoader.load();
+                        TeacherClassController teacherClassController = fxmlLoader.getController();
+                        teacherClassController.ApplyImportantData(studentModel, this, selectedClass, classButton);
+            
+            classButton.setOnMouseClicked(event
+                    -> {
                 {
-                    Stage stage1 = (Stage) ancMain.getScene().getWindow();
-                    stage1.close();
-                    Object c = fxmlLoader.getController();
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.WINDOW_MODAL);
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.setAlwaysOnTop(true);
-                    stage.setResizable(false);
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                    
+                        
+                        
+                        
+                        Stage stage1 = (Stage) ancMain.getScene().getWindow();
+                        stage1.close();
+                        Object c = fxmlLoader.getController();
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.WINDOW_MODAL);
+                        stage.initStyle(StageStyle.TRANSPARENT);
+                        stage.setAlwaysOnTop(true);
+                        stage.setResizable(false);
+                        stage.setScene(new Scene(root));
+                        stage.show();
 
-                    root.setOnMousePressed(new EventHandler<MouseEvent>()
-                    {
-                        @Override
-                        public void handle(MouseEvent event)
-                        {
-                            xOffset = event.getSceneX();
-                            yOffset = event.getSceneY();
-                        }
-                    });
-                    root.setOnMouseDragged(new EventHandler<MouseEvent>()
-                    {
-                        @Override
-                        public void handle(MouseEvent event)
-                        {
-                            stage.setX(event.getScreenX() - xOffset);
-                            stage.setY(event.getScreenY() - yOffset);
-                        }
-                    });
-                }
+                        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                xOffset = event.getSceneX();
+                                yOffset = event.getSceneY();
+                            }
+                        });
+                        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent event) {
+                                stage.setX(event.getScreenX() - xOffset);
+                                stage.setY(event.getScreenY() - yOffset);
+                            }
+                        });
+                    } 
+            
+                    
+                
             });
         }
 
