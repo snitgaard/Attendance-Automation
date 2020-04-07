@@ -6,8 +6,10 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Student;
+import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
+import com.jfoenix.controls.JFXButton;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -19,7 +21,10 @@ import javafx.stage.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -35,6 +40,9 @@ public class TeacherClassController implements Initializable
 
     StudentModel studentModel = new StudentModel();
     private TeacherModel teacherModel;
+    private TeacherMainController controller;
+    private Class selectedClass;
+    private JFXButton classButton;
     @FXML
     private ImageView btn_close;
     @FXML
@@ -60,32 +68,43 @@ public class TeacherClassController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        studentOverview();
-        generateClasses();
         teacherModel = new TeacherModel();
-        
-        attendanceView.setItems(studentModel.getAllStudents());
+
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
         classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
         attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
-        studentList();
     }
 
-    public void studentList()
+    public void etEllerAndet() throws SQLException
     {
-        studentModel.getAllStudents().addListener((ListChangeListener<Student>) c ->
-        {
-            while (c.next())
-            {
-                if (c.wasRemoved() || c.wasAdded())
-                {
-                    attendanceView.refresh();
-                }
-            }
-        });
-
+        int realUserData = Integer.parseInt(classButton.getUserData() + "");
+        attendanceView.setItems(studentModel.getAllStudentsClass(realUserData));
+        System.out.println(realUserData);
     }
 
+    void ApplyImportantData(TeacherModel teacherModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException
+    {
+        this.teacherModel = teacherModel;
+        this.controller = controller;
+        this.selectedClass = selectedClass;
+        this.classButton = classButton;
+        etEllerAndet();
+        
+    }
+
+//    public void studentList()
+//    {
+//        studentModel.getAllStudentsClass(0).addListener((ListChangeListener<Student>) c ->
+//        {
+//            while (c.next())
+//            {
+//                if (c.wasRemoved() || c.wasAdded())
+//                {
+//                    attendanceView.refresh();
+//                }
+//            }
+//        });
+//    }
     @FXML
     private void close_app(MouseEvent event)
     {
@@ -168,14 +187,5 @@ public class TeacherClassController implements Initializable
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
-    }
-
-    private void generateClasses()
-    {
-        //TODO
-    }
-
-    private void studentOverview()
-    {
     }
 }

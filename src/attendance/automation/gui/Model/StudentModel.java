@@ -22,12 +22,13 @@ public class StudentModel
 
     private StudentManager studentManager = new StudentManager();
     private ObservableList<Student> allStudents;
+    private ObservableList<Student> allStudentsClass;
 
     public ObservableList<Student> getAllStudents()
     {
-            allStudents = FXCollections.observableArrayList();
-            allStudents.addAll(studentManager.getAllData());
-            return allStudents;
+        allStudents = FXCollections.observableArrayList();
+        allStudents.addAll(studentManager.getAllData());
+        return allStudents;
     }
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
@@ -57,5 +58,12 @@ public class StudentModel
     public boolean updateAttendance(double attendance, int studentId) throws SQLException
     {
         return studentManager.updateAttendance(attendance, studentId);
+    }
+
+    public ObservableList<Student> getAllStudentsClass(int classId) throws SQLException
+    {
+        allStudentsClass = FXCollections.observableArrayList();
+        allStudentsClass.addAll(studentManager.getAllStudentsClass(classId));
+        return allStudents;
     }
 }

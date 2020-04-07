@@ -34,7 +34,6 @@ public class StudentManager
         }
     }
 
-
     public List<Student> getAllData()
     {
         try
@@ -46,8 +45,6 @@ public class StudentManager
         }
         return null;
     }
-   
-
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
@@ -68,15 +65,20 @@ public class StudentManager
     {
         return studentDAO.getSpecificStudent(studentEmail);
     }
-    
+
     public List<Student> getStudentClass(int classId) throws SQLException
     {
         return studentDAO.getStudentClass(classId);
     }
-    
+
     public boolean updateAttendance(double attendance, int studentId) throws SQLException
     {
         return studentDAO.updateAttendace(attendance, studentId);
+    }
+
+    public List<Student> getAllStudentsClass(int classId) throws SQLException
+    {
+        return studentDAO.getAllStudentsClass(classId);
     }
 
 }

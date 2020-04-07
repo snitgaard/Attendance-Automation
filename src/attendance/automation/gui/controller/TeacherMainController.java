@@ -47,6 +47,7 @@ public class TeacherMainController implements Initializable
     private LoginController controller;
     private ClassesModel classesModel;
     private Teacher selectedTeacher;
+    private Class selectedClass;
     private JFXButton classButton;
     private ObservableList<JFXButton> classButtons = FXCollections.observableArrayList();
     @FXML
@@ -128,11 +129,13 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    private void showTeacherClass() throws IOException
+    private void showTeacherClass() throws IOException, SQLException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
         Parent root = fxmlLoader.load();
 
+        TeacherClassController taecherClassController = fxmlLoader.getController();
+        taecherClassController.ApplyImportantData(teacherModel, this, selectedClass, classButton);
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
         stage1.close();
         Object c = fxmlLoader.getController();
@@ -206,15 +209,58 @@ public class TeacherMainController implements Initializable
         this.selectedTeacher = selectedTeacher;
     }
 
-    public void generateClassButtons() throws SQLException
+    public void generateClassButtons() throws SQLException, IOException
     {
         for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++)
         {
-            System.out.println(classesModel.getAllClasses());
             classButton = new JFXButton();
             classButtons.add(classButton);
             classButton.setText(classesModel.getClassName(i));
+            classButton.setUserData(i);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
+            Parent root = fxmlLoader.load();
+
+            TeacherClassController teacherClassController = fxmlLoader.getController();
+            teacherClassController.ApplyImportantData(teacherModel, this, selectedClass, classButton);
+
+            classButton.setOnMouseClicked(event ->
+            {
+                JFXButton b = (JFXButton) event.getSource();
+                {
+                    Stage stage1 = (Stage) ancMain.getScene().getWindow();
+                    stage1.close();
+                    Object c = fxmlLoader.getController();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setAlwaysOnTop(true);
+                    stage.setResizable(false);
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                    root.setOnMousePressed(new EventHandler<MouseEvent>()
+                    {
+                        @Override
+                        public void handle(MouseEvent event)
+                        {
+                            xOffset = event.getSceneX();
+                            yOffset = event.getSceneY();
+                        }
+                    });
+                    root.setOnMouseDragged(new EventHandler<MouseEvent>()
+                    {
+                        @Override
+                        public void handle(MouseEvent event)
+                        {
+                            stage.setX(event.getScreenX() - xOffset);
+                            stage.setY(event.getScreenY() - yOffset);
+                        }
+                    });
+                }
+            });
         }
+
         Comparator<JFXButton> sortByName = (JFXButton b1, JFXButton b2) -> b1.getText().compareTo(b2.getText());
         Collections.sort(classButtons, sortByName);
         classListView.setItems(classButtons);

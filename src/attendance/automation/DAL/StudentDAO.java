@@ -51,7 +51,33 @@ public class StudentDAO
             return allStudents;
         }
     }
-   
+
+    public List<Student> getAllStudentsClass(int classId) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT * FROM Student WHERE classId = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, classId);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Student> allStudents = new ArrayList<>();
+            while (rs.next())
+            {
+                int id = rs.getInt("studentId");
+                String name = rs.getString("studentName");
+                String email = rs.getString("studentEmail");
+                classId = rs.getInt("classId");
+                double attendance = rs.getDouble("attendance");
+                int semester = rs.getInt("semester");
+                String studentPassword = rs.getString("studentPassword");
+                String studentEducation = rs.getString("studentEducation");
+
+                Student student = new Student(id, name, email, classId, attendance, semester, studentPassword, studentEducation);
+                allStudents.add(student);
+            }
+            return allStudents;
+        }
+    }
 
     public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
     {
@@ -168,7 +194,7 @@ public class StudentDAO
             return studentList;
         }
     }
-    
+
     public boolean updateAttendace(double attendance, int studentId) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
