@@ -244,6 +244,7 @@ public class TeacherMainController implements Initializable {
         classListView.setItems(classButtons);
         classButton.setPrefHeight(30.3);
         classListView.setPrefHeight(classButtons.size() * classButton.getPrefHeight());
+        classListView.setPrefWidth(68);
         classListView.setItems(classButtons);
 
     }

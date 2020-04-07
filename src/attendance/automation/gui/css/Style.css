@@ -18,9 +18,19 @@ and open the template in the editor.
     -fx-background-color: -fx-secondary;
 }
 
+.combo-box-base .arrow-button {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+}
+
+.combo-box-base .arrow {
+    -fx-background-color: -fx-secondary;
+}
+
 .root
 {
     -fx-background-color: -fx-primary; 
+    -fx-border-color: -fx-secondary;
 }
 
 .glyph-icon
@@ -31,16 +41,12 @@ and open the template in the editor.
 .button
 {
     -fx-text-fill: -fx-primarytext; 
-}
-
-.login-button
-{
     -fx-border-color: -fx-secondary; 
     -fx-border-radius: 20px; 
     -fx-background-radius: 20px; 
 }
 
-.login-button:hover
+.button:hover
 {
     -fx-border-color: -fx-secondary; 
     -fx-background-color: -fx-secondary;
@@ -179,4 +185,24 @@ Teacher specific css
     -fx-padding: 0px;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
+    -fx-text-fill: -fx-primarytext;
+}
+
+.table-row-cell{
+    -fx-padding: 0px;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: -fx-primarytext;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: -fx-primary;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-primarytext;
 }

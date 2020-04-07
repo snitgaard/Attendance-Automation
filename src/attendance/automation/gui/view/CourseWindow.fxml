@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="372.0" prefWidth="37.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.CourseWindowController">
+<AnchorPane id="AnchorPane" prefHeight="404.0" prefWidth="400.0" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.CourseWindowController">
    <children>
-      <TextField fx:id="txt_courseName" layoutX="114.0" layoutY="115.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter course name" />
-      <TextField fx:id="txt_weekDay" layoutX="114.0" layoutY="153.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter weekday" />
-      <TextField fx:id="txt_startTime" layoutX="114.0" layoutY="193.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter start time" />
-      <TextField fx:id="txt_endTime" layoutX="114.0" layoutY="231.0" prefHeight="25.0" prefWidth="158.0" promptText="Enter end time" />
-      <JFXDatePicker fx:id="datePicker" layoutX="114.0" layoutY="273.0" prefHeight="28.0" prefWidth="158.0" />
-      <ComboBox fx:id="cb_selectClass" layoutX="114.0" layoutY="316.0" onAction="#cb_selectClass" prefHeight="25.0" prefWidth="158.0" promptText="Select class" />
-      <Button layoutX="301.0" layoutY="316.0" mnemonicParsing="false" onAction="#createCourse" text="Save" />
+      <JFXTextField fx:id="txt_courseName" alignment="CENTER" layoutX="114.0" layoutY="101.0" prefHeight="38.0" prefWidth="158.0" promptText="Enter course name" styleClass="text-field" />
+      <JFXTextField fx:id="txt_weekDay" alignment="CENTER" layoutX="114.0" layoutY="152.0" prefHeight="38.0" prefWidth="158.0" promptText="Enter weekday" styleClass="text-field" />
+      <JFXTextField fx:id="txt_startTime" alignment="CENTER" layoutX="114.0" layoutY="202.0" prefHeight="38.0" prefWidth="158.0" promptText="Enter start time" styleClass="text-field" />
+      <JFXTextField fx:id="txt_endTime" alignment="CENTER" layoutX="114.0" layoutY="255.0" prefHeight="38.0" prefWidth="158.0" promptText="Enter end time" styleClass="text-field" />
+      <JFXDatePicker fx:id="datePicker" layoutX="114.0" layoutY="299.0" prefHeight="38.0" prefWidth="195.0" promptText="Pick date" />
+      <ComboBox fx:id="cb_selectClass" layoutX="114.0" layoutY="358.0" onAction="#cb_selectClass" prefHeight="25.0" prefWidth="158.0" promptText="Select class" />
+      <JFXButton layoutX="301.0" layoutY="357.0" onAction="#createCourse" text="Save" />
       <Label layoutX="85.0" layoutY="56.0" text="Create new course">
          <font>
             <Font name="System Bold" size="25.0" />
