@@ -151,5 +151,25 @@ public class StudentCourseDAO {
         }
 
     }
+    
+    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
+    {
+        try (Connection con = dbCon.getConnection())
+        {
+            String sql = "SELECT attended FROM StudentAttendance WHERE studentId = ? AND courseId IN (SELECT courseId FROM Course WHERE weekDay = ?);";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, studentId);
+            ps.setString(2, weekDay);
+            ResultSet rs = ps.executeQuery();
+            double attendance = -1;
+            
+            while (rs.next())
+            {
+                 attendance = rs.getDouble("attended");
+                
+            }
+            return attendance;
+        }
+    }
 
 }

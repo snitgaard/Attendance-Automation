@@ -94,8 +94,12 @@ public class TeacherClassController implements Initializable
 //        System.out.println(classButton.getText().substring(10).trim());
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
+        setAverageAttendance();
         
-        
+    }
+    
+    private void setAverageAttendance() throws SQLException
+    {
         double totalAttendance = 0;
         double averageAttendance = 0;
         for (int i = 0; i < studentModel.getAllStudentsClass(classButton.getText()).size(); i++) {
@@ -105,7 +109,6 @@ public class TeacherClassController implements Initializable
         averageAttendance = totalAttendance / studentModel.getAllStudentsClass(classButton.getText()).size();
         averageLabel.setText(averageAttendance + "");
         attendanceBar.setProgress(averageAttendance / 100);
-        
     }
 
 //    public void studentList()
