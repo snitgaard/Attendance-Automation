@@ -22,6 +22,7 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -170,7 +171,8 @@ public class TeacherClassController implements Initializable
         }
 
         averageAttendance = totalAttendance / studentModel.getAllStudentsClass(classButton.getText()).size();
-        averageLabel.setText(averageAttendance + "");
+        DecimalFormat df = new DecimalFormat("#.##");
+        averageLabel.setText(df.format((averageAttendance)).toString()+ " %");
         attendanceBar.setProgress(averageAttendance / 100);
     }
 

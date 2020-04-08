@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="ancMain" prefHeight="637.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassController">
+<AnchorPane id="AnchorPane" fx:id="ancMain" prefHeight="637.0" prefWidth="578.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="attendance.automation.gui.controller.TeacherClassController">
    <stylesheets>
       <URL value="@/attendance/automation/gui/css/Style.css" />
    </stylesheets>
@@ -51,16 +51,16 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <VBox layoutX="10.0" layoutY="72.0" prefHeight="565.0" prefWidth="581.0">
+      <VBox layoutX="10.0" layoutY="72.0" prefHeight="565.0" prefWidth="590.0">
          <children>
-            <HBox alignment="CENTER" styleClass="box">
+            <HBox alignment="CENTER" prefHeight="91.0" prefWidth="771.0" styleClass="box">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <children>
                   <VBox alignment="CENTER" prefHeight="51.0" prefWidth="158.0">
                      <children>
-                        <Label prefHeight="34.0" prefWidth="145.0" text="Class average">
+                        <Label prefHeight="34.0" prefWidth="202.0" text="Class average">
                            <font>
                               <Font size="23.0" />
                            </font>
@@ -70,12 +70,12 @@
                         <Insets />
                      </HBox.margin>
                   </VBox>
-                  <ProgressBar fx:id="attendanceBar" prefHeight="32.0" prefWidth="300.0" progress="0.72">
+                  <ProgressBar fx:id="attendanceBar" prefHeight="32.0" prefWidth="261.0" progress="0.72">
                      <HBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </HBox.margin>
                   </ProgressBar>
-                  <Label fx:id="averageLabel" prefHeight="40.0" text="72%">
+                  <Label fx:id="averageLabel" prefHeight="40.0" prefWidth="147.0" text="72%">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -93,7 +93,7 @@
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <TableView fx:id="attendanceView" prefHeight="420.0" prefWidth="581.0">
+            <TableView fx:id="attendanceView" prefHeight="420.0" prefWidth="600.0">
                <columns>
                   <TableColumn fx:id="nameTable" prefWidth="204.0" text="Name" />
                   <TableColumn fx:id="classTable" prefWidth="228.0" text="Email" />
