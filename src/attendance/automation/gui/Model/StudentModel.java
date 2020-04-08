@@ -8,11 +8,12 @@ package attendance.automation.gui.Model;
 import attendance.automation.BE.Student;
 import attendance.automation.BLL.StudentManager;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-
-import java.sql.SQLException;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.List;
 
 /**
  * @author The Best Group
@@ -41,7 +42,7 @@ public class StudentModel
         return studentManager.getStudent(studentEmail);
     }
 
-//    public List<Student> getStudentsInCourse()
+    //    public List<Student> getStudentsInCourse()
 //    {
 //        return studentManager
 //    }
@@ -60,7 +61,7 @@ public class StudentModel
         return studentManager.updateAttendance(attendance, studentId);
     }
 
-    public ObservableList<Student> getAllStudentsClass(String className) throws SQLException
+    public ObservableList<Student> getAllStudentsClass(String className) throws SQLException, ParseException
     {
         allStudentsClass = FXCollections.observableArrayList();
         allStudentsClass.addAll(studentManager.getAllStudentsClass(className));

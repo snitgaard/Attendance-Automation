@@ -10,9 +10,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.ParseException;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,14 +72,14 @@ public class StudentDAO
                 int semester = rs.getInt("semester");
                 String studentPassword = rs.getString("studentPassword");
                 String studentEducation = rs.getString("studentEducation");
-                
+
                 DecimalFormatSymbols symbols = new DecimalFormatSymbols();
                 symbols.setDecimalSeparator(',');
                 DecimalFormat format = new DecimalFormat("0.#");
                 format.setDecimalFormatSymbols(symbols);
                 String attendanceTwoDecimals = new DecimalFormat("##.##").format(attendance);
                 double twoDecimals = format.parse(attendanceTwoDecimals).doubleValue();
-                
+
 
                 Student student = new Student(id, name, email, classId, twoDecimals, semester, studentPassword, studentEducation);
                 allStudents.add(student);
@@ -218,7 +216,6 @@ public class StudentDAO
             return true;
         }
     }
-    
-    
+
 
 }

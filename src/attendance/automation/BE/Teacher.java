@@ -33,11 +33,13 @@ public class Teacher extends Person
         this.classId = classId;
     }
 
-    public int getCourseId() {
+    public int getCourseId()
+    {
         return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(int courseId)
+    {
         this.courseId = courseId;
     }
 

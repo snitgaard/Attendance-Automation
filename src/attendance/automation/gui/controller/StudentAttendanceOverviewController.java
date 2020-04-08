@@ -77,10 +77,6 @@ public class StudentAttendanceOverviewController implements Initializable {
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
         DecimalFormat df = new DecimalFormat("#.##");
         studentAttendancePercentage.setText(df.format(selectedStudent.getAttendance()) + " %");
-
-        System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
-        System.out.println(selectedStudent.getAttendance() + "what is going on");
-
         updateDynamicData();
         buildLineChart();
 

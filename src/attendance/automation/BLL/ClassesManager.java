@@ -55,12 +55,12 @@ public class ClassesManager
     {
         return classesDao.updateClasses(classesName, classesId);
     }
-    
+
     public int getClassId(String classesName) throws SQLException
     {
         return classesDao.getClassId(classesName);
     }
-    
+
     public String getClassName(int classesId) throws SQLException
     {
         return classesDao.getClassName(classesId);

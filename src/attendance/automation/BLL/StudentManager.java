@@ -11,6 +11,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +77,7 @@ public class StudentManager
         return studentDAO.updateAttendace(attendance, studentId);
     }
 
-    public List<Student> getAllStudentsClass(String className) throws SQLException
+    public List<Student> getAllStudentsClass(String className) throws SQLException, ParseException
     {
         return studentDAO.getAllStudentsClass(className);
     }

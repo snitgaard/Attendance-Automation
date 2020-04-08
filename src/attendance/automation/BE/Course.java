@@ -42,8 +42,6 @@ public class Course
         this.courseId = courseId;
         this.courseDate = courseDate;
     }
-    
-    
 
 
     public String getCourseDate()
@@ -123,6 +121,6 @@ public class Course
     {
         return startTime + " - " + endTime + ": " + courseName;
     }
-    
-    
+
+
 }

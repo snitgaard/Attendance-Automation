@@ -26,7 +26,6 @@ public class TeacherModel
             return teacherManager.getAllData();
         } catch (Exception e)
         {
-            System.out.println(e);
             return null;
         }
     }

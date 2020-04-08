@@ -6,7 +6,6 @@
 package attendance.automation.DAL;
 
 import attendance.automation.BE.Classes;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;

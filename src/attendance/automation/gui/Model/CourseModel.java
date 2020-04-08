@@ -13,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * @author jigzi
@@ -51,7 +50,6 @@ public class CourseModel
         boolean courseIsCreated = courseManager.createCourse(courseName, weekDay, startTime, endTime, classId, courseDate);
         if (courseIsCreated)
         {
-            System.out.println("Course Created");
         }
     }
 
@@ -71,7 +69,6 @@ public class CourseModel
         boolean courseIsUpdated = courseManager.updateCourse(courseName, courseId);
         if (courseIsUpdated)
         {
-            System.out.println("course Is Updated");
         }
     }
 
@@ -88,11 +85,11 @@ public class CourseModel
         allStartEndTimes.addAll(courseManager.getStartEndTime(courseDate, classId));
         return allStartEndTimes;
     }
-    
-    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime,  String courseDate) throws SQLServerException
+
+    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws SQLServerException
     {
         return courseManager.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
     }
-    
-    
+
+
 }

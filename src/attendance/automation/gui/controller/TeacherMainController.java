@@ -6,13 +6,11 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Teacher;
-import attendance.automation.gui.Model.ClassesModel;
-import attendance.automation.gui.Model.CourseModel;
-import attendance.automation.gui.Model.StudentModel;
-import attendance.automation.gui.Model.TeacherModel;
+import attendance.automation.gui.Model.*;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXToggleButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
@@ -25,14 +23,9 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
 
 /**
  * FXML Controller class

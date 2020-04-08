@@ -69,7 +69,6 @@ public class StudentCourseDAO {
             while (rs.next()) {
                 courseId = rs.getInt("courseId");
             }
-            System.out.println(courseId + "DET ER HER DET ER");
             return courseId;
 
         }

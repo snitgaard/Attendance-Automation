@@ -42,7 +42,7 @@ public class ClassesModel
         boolean classesIsCreated = classesManager.createClasses(classesId, classesName, studentId, teacherId);
         if (classesIsCreated)
         {
-            System.out.println("Class Created");
+
         }
     }
 
@@ -62,15 +62,14 @@ public class ClassesModel
         boolean classesIsUpdated = classesManager.updateClasses(classesName, classesId);
         if (classesIsUpdated)
         {
-            System.out.println("classes Is Updated");
         }
     }
-    
+
     public int getClassId(String classesName) throws SQLException
     {
         return classesManager.getClassId(classesName);
     }
-    
+
     public String getClassName(int classesId) throws SQLException
     {
         return classesManager.getClassName(classesId);

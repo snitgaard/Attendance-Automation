@@ -31,9 +31,7 @@ public abstract class Person
     {
         this.name = name;
     }
-    
-    
-    
+
 
     public int getId()
     {
@@ -70,8 +68,6 @@ public abstract class Person
     {
         return name;
     }
-    
-    
 
 
 }

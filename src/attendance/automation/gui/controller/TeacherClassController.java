@@ -6,14 +6,14 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Student;
-import attendance.automation.BE.Teacher;
 import attendance.automation.gui.Model.StudentModel;
 import attendance.automation.gui.Model.TeacherModel;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,18 +23,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ListChangeListener;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -92,7 +83,6 @@ public class TeacherClassController implements Initializable
         this.controller = controller;
         this.selectedClass = selectedClass;
         this.classButton = classButton;
-//        System.out.println(classButton.getText().substring(10).trim());
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
@@ -159,20 +149,21 @@ public class TeacherClassController implements Initializable
             });
             return row;
         });
-        
+
     }
 
     private void setAverageAttendance() throws SQLException
     {
         double totalAttendance = 0;
         double averageAttendance = 0;
-        for (int i = 0; i < studentModel.getAllStudentsClass(classButton.getText()).size(); i++) {
+        for (int i = 0; i < studentModel.getAllStudentsClass(classButton.getText()).size(); i++)
+        {
             totalAttendance += studentModel.getAllStudentsClass(classButton.getText()).get(i).getAttendance();
         }
 
         averageAttendance = totalAttendance / studentModel.getAllStudentsClass(classButton.getText()).size();
         DecimalFormat df = new DecimalFormat("#.##");
-        averageLabel.setText(df.format((averageAttendance)).toString()+ " %");
+        averageLabel.setText(df.format((averageAttendance)) + " %");
         attendanceBar.setProgress(averageAttendance / 100);
     }
 

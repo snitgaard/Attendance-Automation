@@ -6,16 +6,11 @@
 package attendance.automation.BLL;
 
 import attendance.automation.BE.Course;
-import attendance.automation.DAL.CourseDAO;
-import attendance.automation.DAL.DalException;
-import attendance.automation.DAL.StudentCourseDAO;
+import attendance.automation.DAL.*;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +23,7 @@ public class CourseManager
 
     private CourseDAO courseDao;
     private StudentCourseDAO studentCourseDao;
-    
+
     public CourseManager()
     {
 
@@ -86,12 +81,11 @@ public class CourseManager
     {
         return courseDao.getStartEndTime(courseDate, classId);
     }
-    
-    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime,  String courseDate) throws SQLServerException
+
+    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws SQLServerException
     {
         return courseDao.getSpecificCourse(courseName, weekDay, classId, startTime, endTime, courseDate);
     }
-    
-   
+
 
 }
