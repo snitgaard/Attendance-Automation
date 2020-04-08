@@ -75,7 +75,7 @@
                         <Insets left="25.0" right="25.0" />
                      </HBox.margin>
                   </ProgressBar>
-                  <Label prefHeight="40.0" text="72%">
+                  <Label fx:id="attendanceLbl" prefHeight="40.0" text="72%">
                      <font>
                         <Font size="28.0" />
                      </font>

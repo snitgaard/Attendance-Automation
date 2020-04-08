@@ -65,5 +65,13 @@ public abstract class Person
         this.email = email;
     }
 
+    @Override
+    public String toString()
+    {
+        return name;
+    }
+    
+    
+
 
 }

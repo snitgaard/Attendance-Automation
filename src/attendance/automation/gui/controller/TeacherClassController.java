@@ -22,11 +22,15 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -40,6 +44,8 @@ public class TeacherClassController implements Initializable
 
     private StudentModel studentModel;
     private TeacherModel teacherModel;
+    private Student selectedStudent;
+    private StudentAttendanceController studentAttendanceController;
     private TeacherMainController controller;
     private Class selectedClass;
     private JFXButton classButton;
@@ -61,6 +67,8 @@ public class TeacherClassController implements Initializable
     private TableColumn<Student, String> classTable;
     @FXML
     private TableColumn<Student, Double> attendanceTable;
+    @FXML
+    private Label attendanceLbl;
 
     /**
      * Initializes the controller class.
@@ -68,16 +76,21 @@ public class TeacherClassController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        
-            teacherModel = new TeacherModel();
-            
-            
-            nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
-            classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
-            attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
-        
+        teacherModel = new TeacherModel();
+        nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
+        classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
+        attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+        try
+        {
+            studentOverview();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
 
     public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException
     {
@@ -88,22 +101,70 @@ public class TeacherClassController implements Initializable
 //        System.out.println(classButton.getText().substring(10).trim());
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
-        
+
     }
 
-//    public void studentList()
-//    {
-//        studentModel.getAllStudentsClass(0).addListener((ListChangeListener<Student>) c ->
-//        {
-//            while (c.next())
-//            {
-//                if (c.wasRemoved() || c.wasAdded())
-//                {
-//                    attendanceView.refresh();
-//                }
-//            }
-//        });
-//    }
+    public void studentOverview() throws IOException, SQLException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
+        Parent root = fxmlLoader.load();
+        StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
+
+        attendanceView.setRowFactory(tv ->
+        {
+            TableRow<Student> row = new TableRow<>();
+            row.setOnMouseClicked(event ->
+            {
+                if (event.getClickCount() == 2 && (!row.isEmpty()))
+                {
+                    Student selectedStudent = row.getItem();
+                    try
+                    {
+                        studentcontroller.ApplyImportantData(studentModel, studentAttendanceController, selectedStudent);
+                    } catch (SQLException ex)
+                    {
+                        Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    StudentAttendanceOverviewController c = fxmlLoader.getController();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    root.setOnMousePressed(new EventHandler<MouseEvent>()
+                    {
+                        @Override
+                        public void handle(MouseEvent event)
+                        {
+                            xOffset = event.getSceneX();
+                            yOffset = event.getSceneY();
+                        }
+                    });
+                    root.setOnMouseDragged(new EventHandler<MouseEvent>()
+                    {
+                        @Override
+                        public void handle(MouseEvent event)
+                        {
+                            stage.setX(event.getScreenX() - xOffset);
+                            stage.setY(event.getScreenY() - yOffset);
+                        }
+                    });
+                    stage.setAlwaysOnTop(true);
+                    stage.setTitle("Student Attendance Overview");
+                    if (root.getScene() == null)
+                    {
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                    } else
+                    {
+                        stage.setScene(root.getScene());
+                    }
+                    stage.setResizable(false);
+                    stage.show();
+                }
+            });
+            return row;
+        });
+    }
+
     @FXML
     private void close_app(MouseEvent event)
     {
