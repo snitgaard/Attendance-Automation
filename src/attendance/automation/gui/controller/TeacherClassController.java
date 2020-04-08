@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,6 +62,10 @@ public class TeacherClassController implements Initializable
     private TableColumn<Student, String> classTable;
     @FXML
     private TableColumn<Student, Double> attendanceTable;
+    @FXML
+    private Label averageLabel;
+    @FXML
+    private ProgressBar attendanceBar;
 
     /**
      * Initializes the controller class.
@@ -75,6 +80,7 @@ public class TeacherClassController implements Initializable
             nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
             classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
             attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
+            
         
     }
 
@@ -88,6 +94,17 @@ public class TeacherClassController implements Initializable
 //        System.out.println(classButton.getText().substring(10).trim());
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
+        
+        
+        double totalAttendance = 0;
+        double averageAttendance = 0;
+        for (int i = 0; i < studentModel.getAllStudentsClass(classButton.getText()).size(); i++) {
+            totalAttendance += studentModel.getAllStudentsClass(classButton.getText()).get(i).getAttendance();
+        }
+        
+        averageAttendance = totalAttendance / studentModel.getAllStudentsClass(classButton.getText()).size();
+        averageLabel.setText(averageAttendance + "");
+        attendanceBar.setProgress(averageAttendance / 100);
         
     }
 
