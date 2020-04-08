@@ -70,12 +70,12 @@
                         <Insets />
                      </HBox.margin>
                   </VBox>
-                  <ProgressBar prefHeight="32.0" prefWidth="300.0" progress="0.72">
+                  <ProgressBar fx:id="attendanceBar" prefHeight="32.0" prefWidth="300.0" progress="0.72">
                      <HBox.margin>
                         <Insets left="25.0" right="25.0" />
                      </HBox.margin>
                   </ProgressBar>
-                  <Label fx:id="attendanceLbl" prefHeight="40.0" text="72%">
+                  <Label fx:id="averageLabel" prefHeight="40.0" text="72%">
                      <font>
                         <Font size="28.0" />
                      </font>
