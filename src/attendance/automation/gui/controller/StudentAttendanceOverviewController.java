@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -63,7 +64,8 @@ public class StudentAttendanceOverviewController implements Initializable
         this.selectedStudent = selectedStudent;
 
         progressBar.setProgress(selectedStudent.getAttendance() / 100);
-        studentAttendancePercentage.setText(selectedStudent.getAttendance() + " %");
+        DecimalFormat df = new DecimalFormat("#.##");
+        studentAttendancePercentage.setText(df.format(selectedStudent.getAttendance()) + " %");
 
         System.out.println("Inde i studentAtteandaceController" + this.selectedStudent);
         System.out.println(selectedStudent.getAttendance() + "what is going on");
