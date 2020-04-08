@@ -127,7 +127,6 @@ public class StudentAttendanceController implements Initializable {
         }
         int studentId = selectedStudent.getId();
         double attendedCounter = 0;
-        double notAttendedCounter = 0;
 
         for (int i = 0; i < result.size(); i++) {
             if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1) {

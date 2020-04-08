@@ -88,8 +88,12 @@ public class StudentCourseManager
     
     public int getAllCourseIds(int courseId, int studentId) throws SQLException
     {
-        
         return studentCourseDAO.getAttendanceFromCourses(courseId, studentId);
+    }
+    
+    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
+    {
+        return studentCourseDAO.getAttendancePerDay(studentId, weekDay);
     }
 
 }
