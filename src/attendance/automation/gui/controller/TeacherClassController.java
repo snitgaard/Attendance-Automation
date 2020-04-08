@@ -69,7 +69,6 @@ public class TeacherClassController implements Initializable
     @FXML
     private TableColumn<Student, Double> attendanceTable;
     @FXML
-    private Label attendanceLbl;
     private Label averageLabel;
     @FXML
     private ProgressBar attendanceBar;
@@ -84,19 +83,9 @@ public class TeacherClassController implements Initializable
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
         classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
         attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
-        try
-        {
-            studentOverview();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
-    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException
+    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException
     {
         this.studentModel = studentModel;
         this.controller = controller;
@@ -106,6 +95,7 @@ public class TeacherClassController implements Initializable
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
+        studentOverview();
     }
 
     public void studentOverview() throws IOException, SQLException
