@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -77,7 +78,7 @@ public class TeacherClassController implements Initializable
         attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
     }
 
-    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException
+    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException, ParseException
     {
         this.studentModel = studentModel;
         this.controller = controller;
@@ -152,7 +153,7 @@ public class TeacherClassController implements Initializable
 
     }
 
-    private void setAverageAttendance() throws SQLException
+    private void setAverageAttendance() throws SQLException, ParseException
     {
         double totalAttendance = 0;
         double averageAttendance = 0;

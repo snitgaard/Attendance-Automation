@@ -23,6 +23,7 @@ import javafx.stage.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,6 +73,8 @@ public class TeacherMainController implements Initializable
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex)
         {
+            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -125,7 +128,7 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    private void showTeacherClass() throws IOException, SQLException
+    private void showTeacherClass() throws IOException, SQLException, ParseException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
         Parent root = fxmlLoader.load();
@@ -205,7 +208,7 @@ public class TeacherMainController implements Initializable
         this.selectedTeacher = selectedTeacher;
     }
 
-    public void generateClassButtons() throws SQLException, IOException
+    public void generateClassButtons() throws SQLException, IOException, ParseException
     {
         for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++)
         {
