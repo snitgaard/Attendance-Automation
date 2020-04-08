@@ -96,6 +96,7 @@ public class TeacherClassController implements Initializable
         attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
         studentOverview();
+        attendanceView.getSelectionModel().setCellSelectionEnabled(true);
     }
 
     public void studentOverview() throws IOException, SQLException
