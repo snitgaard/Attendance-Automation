@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class StudentDAO
 {

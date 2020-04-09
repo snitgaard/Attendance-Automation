@@ -16,14 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class CourseManager
 {
 
     private CourseDAO courseDao;
-    private StudentCourseDAO studentCourseDao;
 
+    
+    // Constructor retrieving the courseDAO Class.
+    
     public CourseManager()
     {
 
@@ -67,6 +69,7 @@ public class CourseManager
 //        return courseDao.updateCourse(courseName, courseId);
 //    }
 
+    // This method calls the 
     public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {
         return courseDao.getAllCourseDates(courseDate, classId);

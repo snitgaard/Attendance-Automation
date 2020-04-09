@@ -28,13 +28,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * FXML Controller class
  *
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentAttendanceOverviewController implements Initializable {
 
@@ -68,6 +66,7 @@ public class StudentAttendanceOverviewController implements Initializable {
 
     }
 
+    // This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
     public void ApplyImportantData(StudentModel studentModel, StudentAttendanceController controller, Student selectedStudent) throws SQLException {
         this.studentModel = studentModel;
         this.controller = controller;
@@ -178,12 +177,14 @@ public class StudentAttendanceOverviewController implements Initializable {
         studentEducation.setText(selectedStudent.getStudentEducation());
     }
 
+    // This closes the current stage/window.
     @FXML
     private void close_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    // This minimizes the window.
     @FXML
     private void minimize_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

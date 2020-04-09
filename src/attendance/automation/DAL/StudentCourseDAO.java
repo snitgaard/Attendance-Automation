@@ -5,15 +5,11 @@
  */
 package attendance.automation.DAL;
 
-import attendance.automation.BE.Course;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * @author Mads
+ * @author The Cowboys
  */
 public class StudentCourseDAO
 {

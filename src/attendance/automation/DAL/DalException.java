@@ -6,7 +6,7 @@
 package attendance.automation.DAL;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class DalException extends Exception
 {

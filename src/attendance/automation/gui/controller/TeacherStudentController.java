@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  *
- * @author The Best Group
+ * @author The Cowboys
  */
 public class TeacherStudentController implements Initializable
 {
@@ -35,21 +35,20 @@ public class TeacherStudentController implements Initializable
     private double xOffset = 0;
     private double yOffset = 0;
 
-    /**
-     * Initializes the controller class.
-     */
+    // Initializes the controller class.
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        buildBarChart();
     }
-
+    
+    // This method closes the program down.
     @FXML
     private void close_app(MouseEvent event)
     {
         System.exit(0);
     }
-
+    
+    // This method minimizes the program.
     @FXML
     private void minimize_app(MouseEvent event)
     {
@@ -57,6 +56,7 @@ public class TeacherStudentController implements Initializable
         stage.setIconified(true);
     }
 
+    //This method allows the user to go back to the Teacher Main screen.    
     @FXML
     private void showTeacherMain() throws IOException
     {
@@ -93,28 +93,5 @@ public class TeacherStudentController implements Initializable
                 stage.setY(event.getScreenY() - yOffset);
             }
         });
-    }
-
-    private void buildBarChart()
-    {
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Days");
-
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Attendance");
-
-        XYChart.Series data = new XYChart.Series();
-        data.setName("Attendance Chart");
-
-        //Provide data
-        data.getData().add(new XYChart.Data("Monday", 10));
-        data.getData().add(new XYChart.Data("Tuesday", 67));
-        data.getData().add(new XYChart.Data("Wednesday", 75));
-        data.getData().add(new XYChart.Data("Thursday", 100));
-        data.getData().add(new XYChart.Data("Friday", 36));
-
-        attendanceChart.setMinHeight(300);
-
-        attendanceChart.getData().add(data);
     }
 }

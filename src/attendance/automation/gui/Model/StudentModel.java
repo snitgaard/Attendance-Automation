@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentModel
 {
@@ -42,10 +42,6 @@ public class StudentModel
         return studentManager.getStudent(studentEmail);
     }
 
-    //    public List<Student> getStudentsInCourse()
-//    {
-//        return studentManager
-//    }
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return studentManager.getSpecificStudent(studentEmail);

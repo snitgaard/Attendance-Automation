@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 /**
  * FXML Controller class
  *
- * @author CSnit
+ * @author The Cowboys
  */
 public class CourseWindowController implements Initializable
 {

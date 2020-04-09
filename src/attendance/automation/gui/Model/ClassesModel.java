@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class ClassesModel
 {

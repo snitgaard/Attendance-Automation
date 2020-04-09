@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author Mads
+ * @author The Cowboys
  */
 public class StudentCourseManager
 {

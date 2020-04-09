@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 /**
  *
- * @author CSnit
+ * @author The Cowboys
  */
 public class AttendanceAutomation extends Application
 {
