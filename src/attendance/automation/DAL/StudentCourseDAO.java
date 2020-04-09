@@ -5,12 +5,8 @@
  */
 package attendance.automation.DAL;
 
-import attendance.automation.BE.Course;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author The Cowboys
@@ -111,27 +107,6 @@ public class StudentCourseDAO {
         }
 
     }
-
-//    public List<Integer> getAttendanceFromCourse(int studentId, String courseDate) throws SQLException {
-//        try (Connection con = dbCon.getConnection()) {
-//            String sql = "SELECT attended FROM StudentAttendance as studentattendance \n"
-//                    + "JOIN Course as course ON studentattendance.courseId = course.courseId\n"
-//                    + "WHERE studentattendance.studentId = ? AND courseDate = ?;";
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setInt(1, studentId);
-//            ps.setString(2, courseDate);
-//            ResultSet rs = ps.executeQuery();
-//            ArrayList<Integer> attendanceList = new ArrayList<>();
-//
-//            while (rs.next()) {
-//                int attendance = rs.getInt("attended");
-//                attendanceList.add(attendance);
-//            }
-//            System.out.println(attendanceList + "yup");
-//            return attendanceList;
-//
-//        }
-//    }
 
     public int getAttendanceFromCourses(int courseId, int studentId) throws SQLException {
         try (Connection con = dbCon.getConnection()) {

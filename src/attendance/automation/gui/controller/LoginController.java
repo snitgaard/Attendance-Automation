@@ -98,6 +98,12 @@ public class LoginController implements Initializable
         teacherModel = new TeacherModel();
     }
 
+    /*
+    * This method checks what is written in the username and password fields. If they fit with a student login
+    * It will try to load the Student Main Menu as the correct student logged in as
+    * If not, it checks the same for teacher.
+    * else, it will tell you that something is wrong with the username and/or password
+    */
     @FXML
     private void handleLogInButton(ActionEvent event) throws IOException, SQLException
     {
@@ -110,7 +116,7 @@ public class LoginController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
             StudentAttendanceController studentcontroller = fxmlLoader.getController();
-            // Here the edit controller is given important data objects,
+            // Here the StudentAttendanceController is given important data objects,
             // This secures that it is the correct ones we are working with.
             studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
 
@@ -123,7 +129,7 @@ public class LoginController implements Initializable
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
             TeacherMainController teachercontroller = fxmlLoader.getController();
-            // Here the edit controller is given important data objects,
+            // Here the TeacherMainController is given important data objects,
             // This secures that it is the correct ones we are working with.
             teachercontroller.ApplyImportantData(teacherModel, this, selectedTeacher);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
@@ -137,6 +143,10 @@ public class LoginController implements Initializable
         }
     }
 
+    /*
+    * This method ensures proper creating of a new stage.
+    * It is called in the checkLoginCredentials method to open up a new window of teachermain or studentattendance
+    */
     private void redirectToStage(FXMLLoader fxmlLoader) throws IOException
     {
         Parent root = fxmlLoader.load();
@@ -168,13 +178,15 @@ public class LoginController implements Initializable
         });
     }
 
+    // closes the stage, since this is the very first stage, it will close the program completely.
     @FXML
     private void close_app(MouseEvent event)
     {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-
+    
+    // minimizes the current stage
     @FXML
     private void minimize_app(MouseEvent event)
     {

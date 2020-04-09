@@ -18,13 +18,13 @@ public class TeacherModel
 {
 
     private TeacherManager teacherManager = new TeacherManager();
-
-
+    
     public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
         return teacherManager.checkLoginCredentials(teacherEmail, teacherPassword);
     }
 
+    // This method returns a method called in the teacherManager. With a String parameter.
     public Teacher getSpecificTeacher(String teacherEmail) throws SQLException
     {
         return teacherManager.getSpecificTeacher(teacherEmail);
