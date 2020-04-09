@@ -34,21 +34,21 @@ public class TeacherManager
     }
 
 
-    public List<Teacher> getAllData()
-    {
-        try
-        {
-            return teacherDAO.getAllTeachers();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+//    public List<Teacher> getAllData()
+//    {
+//        try
+//        {
+//            return teacherDAO.getAllTeachers();
+//        } catch (SQLException ex)
+//        {
+//            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
-    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
-        return teacherDAO.checkLoginCredentials(teacherEmail, teacherPassword);
+        return teacherDAO.checkTeacherCredentials(teacherEmail, teacherPassword);
     }
 
     public List<Teacher> getTeacher(String teacherEmail) throws SQLException

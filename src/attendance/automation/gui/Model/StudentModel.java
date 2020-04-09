@@ -25,16 +25,16 @@ public class StudentModel
     private ObservableList<Student> allStudents;
     private ObservableList<Student> allStudentsClass;
 
-    public ObservableList<Student> getAllStudents()
-    {
-        allStudents = FXCollections.observableArrayList();
-        allStudents.addAll(studentManager.getAllData());
-        return allStudents;
-    }
+//    public ObservableList<Student> getAllStudents()
+//    {
+//        allStudents = FXCollections.observableArrayList();
+//        allStudents.addAll(studentManager.getAllData());
+//        return allStudents;
+//    }
 
-    public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
+    public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws SQLException
     {
-        return studentManager.checkLoginCredentials(studentEmail, studentPassword);
+        return studentManager.checkStudentCredentials(studentEmail, studentPassword);
     }
 
     public List<Student> getStudent(String studentEmail) throws SQLServerException

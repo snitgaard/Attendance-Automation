@@ -5,10 +5,15 @@
  */
 package attendance.automation.BLL;
 
+import attendance.automation.BE.Course;
 import attendance.automation.DAL.StudentCourseDAO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -86,9 +91,9 @@ public class StudentCourseManager
         return studentCourseDAO.getAttendanceFromCourses(courseId, studentId);
     }
 
-    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
-    {
-        return studentCourseDAO.getAttendancePerDay(studentId, weekDay);
-    }
+//    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
+//    {
+//        return studentCourseDAO.getAttendancePerDay(studentId, weekDay);
+//    }
 
 }

@@ -54,23 +54,23 @@ public class CourseModel
     }
 
     //This is what the controller calls when deleting a course. This calls a method in the CourseManager
-    public void deleteCourse(Course selectedCourse) throws DalException
-    {
-        courseManager.deleteCourse(selectedCourse);
-        if (allCourses.remove(selectedCourse))
-        {
-            allCourses.remove(selectedCourse);
-        }
-    }
+//    public void deleteCourse(Course selectedCourse) throws DalException
+//    {
+//        courseManager.deleteCourse(selectedCourse);
+//        if (allCourses.remove(selectedCourse))
+//        {
+//            allCourses.remove(selectedCourse);
+//        }
+//    }
 
     //This is what the controller calls when updating the name of a course. This calls a method in the CourseManager
-    public void updateCourse(String courseName, int courseId)
-    {
-        boolean courseIsUpdated = courseManager.updateCourse(courseName, courseId);
-        if (courseIsUpdated)
-        {
-        }
-    }
+//    public void updateCourse(String courseName, int courseId)
+//    {
+//        boolean courseIsUpdated = courseManager.updateCourse(courseName, courseId);
+//        if (courseIsUpdated)
+//        {
+//        }
+//    }
 
     public ObservableList<String> getAllClassNames() throws SQLException
     {

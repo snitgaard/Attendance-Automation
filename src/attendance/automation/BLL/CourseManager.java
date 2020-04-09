@@ -56,16 +56,16 @@ public class CourseManager
     }
 
     // This method calls the method deleteCourse in the courseDao
-    public void deleteCourse(Course course) throws DalException
-    {
-        courseDao.deleteCourse(course);
-    }
+//    public void deleteCourse(Course course) throws DalException
+//    {
+//        courseDao.deleteCourse(course);
+//    }
 
     //This method calls the method updateCourse method from the courseDao
-    public boolean updateCourse(String courseName, int courseId)
-    {
-        return courseDao.updateCourse(courseName, courseId);
-    }
+//    public boolean updateCourse(String courseName, int courseId)
+//    {
+//        return courseDao.updateCourse(courseName, courseId);
+//    }
 
     public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {

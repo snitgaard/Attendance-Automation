@@ -26,32 +26,32 @@ public class TeacherDAO
         dbCon = new DatabaseConnector();
     }
 
-    public List<Teacher> getAllTeachers() throws SQLException
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            String sql = "SELECT * FROM Teacher;";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            ArrayList<Teacher> allTeachers = new ArrayList<>();
-            while (rs.next())
-            {
-                int id = rs.getInt("Id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                int courseId = rs.getInt("course");
-                String teacherPassword = rs.getString("teacherPassword");
-                int classId = rs.getInt("classId");
+//    public List<Teacher> getAllTeachers() throws SQLException
+//    {
+//        try (Connection con = dbCon.getConnection())
+//        {
+//            String sql = "SELECT * FROM Teacher;";
+//            Statement statement = con.createStatement();
+//            ResultSet rs = statement.executeQuery(sql);
+//            ArrayList<Teacher> allTeachers = new ArrayList<>();
+//            while (rs.next())
+//            {
+//                int id = rs.getInt("Id");
+//                String name = rs.getString("name");
+//                String email = rs.getString("email");
+//                int courseId = rs.getInt("course");
+//                String teacherPassword = rs.getString("teacherPassword");
+//                int classId = rs.getInt("classId");
+//
+//                Teacher teacher = new Teacher(id, name, email, courseId, teacherPassword, classId);
+//                allTeachers.add(teacher);
+//            }
+//            return allTeachers;
+//
+//        }
+//    }
 
-                Teacher teacher = new Teacher(id, name, email, courseId, teacherPassword, classId);
-                allTeachers.add(teacher);
-            }
-            return allTeachers;
-
-        }
-    }
-
-    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
         {

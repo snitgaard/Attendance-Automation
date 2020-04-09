@@ -37,33 +37,33 @@ public class ClassesModel
     }
 
 
-    public void createClasses(int classesId, String classesName, int studentId, int teacherId) throws DalException
-    {
-        boolean classesIsCreated = classesManager.createClasses(classesId, classesName, studentId, teacherId);
-        if (classesIsCreated)
-        {
-
-        }
-    }
-
-
-    public void deleteClasses(Classes selectedClasses) throws DalException
-    {
-        classesManager.deleteClasses(selectedClasses);
-        if (allClasses.remove(selectedClasses))
-        {
-            allClasses.remove(selectedClasses);
-        }
-    }
+//    public void createClasses(int classesId, String classesName, int studentId, int teacherId) throws DalException
+//    {
+//        boolean classesIsCreated = classesManager.createClasses(classesId, classesName, studentId, teacherId);
+//        if (classesIsCreated)
+//        {
+//
+//        }
+//    }
 
 
-    public void updateClasses(String classesName, int classesId)
-    {
-        boolean classesIsUpdated = classesManager.updateClasses(classesName, classesId);
-        if (classesIsUpdated)
-        {
-        }
-    }
+//    public void deleteClasses(Classes selectedClasses) throws DalException
+//    {
+//        classesManager.deleteClasses(selectedClasses);
+//        if (allClasses.remove(selectedClasses))
+//        {
+//            allClasses.remove(selectedClasses);
+//        }
+//    }
+
+
+//    public void updateClasses(String classesName, int classesId)
+//    {
+//        boolean classesIsUpdated = classesManager.updateClasses(classesName, classesId);
+//        if (classesIsUpdated)
+//        {
+//        }
+//    }
 
     public int getClassId(String classesName) throws SQLException
     {

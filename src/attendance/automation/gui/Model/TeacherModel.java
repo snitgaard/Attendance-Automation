@@ -19,20 +19,20 @@ public class TeacherModel
 
     private TeacherManager teacherManager = new TeacherManager();
 
-    public List<Teacher> getAllData()
-    {
-        try
-        {
-            return teacherManager.getAllData();
-        } catch (Exception e)
-        {
-            return null;
-        }
-    }
+//    public List<Teacher> getAllData()
+//    {
+//        try
+//        {
+//            return teacherManager.getAllData();
+//        } catch (Exception e)
+//        {
+//            return null;
+//        }
+//    }
 
-    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
-        return teacherManager.checkLoginCredentials(teacherEmail, teacherPassword);
+        return teacherManager.checkTeacherCredentials(teacherEmail, teacherPassword);
     }
 
     public List<Teacher> getTeacher(String teacherEmail) throws SQLException

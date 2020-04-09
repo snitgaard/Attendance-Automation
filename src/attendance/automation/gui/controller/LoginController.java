@@ -104,7 +104,7 @@ public class LoginController implements Initializable
         String username = usernameField.getText();
         String password = encryptThisString(passwordField.getText());
 
-        if (studentModel.checkLoginCredentials(username, password))
+        if (studentModel.checkStudentCredentials(username, password))
         {
             Student selectedStudent = studentModel.getSpecificStudent(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
@@ -117,7 +117,7 @@ public class LoginController implements Initializable
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 
-        } else if (teacherModel.checkLoginCredentials(username, password))
+        } else if (teacherModel.checkTeacherCredentials(username, password))
         {
             Teacher selectedTeacher = teacherModel.getSpecificTeacher(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
