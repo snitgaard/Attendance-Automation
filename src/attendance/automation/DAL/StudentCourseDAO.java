@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Mads
+ * @author The Cowboys
  */
 public class StudentCourseDAO {
 

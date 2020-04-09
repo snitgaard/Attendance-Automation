@@ -10,7 +10,7 @@ import attendance.automation.BLL.StudentCourseManager;
 import java.sql.SQLException;
 
 /**
- * @author Mads
+ * @author The Cowboys
  */
 public class StudentCourseModel
 {

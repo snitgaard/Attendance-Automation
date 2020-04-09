@@ -10,7 +10,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * @author nbruu
+ * @author The Cowboys
  */
 public class Sha
 {

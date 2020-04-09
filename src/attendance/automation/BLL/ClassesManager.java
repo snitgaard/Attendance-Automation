@@ -17,12 +17,13 @@ import java.util.logging.Logger;
 
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class ClassesManager
 {
     private ClassesDAO classesDao;
 
+    // Constructor retrieving the ClassesDAO Class.    
     public ClassesManager() throws IOException
     {
         classesDao = new ClassesDAO();

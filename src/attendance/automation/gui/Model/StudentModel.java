@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentModel
 {

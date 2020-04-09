@@ -34,7 +34,7 @@ import java.util.logging.Logger;
 /**
  * FXML Controller class
  *
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentAttendanceOverviewController implements Initializable {
 

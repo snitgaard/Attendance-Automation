@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class CourseModel
 {

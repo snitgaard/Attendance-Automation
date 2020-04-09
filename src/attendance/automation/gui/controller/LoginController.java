@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 /**
  * FXML Controller class
  *
- * @author CSnit
+ * @author The Cowboys
  */
 public class LoginController implements Initializable
 {

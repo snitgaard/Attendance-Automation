@@ -6,7 +6,7 @@
 package attendance.automation.BE;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class Classes
 {

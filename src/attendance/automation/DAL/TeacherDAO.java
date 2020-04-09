@@ -14,43 +14,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class TeacherDAO
 {
 
     private DatabaseConnector dbCon;
 
+    // Initializer for TeacherDAO, creates a connection with the databaseconnector, allowing the class to speak with the database
     public TeacherDAO() throws IOException
     {
         dbCon = new DatabaseConnector();
     }
 
-    public List<Teacher> getAllTeachers() throws SQLException
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            String sql = "SELECT * FROM Teacher;";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            ArrayList<Teacher> allTeachers = new ArrayList<>();
-            while (rs.next())
-            {
-                int id = rs.getInt("Id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                int courseId = rs.getInt("course");
-                String teacherPassword = rs.getString("teacherPassword");
-                int classId = rs.getInt("classId");
-
-                Teacher teacher = new Teacher(id, name, email, courseId, teacherPassword, classId);
-                allTeachers.add(teacher);
-            }
-            return allTeachers;
-
-        }
-    }
-
+    // This method checks if the login credentials, which has been put in, was correct.
     public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
@@ -76,6 +53,7 @@ public class TeacherDAO
         }
     }
 
+    // This method gathers a list of all the Teachers, where the email is the parameter sent in.
     public List<Teacher> getTeacher(String teacherEmail) throws SQLException
     {
         try (Connection con = dbCon.getConnection())
@@ -102,6 +80,7 @@ public class TeacherDAO
         }
     }
 
+    //This method grabs the first teacher on the list of teachers with that specific email
     public Teacher getSpecificTeacher(String teacherEmail) throws SQLException
     {
         return getTeacher(teacherEmail).get(0);
