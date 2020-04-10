@@ -7,11 +7,8 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
-import attendance.automation.gui.Model.CourseModel;
 import attendance.automation.gui.Model.Model;
 import attendance.automation.gui.Model.ModelException;
-import attendance.automation.gui.Model.StudentCourseModel;
-import attendance.automation.gui.Model.StudentModel;
 import com.jfoenix.controls.JFXProgressBar;
 import java.io.IOException;
 import javafx.fxml.FXML;

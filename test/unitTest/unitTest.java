@@ -5,14 +5,13 @@
  */
 package unitTest;
 
-import attendance.automation.gui.Model.StudentModel;
-import attendance.automation.gui.Model.TeacherModel;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import static attendance.automation.gui.controller.LoginController.encryptThisString;
 import attendance.automation.gui.utilities.Checker;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,13 +26,11 @@ import static org.junit.Assert.*;
 public class unitTest {
 
     private Checker checker;
-    private StudentModel studentModel;
-    private TeacherModel teacherModel;
-
-    public unitTest() {
+    private Model model;
+    
+    public unitTest() throws IOException {
         checker = new Checker();
-        teacherModel = new TeacherModel();
-        studentModel = new StudentModel();
+        model = new Model();
     }
 
     @BeforeClass
@@ -68,21 +65,21 @@ public class unitTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testLoginCredentials() throws UnknownHostException {
+    public void testLoginCredentials() throws UnknownHostException, ModelException {
         System.out.println("attendanceAutomationTest:TestLoginCredentials");
 
         String username = "mads@easv.dk";
         String password = encryptThisString("Mads");
 
         try {
-            if (studentModel.checkStudentCredentials(username, password)) {
+            if (model.checkStudentCredentials(username, password)) {
                 assertFalse(throwException());
             }
-            if (teacherModel.checkTeacherCredentials(username, password)) {
+            if (model.checkTeacherCredentials(username, password)) {
                 assertFalse(throwException());
             }
 
-        } catch (SQLException ex) {
+        } catch (ModelException ex) {
             assertTrue(false);
         }
     }
