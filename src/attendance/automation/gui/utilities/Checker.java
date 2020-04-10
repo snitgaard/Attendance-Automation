@@ -10,7 +10,7 @@ import java.net.UnknownHostException;
 
 /**
  *
- * @author mads_
+ * @author The Cowboys
  */
 public class Checker
 {
