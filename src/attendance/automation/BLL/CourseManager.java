@@ -16,14 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class CourseManager
 {
 
     private CourseDAO courseDao;
-    private StudentCourseDAO studentCourseDao;
 
+    
+    // Constructor retrieving the courseDAO Class.
+    
     public CourseManager()
     {
 
@@ -56,17 +58,18 @@ public class CourseManager
     }
 
     // This method calls the method deleteCourse in the courseDao
-    public void deleteCourse(Course course) throws DalException
-    {
-        courseDao.deleteCourse(course);
-    }
+//    public void deleteCourse(Course course) throws DalException
+//    {
+//        courseDao.deleteCourse(course);
+//    }
 
     //This method calls the method updateCourse method from the courseDao
-    public boolean updateCourse(String courseName, int courseId)
-    {
-        return courseDao.updateCourse(courseName, courseId);
-    }
+//    public boolean updateCourse(String courseName, int courseId)
+//    {
+//        return courseDao.updateCourse(courseName, courseId);
+//    }
 
+    // This method calls the 
     public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {
         return courseDao.getAllCourseDates(courseDate, classId);

@@ -16,7 +16,7 @@ import java.text.ParseException;
 import java.util.List;
 
 /**
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentModel
 {
@@ -25,16 +25,16 @@ public class StudentModel
     private ObservableList<Student> allStudents;
     private ObservableList<Student> allStudentsClass;
 
-    public ObservableList<Student> getAllStudents()
-    {
-        allStudents = FXCollections.observableArrayList();
-        allStudents.addAll(studentManager.getAllData());
-        return allStudents;
-    }
+//    public ObservableList<Student> getAllStudents()
+//    {
+//        allStudents = FXCollections.observableArrayList();
+//        allStudents.addAll(studentManager.getAllData());
+//        return allStudents;
+//    }
 
-    public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
+    public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws SQLException
     {
-        return studentManager.checkLoginCredentials(studentEmail, studentPassword);
+        return studentManager.checkStudentCredentials(studentEmail, studentPassword);
     }
 
     public List<Student> getStudent(String studentEmail) throws SQLServerException
@@ -42,10 +42,6 @@ public class StudentModel
         return studentManager.getStudent(studentEmail);
     }
 
-    //    public List<Student> getStudentsInCourse()
-//    {
-//        return studentManager
-//    }
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {
         return studentManager.getSpecificStudent(studentEmail);

@@ -6,7 +6,7 @@
 package attendance.automation.BE;
 
 /**
- * @author The Best Group
+ * @author The Cowboys
  */
 public class Teacher extends Person
 {

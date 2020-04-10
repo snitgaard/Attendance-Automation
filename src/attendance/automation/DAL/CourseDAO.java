@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class CourseDAO
 {
@@ -54,24 +54,24 @@ public class CourseDAO
     }
 
     //Deletes the course from SQL Database
-    public void deleteCourse(Course course)
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            int courseId = course.getCourseId();
-            String sql = "DELETE FROM Course WHERE courseId=?;";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, courseId);
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows != 1)
-            {
-            }
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-
-        }
-    }
+//    public void deleteCourse(Course course)
+//    {
+//        try (Connection con = dbCon.getConnection())
+//        {
+//            int courseId = course.getCourseId();
+//            String sql = "DELETE FROM Course WHERE courseId=?;";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, courseId);
+//            int affectedRows = ps.executeUpdate();
+//            if (affectedRows != 1)
+//            {
+//            }
+//        } catch (SQLException ex)
+//        {
+//            ex.printStackTrace();
+//
+//        }
+//    }
 
     /*
      * If called this method will create a connection between the database and the program
@@ -113,22 +113,22 @@ public class CourseDAO
      * The SQL statement will be run.
      * the course with the chosen courseId, will have its courseName changed
      */
-    public boolean updateCourse(String courseName, int courseId)
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            String sql = "UPDATE Course SET courseName = ? WHERE courseId = ?;";
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, courseName);
-            ps.setInt(2, courseId);
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException ex)
-        {
-            ex.printStackTrace();
-            return false;
-        }
-    }
+//    public boolean updateCourse(String courseName, int courseId)
+//    {
+//        try (Connection con = dbCon.getConnection())
+//        {
+//            String sql = "UPDATE Course SET courseName = ? WHERE courseId = ?;";
+//            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+//            ps.setString(1, courseName);
+//            ps.setInt(2, courseId);
+//            ps.executeUpdate();
+//            return true;
+//        } catch (SQLException ex)
+//        {
+//            ex.printStackTrace();
+//            return false;
+//        }
+//    }
 
     public int getAllCourseDates(String courseDate, int classId) throws SQLException
     {

@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class StudentManager
 {
@@ -35,21 +35,21 @@ public class StudentManager
         }
     }
 
-    public List<Student> getAllData()
-    {
-        try
-        {
-            return studentDAO.getAllStudents();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+//    public List<Student> getAllData()
+//    {
+//        try
+//        {
+//            return studentDAO.getAllStudents();
+//        } catch (SQLException ex)
+//        {
+//            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
-    public boolean checkLoginCredentials(String studentEmail, String studentPassword) throws SQLException
+    public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws SQLException
     {
-        return studentDAO.checkLoginCredentials(studentEmail, studentPassword);
+        return studentDAO.checkStudentCredentials(studentEmail, studentPassword);
     }
 
     public List<Student> getStudent(String studentEmail) throws SQLServerException
@@ -57,10 +57,10 @@ public class StudentManager
         return studentDAO.getStudent(studentEmail);
     }
 
-    public List<Student> getStudentsInCourse(String course) throws SQLServerException
-    {
-        return studentDAO.getStudentsInCourse(course);
-    }
+//    public List<Student> getStudentsInCourse(String course) throws SQLServerException
+//    {
+//        return studentDAO.getStudentsInCourse(course);
+//    }
 
     public Student getSpecificStudent(String studentEmail) throws SQLServerException
     {

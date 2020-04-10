@@ -10,7 +10,7 @@ import attendance.automation.BLL.StudentCourseManager;
 import java.sql.SQLException;
 
 /**
- * @author Mads
+ * @author The Cowboys
  */
 public class StudentCourseModel
 {
@@ -52,10 +52,10 @@ public class StudentCourseModel
         return studentCourseManager.getAllCourseIds(courseId, studentId);
     }
 
-    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
-    {
-        return studentCourseManager.getAttendancePerDay(studentId, weekDay);
-    }
+//    public double getAttendancePerDay(int studentId, String weekDay) throws SQLException
+//    {
+//        return studentCourseManager.getAttendancePerDay(studentId, weekDay);
+//    }
 
 
 }

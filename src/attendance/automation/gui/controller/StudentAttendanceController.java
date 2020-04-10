@@ -38,7 +38,7 @@ import java.util.logging.Logger;
 /**
  * FXML Controller class
  *
- * @author The Best Group
+ * @author The Cowboys
  */
 public class StudentAttendanceController implements Initializable
 {
@@ -108,7 +108,6 @@ public class StudentAttendanceController implements Initializable
 
     public void getAttendanceFromCourse() throws SQLException
     {
-//        studentCourseModel.getAttendanceFromCourse(1);
         List<Course> courseIds = courseModel.getAllCourses();
         List<Course> result = new ArrayList<>();
 
@@ -149,6 +148,7 @@ public class StudentAttendanceController implements Initializable
 
     }
 
+    // This method opens up a new stage with the Student Attendance Overview.
     @FXML
     private void handleOverview(ActionEvent event) throws IOException, SQLException
     {
@@ -188,12 +188,14 @@ public class StudentAttendanceController implements Initializable
 
     }
 
+    // This method closes the program.
     @FXML
     private void close_app(MouseEvent event)
     {
         System.exit(0);
     }
 
+    // This method minimizes the stage.
     @FXML
     private void minimize_app(MouseEvent event)
     {
@@ -201,6 +203,10 @@ public class StudentAttendanceController implements Initializable
         stage.setIconified(true);
     }
 
+    /*
+    * This method checks the date, the students class and which courses that specific class, have that specific day
+    * For each course found within the day, a JFXToggleButton is created.
+    */
     public void generateAttendanceButtons() throws SQLException
     {
 
@@ -233,6 +239,7 @@ public class StudentAttendanceController implements Initializable
 
     }
 
+    // This method checks if the users IP Adress is equal to that of EASV.
     private boolean checker() throws UnknownHostException
     {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
@@ -248,9 +255,6 @@ public class StudentAttendanceController implements Initializable
         return false;
     }
 
-    //    void ApplyImportantData(StudentModel studentModel, LoginController aThis, Student selectedStudent) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     @FXML
     private void changeDate(ActionEvent event) throws SQLException
     {

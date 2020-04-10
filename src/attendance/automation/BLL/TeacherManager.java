@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class TeacherManager
 {
@@ -33,27 +33,9 @@ public class TeacherManager
         }
     }
 
-
-    public List<Teacher> getAllData()
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws SQLException
     {
-        try
-        {
-            return teacherDAO.getAllTeachers();
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(TeacherManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
-    {
-        return teacherDAO.checkLoginCredentials(teacherEmail, teacherPassword);
-    }
-
-    public List<Teacher> getTeacher(String teacherEmail) throws SQLException
-    {
-        return teacherDAO.getTeacher(teacherEmail);
+        return teacherDAO.checkTeacherCredentials(teacherEmail, teacherPassword);
     }
 
     public Teacher getSpecificTeacher(String teacherEmail) throws SQLException

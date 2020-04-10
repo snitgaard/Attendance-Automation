@@ -8,6 +8,7 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Classes;
 import attendance.automation.DAL.ClassesDAO;
 import attendance.automation.DAL.DalException;
+import attendance.automation.DAL.DalManagerFacade;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,21 +18,23 @@ import java.util.logging.Logger;
 
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class ClassesManager
 {
     private ClassesDAO classesDao;
+    private DalManagerFacade dalFacade;
 
+    // Constructor retrieving the ClassesDAO Class.    
     public ClassesManager() throws IOException
     {
         classesDao = new ClassesDAO();
     }
 
-    public boolean createClasses(int classesId, String classesName, int studentId, int teacherId)
-    {
-        return classesDao.createClasses(classesId, classesName, studentId, teacherId);
-    }
+//    public boolean createClasses(int classesId, String classesName, int studentId, int teacherId)
+//    {
+//        return classes.createClasses(classesId, classesName, studentId, teacherId);
+//    }
 
     public List<String> getAllClasses()
     {
@@ -45,16 +48,16 @@ public class ClassesManager
         return null;
     }
 
-    public void deleteClasses(Classes classes) throws DalException
-    {
-        classesDao.deleteClasses(classes);
-    }
+//    public void deleteClasses(Classes classes) throws DalException
+//    {
+//        classesDao.deleteClasses(classes);
+//    }
 
 
-    public boolean updateClasses(String classesName, int classesId)
-    {
-        return classesDao.updateClasses(classesName, classesId);
-    }
+//    public boolean updateClasses(String classesName, int classesId)
+//    {
+//        return classesDao.updateClasses(classesName, classesId);
+//    }
 
     public int getClassId(String classesName) throws SQLException
     {
