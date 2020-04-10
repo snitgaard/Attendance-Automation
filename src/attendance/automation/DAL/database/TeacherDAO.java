@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.DAL.database;
 
 import attendance.automation.BE.Teacher;
+import attendance.automation.DAL.DalException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class TeacherDAO
         dbCon = new DatabaseConnector();
     }
 
-    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -45,15 +46,15 @@ public class TeacherDAO
             }
             return false;
 
-        } catch (SQLServerException ex)
+        } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return false;
+            System.out.println(ex);
+            throw new DalException("Could not check teacher credentials");
         }
     }
 
     // This method gathers a list of all the Teachers, where the email is the parameter sent in.
-    public List<Teacher> getTeacher(String teacherEmail) throws SQLException
+    public List<Teacher> getTeacher(String teacherEmail) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -75,12 +76,15 @@ public class TeacherDAO
                 allTeachers.add(teacher);
             }
             return allTeachers;
-
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not get teacher");
         }
     }
 
     //This method grabs the first teacher on the list of teachers with that specific email
-    public Teacher getSpecificTeacher(String teacherEmail) throws SQLException
+    public Teacher getSpecificTeacher(String teacherEmail) throws DalException
     {
         return getTeacher(teacherEmail).get(0);
     }

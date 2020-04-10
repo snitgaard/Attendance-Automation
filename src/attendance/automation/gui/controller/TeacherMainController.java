@@ -35,16 +35,11 @@ import java.util.logging.Logger;
  */
 public class TeacherMainController implements Initializable
 {
-
-    CourseModel courseModel;
-
-    private TeacherModel teacherModel;
+    private Model model;
     private LoginController controller;
-    private ClassesModel classesModel;
-    private Teacher selectedTeacher;
     private Class selectedClass;
     private JFXButton classButton;
-    private StudentModel studentModel;
+    private Teacher selectedTeacher;
     private ObservableList<JFXButton> classButtons = FXCollections.observableArrayList();
     @FXML
     private ImageView btn_close;
@@ -65,8 +60,7 @@ public class TeacherMainController implements Initializable
     {
         try
         {
-            classesModel = new ClassesModel();
-            studentModel = new StudentModel();
+            model = new Model();
             generateClassButtons();
         } catch (IOException ex)
         {
@@ -75,6 +69,9 @@ public class TeacherMainController implements Initializable
         {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
+            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ModelException ex)
+        {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -128,13 +125,13 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    private void showTeacherClass() throws IOException, SQLException, ParseException
+    private void showTeacherClass() throws IOException, SQLException, ParseException, ModelException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
         Parent root = fxmlLoader.load();
 
         TeacherClassController taecherClassController = fxmlLoader.getController();
-        taecherClassController.ApplyImportantData(studentModel, this, selectedClass, classButton);
+        taecherClassController.ApplyImportantData(model, this, selectedClass, classButton);
         Stage stage1 = (Stage) ancMain.getScene().getWindow();
         stage1.close();
         Object c = fxmlLoader.getController();
@@ -201,25 +198,25 @@ public class TeacherMainController implements Initializable
         });
     }
 
-    void ApplyImportantData(TeacherModel teacherModel, LoginController controller, Teacher selectedTeacher)
+    void ApplyImportantData(Model model, LoginController controller, Teacher selectedTeacher)
     {
-        this.teacherModel = teacherModel;
+        this.model = model;
         this.controller = controller;
         this.selectedTeacher = selectedTeacher;
     }
 
-    public void generateClassButtons() throws SQLException, IOException, ParseException
+    public void generateClassButtons() throws SQLException, IOException, ParseException, ModelException
     {
-        for (int i = 1; i < classesModel.getAllClasses().size() + 1; i++)
+        for (int i = 1; i < model.getAllClasses().size() + 1; i++)
         {
             classButton = new JFXButton();
             classButtons.add(classButton);
-            classButton.setText(classesModel.getClassName(i));
+            classButton.setText(model.getClassName(i));
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
             Parent root = fxmlLoader.load();
             TeacherClassController teacherClassController = fxmlLoader.getController();
-            teacherClassController.ApplyImportantData(studentModel, this, selectedClass, classButton);
+            teacherClassController.ApplyImportantData(model, this, selectedClass, classButton);
 
             classButton.setOnMouseClicked(event
                     ->

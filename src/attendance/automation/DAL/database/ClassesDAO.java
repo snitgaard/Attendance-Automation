@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.DAL.database;
 
 import attendance.automation.BE.Classes;
+import attendance.automation.DAL.DalException;
 
 import java.io.IOException;
 import java.sql.*;
@@ -28,7 +29,7 @@ public class ClassesDAO
     /*
      *
      */
-    public List<String> getAllClasses() throws SQLException
+    public List<String> getAllClasses() throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -45,6 +46,10 @@ public class ClassesDAO
                 allClasses.add(classes + "");
             }
             return allClasses;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch all classes");
         }
     }
 
@@ -123,8 +128,7 @@ public class ClassesDAO
 //            return false;
 //        }
 //    }
-
-    public int getClassId(String classesName) throws SQLException
+    public int getClassId(String classesName) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -139,10 +143,14 @@ public class ClassesDAO
                 classId = rs.getInt("classId");
             }
             return classId;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch class id");
         }
     }
 
-    public String getClassName(int classesId) throws SQLException
+    public String getClassName(int classesId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -156,7 +164,11 @@ public class ClassesDAO
                 className = rs.getString("className");
             }
             return className;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch class name");
         }
     }
-
 }
+

@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.gui.Model;
 
 /**
- * @author The Cowboys
+ *
+ * @author CSnit
  */
-public class DalException extends Exception
+public class ModelException extends Exception
 {
 
-    public DalException(String message)
+    public ModelException(String message)
     {
         super(message);
     }
-
+    
 }

@@ -38,10 +38,7 @@ public class CourseWindowController implements Initializable
 {
 
     Course course;
-    private CourseModel courseModel;
-    private ClassesModel classesModel;
-    private StudentCourseModel studentCourseModel;
-    private StudentModel studentModel;
+    private Model model;
 
     @FXML
     private TextField txt_courseName;
@@ -64,22 +61,22 @@ public class CourseWindowController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        courseModel = new CourseModel();
         try
         {
-            classesModel = new ClassesModel();
-            studentModel = new StudentModel();
-            studentCourseModel = new StudentCourseModel();
-            cb_selectClass.setItems(classesModel.getAllClasses());
+            model = new Model();
+            cb_selectClass.setItems(model.getAllClasses());
 
         } catch (IOException ex)
+        {
+            Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ModelException ex)
         {
             Logger.getLogger(CourseWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
-    private void createCourse(ActionEvent event) throws DalException, SQLException
+    private void createCourse(ActionEvent event) throws DalException, SQLException, ModelException
     {
         String course = txt_courseName.getText();
         String weekDay = txt_weekDay.getText();
@@ -97,13 +94,13 @@ public class CourseWindowController implements Initializable
             txt_weekDay.setBorder(warning);
         } else
         {
-            int classId = classesModel.getClassId(className);
-            courseModel.createCourses(course, weekDay, startTime, endTime, classId, courseDate);
+            int classId = model.getClassId(className);
+            model.createCourses(course, weekDay, startTime, endTime, classId, courseDate);
 
-            for (Student student : studentModel.getStudentClass(classesModel.getClassId(className)))
+            for (Student student : model.getStudentClass(model.getClassId(className)))
             {
 
-                studentCourseModel.createAttendance(courseModel.getSpecificCourse(course, weekDay, classesModel.getClassId(className), startTime, endTime,
+                model.createAttendance(model.getSpecificCourse(course, weekDay, model.getClassId(className), startTime, endTime,
                         courseDate), student.getId(), 0);
             }
 

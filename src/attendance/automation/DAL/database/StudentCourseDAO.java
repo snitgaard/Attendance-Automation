@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.DAL.database;
 
+import attendance.automation.DAL.DalException;
 import java.io.IOException;
 import java.sql.*;
 
@@ -21,7 +22,7 @@ public class StudentCourseDAO
         dbCon = new DatabaseConnector();
     }
 
-    public int getAttendance(int studentId, int courseId) throws SQLException
+    public int getAttendance(int studentId, int courseId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -38,10 +39,14 @@ public class StudentCourseDAO
             }
 
             return attended;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not get attendance");
         }
     }
 
-    public boolean updateAttendance(int attendance, int studentId, int courseId) throws SQLException
+    public boolean updateAttendance(int attendance, int studentId, int courseId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -55,11 +60,12 @@ public class StudentCourseDAO
             return true;
         } catch (SQLException ex)
         {
-            return false;
+            System.out.println(ex);
+            throw new DalException("Could not fetch all classes");
         }
     }
 
-    public int getCourseId(String courseDate, int classId, String startTime) throws SQLException
+    public int getCourseId(String courseDate, int classId, String startTime) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -77,11 +83,14 @@ public class StudentCourseDAO
                 courseId = rs.getInt("courseId");
             }
             return courseId;
-
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not get course id");
         }
     }
 
-    public int getStudentId(String studentName) throws SQLException
+    public int getStudentId(String studentName) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -98,11 +107,14 @@ public class StudentCourseDAO
             }
 
             return studentId;
-
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not get student id");
         }
     }
 
-    public boolean createAttendance(int courseId, int studentId, int attended)
+    public boolean createAttendance(int courseId, int studentId, int attended) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -121,12 +133,12 @@ public class StudentCourseDAO
             return false;
         } catch (SQLException ex)
         {
-            return false;
+            System.out.println(ex);
+            throw new DalException("Could not create attendance");
         }
-
     }
 
-    public int getAttendanceFromCourses(int courseId, int studentId) throws SQLException
+    public int getAttendanceFromCourses(int courseId, int studentId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -143,8 +155,11 @@ public class StudentCourseDAO
                 attendance = rs.getInt("attended");
             }
             return attendance;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch atrtendance from courses");
         }
-
     }
 }
 

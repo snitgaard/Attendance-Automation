@@ -6,8 +6,8 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Student;
-import attendance.automation.gui.Model.StudentModel;
-import attendance.automation.gui.Model.TeacherModel;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
@@ -35,9 +35,7 @@ import java.util.logging.Logger;
  */
 public class TeacherClassController implements Initializable
 {
-
-    private StudentModel studentModel;
-    private TeacherModel teacherModel;
+    private Model model;
     private Student selectedStudent;
     private StudentAttendanceController studentAttendanceController;
     private TeacherMainController controller;
@@ -72,20 +70,26 @@ public class TeacherClassController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        teacherModel = new TeacherModel();
+        try
+        {
+            model = new Model();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         nameTable.setCellValueFactory(new PropertyValueFactory<>("name"));
         classTable.setCellValueFactory(new PropertyValueFactory<>("email"));
         attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
     }
 
-    public void ApplyImportantData(StudentModel studentModel, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException, ParseException
+    public void ApplyImportantData(Model model, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException, ParseException, ModelException
     {
-        this.studentModel = studentModel;
+        this.model= model;
         this.controller = controller;
         this.selectedClass = selectedClass;
         this.classButton = classButton;
 //        int realUserData = Integer.parseInt(classButton.getText().substring(10));
-        attendanceView.setItems(studentModel.getAllStudentsClass(classButton.getText()));
+        attendanceView.setItems(model.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
         studentOverview();
         attendanceView.getSelectionModel().setCellSelectionEnabled(true);
@@ -107,8 +111,11 @@ public class TeacherClassController implements Initializable
                     Student selectedStudent = row.getItem();
                     try
                     {
-                        studentcontroller.ApplyImportantData(studentModel, studentAttendanceController, selectedStudent);
+                        studentcontroller.ApplyImportantData(model, studentAttendanceController, selectedStudent);
                     } catch (SQLException ex)
+                    {
+                        Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ModelException ex)
                     {
                         Logger.getLogger(TeacherClassController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -153,16 +160,16 @@ public class TeacherClassController implements Initializable
 
     }
 
-    private void setAverageAttendance() throws SQLException, ParseException
+    private void setAverageAttendance() throws SQLException, ParseException, ModelException
     {
         double totalAttendance = 0;
         double averageAttendance = 0;
-        for (int i = 0; i < studentModel.getAllStudentsClass(classButton.getText()).size(); i++)
+        for (int i = 0; i < model.getAllStudentsClass(classButton.getText()).size(); i++)
         {
-            totalAttendance += studentModel.getAllStudentsClass(classButton.getText()).get(i).getAttendance();
+            totalAttendance += model.getAllStudentsClass(classButton.getText()).get(i).getAttendance();
         }
 
-        averageAttendance = totalAttendance / studentModel.getAllStudentsClass(classButton.getText()).size();
+        averageAttendance = totalAttendance / model.getAllStudentsClass(classButton.getText()).size();
         DecimalFormat df = new DecimalFormat("#.##");
         averageLabel.setText(df.format((averageAttendance)) + " %");
         attendanceBar.setProgress(averageAttendance / 100);

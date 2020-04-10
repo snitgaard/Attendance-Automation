@@ -44,13 +44,11 @@ public class StudentAttendanceController implements Initializable
 {
 
     public static final long MSEC_SINCE_EPOCH = System.currentTimeMillis();
-    private StudentModel studentModel;
+    private Model model;
     private LoginController controller;
     private Student selectedStudent;
     private String IpAddress;
-    private StudentCourseModel studentCourseModel;
     private Course selectedCourse;
-    private CourseModel courseModel;
     @FXML
     private ImageView btn_close;
     private Course course;
@@ -83,16 +81,20 @@ public class StudentAttendanceController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
-        courseModel = new CourseModel();
-        studentCourseModel = new StudentCourseModel();
+        try
+        {
+            model = new Model();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
     //This method makes sure that we get the correct data object when logging in as a student
-    public void ApplyImportantData(StudentModel studentModel, LoginController controller, Student selectedStudent) throws SQLException
+    public void ApplyImportantData(Model model, LoginController controller, Student selectedStudent) throws SQLException, ModelException
     {
-        this.studentModel = studentModel;
+        this.model = model;
         this.controller = controller;
         this.selectedStudent = selectedStudent;
 
@@ -106,9 +108,9 @@ public class StudentAttendanceController implements Initializable
 
     }
 
-    public void getAttendanceFromCourse() throws SQLException
+    public void getAttendanceFromCourse() throws SQLException, ModelException
     {
-        List<Course> courseIds = courseModel.getAllCourses();
+        List<Course> courseIds = model.getAllCourses();
         List<Course> result = new ArrayList<>();
 
         LocalDate todaysDate = LocalDate.now();
@@ -132,7 +134,7 @@ public class StudentAttendanceController implements Initializable
 
         for (int i = 0; i < result.size(); i++)
         {
-            if (studentCourseModel.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1)
+            if (model.getAllCourseIds(result.get(i).getCourseId(), studentId) == 1)
             {
                 attendedCounter++;
             }
@@ -142,7 +144,7 @@ public class StudentAttendanceController implements Initializable
         double realAttendance = attendedCounter / result.size();
         double attendancePercentage = realAttendance * 100;
         String roundedAttendance = String.format("%.2f", attendancePercentage);
-        studentModel.updateAttendance(realAttendance * 100, studentId);
+        model.updateAttendancePercentage(realAttendance * 100, studentId);
         progressBar.setProgress(realAttendance);
         studentAttendancePercentage.setText(roundedAttendance + " %");
 
@@ -150,14 +152,14 @@ public class StudentAttendanceController implements Initializable
 
     // This method opens up a new stage with the Student Attendance Overview.
     @FXML
-    private void handleOverview(ActionEvent event) throws IOException, SQLException
+    private void handleOverview(ActionEvent event) throws IOException, SQLException, ModelException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
         Parent root = fxmlLoader.load();
         StudentAttendanceOverviewController studentcontroller = fxmlLoader.getController();
         // Here the edit controller is given important data objects,
         // This secures that it is the correct ones we are working with.
-        studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
+        studentcontroller.ApplyImportantData(model, this, selectedStudent);
         StudentAttendanceOverviewController c = fxmlLoader.getController();
         Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
@@ -207,17 +209,17 @@ public class StudentAttendanceController implements Initializable
     * This method checks the date, the students class and which courses that specific class, have that specific day
     * For each course found within the day, a JFXToggleButton is created.
     */
-    public void generateAttendanceButtons() throws SQLException
+    public void generateAttendanceButtons() throws SQLException, ModelException
     {
 
         String classId = studentClassName.getText();
         int realClassId = Integer.parseInt(classId);
-        for (int i = 0; i < courseModel.getAllCourseDates(calendar.getValue().toString(), realClassId); i++)
+        for (int i = 0; i < model.getAllCourseDates(calendar.getValue().toString(), realClassId); i++)
         {
 
             attButton = new JFXToggleButton();
             attButtons.add(attButton);
-            attButton.setUserData(courseModel.getStartEndTime(calendar.getValue().toString(), realClassId).get(i));
+            attButton.setUserData(model.getStartEndTime(calendar.getValue().toString(), realClassId).get(i));
             attButton.setText(attButton.getUserData() + "");
 
             checkDate();
@@ -256,7 +258,7 @@ public class StudentAttendanceController implements Initializable
     }
 
     @FXML
-    private void changeDate(ActionEvent event) throws SQLException
+    private void changeDate(ActionEvent event) throws SQLException, ModelException
     {
 
         attButtons.clear();
@@ -269,7 +271,7 @@ public class StudentAttendanceController implements Initializable
         }
     }
 
-    private void checkDate() throws SQLException
+    private void checkDate() throws SQLException, ModelException
     {
         String studentId = studentClassName.getText();
         int realStudentId = Integer.parseInt(studentId);
@@ -304,9 +306,9 @@ public class StudentAttendanceController implements Initializable
                             attButton.setSelected(true);
                             attButton.setDisable(true);
 
-                            studentCourseModel.updateAttendance(1, studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
+                            model.updateAttendance(1, model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
 
-                        } else if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1)
+                        } else if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1)
                         {
                             attButton.setSelected(true);
                             attButton.setDisable(true);
@@ -336,7 +338,7 @@ public class StudentAttendanceController implements Initializable
             {
                 for (JFXToggleButton attBut : attButtons)
                 {
-                    if (studentCourseModel.getAttendance(studentCourseModel.getStudentId(nameTag.getText()), studentCourseModel.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
+                    if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
                     {
                         attBut.setSelected(true);
                     } else

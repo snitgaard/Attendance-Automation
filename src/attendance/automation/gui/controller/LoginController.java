@@ -25,6 +25,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
@@ -49,10 +51,8 @@ public class LoginController implements Initializable
     @FXML
     private ImageView btn_close;
 
-    private StudentModel studentModel;
-    private TeacherModel teacherModel;
-    private CourseModel courseModel;
-
+    private Model model;
+    
     public static String encryptThisString(String input)
     {
         try
@@ -94,8 +94,13 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        studentModel = new StudentModel();
-        teacherModel = new TeacherModel();
+        try
+        {
+            model = new Model();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /*
@@ -105,33 +110,33 @@ public class LoginController implements Initializable
     * else, it will tell you that something is wrong with the username and/or password
     */
     @FXML
-    private void handleLogInButton(ActionEvent event) throws IOException, SQLException
+    private void handleLogInButton(ActionEvent event) throws IOException, SQLException, ModelException
     {
         String username = usernameField.getText();
         String password = encryptThisString(passwordField.getText());
 
-        if (studentModel.checkStudentCredentials(username, password))
+        if (model.checkStudentCredentials(username, password))
         {
-            Student selectedStudent = studentModel.getSpecificStudent(username);
+            Student selectedStudent = model.getSpecificStudent(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
             StudentAttendanceController studentcontroller = fxmlLoader.getController();
             // Here the StudentAttendanceController is given important data objects,
             // This secures that it is the correct ones we are working with.
-            studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
+            studentcontroller.ApplyImportantData(model, this, selectedStudent);
 
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 
-        } else if (teacherModel.checkTeacherCredentials(username, password))
+        } else if (model.checkTeacherCredentials(username, password))
         {
-            Teacher selectedTeacher = teacherModel.getSpecificTeacher(username);
+            Teacher selectedTeacher = model.getSpecificTeacher(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
             TeacherMainController teachercontroller = fxmlLoader.getController();
             // Here the TeacherMainController is given important data objects,
             // This secures that it is the correct ones we are working with.
-            teachercontroller.ApplyImportantData(teacherModel, this, selectedTeacher);
+            teachercontroller.ApplyImportantData(model, this, selectedTeacher);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         } else

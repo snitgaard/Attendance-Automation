@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.DAL.database;
 
 import attendance.automation.BE.Course;
+import attendance.automation.DAL.DalException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
@@ -29,7 +30,7 @@ public class CourseDAO
     /*
      *
      */
-    public List<Course> getAllCourses() throws SQLException
+    public List<Course> getAllCourses() throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -50,6 +51,10 @@ public class CourseDAO
                 allCourses.add(course);
             }
             return allCourses;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch all courses");
         }
     }
 
@@ -78,7 +83,7 @@ public class CourseDAO
      * The SQL statement will be run.
      * A new course will be given with the name chosen.
      */
-    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate)
+    public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -103,7 +108,8 @@ public class CourseDAO
 
         } catch (SQLException ex)
         {
-            ex.printStackTrace();
+            System.out.println(ex);
+            throw new DalException("Could not create course");
         }
         return false;
     }
@@ -129,8 +135,7 @@ public class CourseDAO
 //            return false;
 //        }
 //    }
-
-    public int getAllCourseDates(String courseDate, int classId) throws SQLException
+    public int getAllCourseDates(String courseDate, int classId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -149,10 +154,14 @@ public class CourseDAO
             }
 
             return courseCount;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch all course dates");
         }
     }
 
-    public List<String> getAllClassNames() throws SQLException
+    public List<String> getAllClassNames() throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -166,10 +175,14 @@ public class CourseDAO
                 allClasses.add(classId + "");
             }
             return allClasses;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch all classe names");
         }
     }
 
-    public List<Course> getStartEndTime(String courseDate, int classId) throws SQLException
+    public List<Course> getStartEndTime(String courseDate, int classId) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -192,10 +205,14 @@ public class CourseDAO
                 startEndTimes.add(course);
             }
             return startEndTimes;
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch start and end time");
         }
     }
 
-    public List<Course> getCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws SQLServerException
+    public List<Course> getCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -219,17 +236,17 @@ public class CourseDAO
 
         } catch (SQLException ex)
         {
-            return null;
+            System.out.println(ex);
+            throw new DalException("Could not get course");
         }
-
     }
 
-    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws SQLServerException
+    public int getSpecificCourse(String courseName, String weekDay, int classId, String startTime, String endTime, String courseDate) throws DalException
     {
         return getCourse(courseName, weekDay, classId, startTime, endTime, courseDate).get(0).getCourseId();
     }
 
-    public List<Course> getAllCourseIds() throws SQLException
+    public List<Course> getAllCourseIds() throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -250,7 +267,10 @@ public class CourseDAO
             }
             return courseIdList;
         }
+        catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not fetch all course ids");
+        }
     }
-
-
 }
