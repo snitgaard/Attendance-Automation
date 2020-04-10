@@ -8,6 +8,7 @@ package attendance.automation.gui.controller;
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.*;
+import attendance.automation.gui.utilities.Checker;
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,7 +48,7 @@ public class StudentAttendanceController implements Initializable
     private StudentModel studentModel;
     private LoginController controller;
     private Student selectedStudent;
-    private String IpAddress;
+    private Checker checker;
     private StudentCourseModel studentCourseModel;
     private Course selectedCourse;
     private CourseModel courseModel;
@@ -86,6 +87,7 @@ public class StudentAttendanceController implements Initializable
 
         courseModel = new CourseModel();
         studentCourseModel = new StudentCourseModel();
+        checker = new Checker();
 
     }
 
@@ -240,20 +242,7 @@ public class StudentAttendanceController implements Initializable
     }
 
     // This method checks if the users IP Adress is equal to that of EASV.
-    private boolean checker() throws UnknownHostException
-    {
-        IpAddress = InetAddress.getLocalHost().getHostAddress();
-
-        String[] adr = IpAddress.split("\\.");
-        for (int i = 0; i < adr.length - 1; i++)
-        {
-            if (adr[0].equals("172") && adr[1].equals("17") && adr[2].equals("176"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+    
 
     @FXML
     private void changeDate(ActionEvent event) throws SQLException
@@ -297,7 +286,7 @@ public class StudentAttendanceController implements Initializable
             {
                 try
                 {
-                    if (checker() == true)
+                    if (checker.checker() == true)
                     {
                         if (x.after(calendar2.getTime()) && x.before(calendar3.getTime()))
                         {
