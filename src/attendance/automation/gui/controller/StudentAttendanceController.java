@@ -49,10 +49,6 @@ public class StudentAttendanceController implements Initializable
     private LoginController controller;
     private Student selectedStudent;
     private Checker checker;
-    private Course selectedCourse;
-    @FXML
-    private ImageView btn_close;
-    private Course course;
     private double xOffset = 0;
     private double yOffset = 0;
     private String courseDate;

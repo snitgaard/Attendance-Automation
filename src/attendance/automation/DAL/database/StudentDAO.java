@@ -7,7 +7,6 @@ package attendance.automation.DAL.database;
 
 import attendance.automation.BE.Student;
 import attendance.automation.DAL.DalException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
 import java.sql.*;

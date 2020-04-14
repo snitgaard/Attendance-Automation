@@ -8,7 +8,6 @@ package attendance.automation.BLL;
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
 import attendance.automation.BE.Teacher;
-import attendance.automation.DAL.DalException;
 import java.text.ParseException;
 import java.util.List;
 

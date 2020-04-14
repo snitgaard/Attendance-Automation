@@ -14,8 +14,6 @@ import attendance.automation.DAL.DalManager;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
