@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.DAL.database;
 
 import attendance.automation.BE.Teacher;
+import attendance.automation.DAL.DalException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.io.IOException;
@@ -14,44 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author jigzi
+ * @author The Cowboys
  */
 public class TeacherDAO
 {
 
     private DatabaseConnector dbCon;
 
+    // Initializer for TeacherDAO, creates a connection with the databaseconnector, allowing the class to speak with the database
     public TeacherDAO() throws IOException
     {
         dbCon = new DatabaseConnector();
     }
 
-    public List<Teacher> getAllTeachers() throws SQLException
-    {
-        try (Connection con = dbCon.getConnection())
-        {
-            String sql = "SELECT * FROM Teacher;";
-            Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            ArrayList<Teacher> allTeachers = new ArrayList<>();
-            while (rs.next())
-            {
-                int id = rs.getInt("Id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                int courseId = rs.getInt("course");
-                String teacherPassword = rs.getString("teacherPassword");
-                int classId = rs.getInt("classId");
-
-                Teacher teacher = new Teacher(id, name, email, courseId, teacherPassword, classId);
-                allTeachers.add(teacher);
-            }
-            return allTeachers;
-
-        }
-    }
-
-    public boolean checkLoginCredentials(String teacherEmail, String teacherPassword) throws SQLException
+    public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -69,14 +46,15 @@ public class TeacherDAO
             }
             return false;
 
-        } catch (SQLServerException ex)
+        } catch (SQLException ex)
         {
-            ex.printStackTrace();
-            return false;
+            System.out.println(ex);
+            throw new DalException("Could not check teacher credentials");
         }
     }
 
-    public List<Teacher> getTeacher(String teacherEmail) throws SQLException
+    // This method gathers a list of all the Teachers, where the email is the parameter sent in.
+    public List<Teacher> getTeacher(String teacherEmail) throws DalException
     {
         try (Connection con = dbCon.getConnection())
         {
@@ -98,11 +76,15 @@ public class TeacherDAO
                 allTeachers.add(teacher);
             }
             return allTeachers;
-
+        } catch (SQLException ex)
+        {
+            System.out.println(ex);
+            throw new DalException("Could not get teacher");
         }
     }
 
-    public Teacher getSpecificTeacher(String teacherEmail) throws SQLException
+    //This method grabs the first teacher on the list of teachers with that specific email
+    public Teacher getSpecificTeacher(String teacherEmail) throws DalException
     {
         return getTeacher(teacherEmail).get(0);
     }

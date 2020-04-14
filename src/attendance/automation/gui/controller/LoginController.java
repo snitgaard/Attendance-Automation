@@ -25,11 +25,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * FXML Controller class
  *
- * @author CSnit
+ * @author The Cowboys
  */
 public class LoginController implements Initializable
 {
@@ -49,10 +51,8 @@ public class LoginController implements Initializable
     @FXML
     private ImageView btn_close;
 
-    private StudentModel studentModel;
-    private TeacherModel teacherModel;
-    private CourseModel courseModel;
-
+    private Model model;
+    
     public static String encryptThisString(String input)
     {
         try
@@ -94,38 +94,49 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        studentModel = new StudentModel();
-        teacherModel = new TeacherModel();
+        try
+        {
+            model = new Model();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    /*
+    * This method checks what is written in the username and password fields. If they fit with a student login
+    * It will try to load the Student Main Menu as the correct student logged in as
+    * If not, it checks the same for teacher.
+    * else, it will tell you that something is wrong with the username and/or password
+    */
     @FXML
-    private void handleLogInButton(ActionEvent event) throws IOException, SQLException
+    private void handleLogInButton(ActionEvent event) throws IOException, SQLException, ModelException
     {
         String username = usernameField.getText();
         String password = encryptThisString(passwordField.getText());
 
-        if (studentModel.checkLoginCredentials(username, password))
+        if (model.checkStudentCredentials(username, password))
         {
-            Student selectedStudent = studentModel.getSpecificStudent(username);
+            Student selectedStudent = model.getSpecificStudent(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendance.fxml"));
             redirectToStage(fxmlLoader);
             StudentAttendanceController studentcontroller = fxmlLoader.getController();
-            // Here the edit controller is given important data objects,
+            // Here the StudentAttendanceController is given important data objects,
             // This secures that it is the correct ones we are working with.
-            studentcontroller.ApplyImportantData(studentModel, this, selectedStudent);
+            studentcontroller.ApplyImportantData(model, this, selectedStudent);
 
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
 
-        } else if (teacherModel.checkLoginCredentials(username, password))
+        } else if (model.checkTeacherCredentials(username, password))
         {
-            Teacher selectedTeacher = teacherModel.getSpecificTeacher(username);
+            Teacher selectedTeacher = model.getSpecificTeacher(username);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherMain.fxml"));
             redirectToStage(fxmlLoader);
             TeacherMainController teachercontroller = fxmlLoader.getController();
-            // Here the edit controller is given important data objects,
+            // Here the TeacherMainController is given important data objects,
             // This secures that it is the correct ones we are working with.
-            teachercontroller.ApplyImportantData(teacherModel, this, selectedTeacher);
+            teachercontroller.ApplyImportantData(model, this, selectedTeacher);
             Stage stage = (Stage) btnLogin.getScene().getWindow();
             stage.close();
         } else
@@ -137,6 +148,10 @@ public class LoginController implements Initializable
         }
     }
 
+    /*
+    * This method ensures proper creating of a new stage.
+    * It is called in the checkLoginCredentials method to open up a new window of teachermain or studentattendance
+    */
     private void redirectToStage(FXMLLoader fxmlLoader) throws IOException
     {
         Parent root = fxmlLoader.load();
@@ -168,13 +183,15 @@ public class LoginController implements Initializable
         });
     }
 
+    // closes the stage, since this is the very first stage, it will close the program completely.
     @FXML
     private void close_app(MouseEvent event)
     {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-
+    
+    // minimizes the current stage
     @FXML
     private void minimize_app(MouseEvent event)
     {

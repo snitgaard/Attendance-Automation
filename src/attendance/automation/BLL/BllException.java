@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package attendance.automation.DAL;
+package attendance.automation.BLL;
 
 /**
- * @author The Cowboys
+ *
+ * @author CSnit
  */
-public class DalException extends Exception
+public class BllException extends Exception
 {
-
-    public DalException(String message)
+    public BllException(String message)
     {
         super(message);
     }
-
+    
 }

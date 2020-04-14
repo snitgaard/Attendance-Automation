@@ -6,7 +6,7 @@
 package attendance.automation.BE;
 
 /**
- * @author CSnit
+ * @author The Cowboys
  */
 public class Student extends Person
 {
