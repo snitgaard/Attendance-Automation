@@ -16,6 +16,9 @@ public class Checker
 {
     private String IpAddress;
     
+    
+    // This method checks the ip of the user, and checks if it matches the schools
+    
     public boolean checker() throws UnknownHostException
     {
         IpAddress = InetAddress.getLocalHost().getHostAddress();
@@ -23,7 +26,7 @@ public class Checker
         String[] adr = IpAddress.split("\\.");
         for (int i = 0; i < adr.length - 1; i++)
         {
-            if (adr[0].equals("172") && adr[1].equals("17") && adr[2].equals("176"))
+            if (adr[0].equals("172") && adr[1].equals("2") && adr[2].equals("161"))
             {
                 return true;
             }
