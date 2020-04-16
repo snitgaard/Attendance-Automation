@@ -6,11 +6,13 @@
 package attendance.automation.DAL.database;
 
 import attendance.automation.DAL.DalException;
+
 import java.io.IOException;
 import java.sql.*;
 
 /**
  * StudentCourseDAO class
+ *
  * @author The Cowboys
  */
 public class StudentCourseDAO
@@ -23,15 +25,16 @@ public class StudentCourseDAO
     {
         dbCon = new DatabaseConnector();
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets attendance from the studentId and courseId
+     *
      * @param studentId
      * @param courseId
      * @return attendance from database
-     * @throws DalException 
+     * @throws DalException
      */
     public int getAttendance(int studentId, int courseId) throws DalException
     {
@@ -56,16 +59,17 @@ public class StudentCourseDAO
             throw new DalException("Could not get attendance");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Updates the attendance based on attendance, studentId and courseId
+     *
      * @param attendance
      * @param studentId
      * @param courseId
      * @return true when attendance has been updated
-     * @throws DalException 
+     * @throws DalException
      */
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws DalException
     {
@@ -85,16 +89,17 @@ public class StudentCourseDAO
             throw new DalException("Could not fetch all classes");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a courseId int from the courseDate, classId and startTime
+     *
      * @param courseDate
      * @param classId
      * @param startTime
      * @return courseId int
-     * @throws DalException 
+     * @throws DalException
      */
     public int getCourseId(String courseDate, int classId, String startTime) throws DalException
     {
@@ -120,14 +125,15 @@ public class StudentCourseDAO
             throw new DalException("Could not get course id");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
-     * Gets student Id based on studentName 
+     * and the program. The SQL statement will be run afterwards.
+     * Gets student Id based on studentName
+     *
      * @param studentName
      * @return a studentId int
-     * @throws DalException 
+     * @throws DalException
      */
     public int getStudentId(String studentName) throws DalException
     {
@@ -152,16 +158,17 @@ public class StudentCourseDAO
             throw new DalException("Could not get student id");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Creates attendance based on courseId, studentId and attendance
+     *
      * @param courseId
      * @param studentId
      * @param attended
      * @return true if rows are affected, false if not
-     * @throws DalException 
+     * @throws DalException
      */
     public boolean createAttendance(int courseId, int studentId, int attended) throws DalException
     {
@@ -186,15 +193,16 @@ public class StudentCourseDAO
             throw new DalException("Could not create attendance");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets an int of attendance from courses based on courseId and studentId
+     *
      * @param courseId
      * @param studentId
      * @return attendance
-     * @throws DalException 
+     * @throws DalException
      */
     public int getAttendanceFromCourses(int courseId, int studentId) throws DalException
     {

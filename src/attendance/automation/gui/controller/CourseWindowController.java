@@ -8,7 +8,8 @@ package attendance.automation.gui.controller;
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
 import attendance.automation.DAL.DalException;
-import attendance.automation.gui.Model.*;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import com.jfoenix.controls.JFXDatePicker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class CourseWindowController implements Initializable
     }
 
     /**
-     * Creates a course that gets added to the database. Gives an error if 
+     * Creates a course that gets added to the database. Gives an error if
      * a course name hasnt been put. Automatically sets attendance to be
      * "NOT_ATTENDED_YET" which corresponds to a 0.
      *
@@ -127,10 +128,11 @@ public class CourseWindowController implements Initializable
 
     }
 
-    
+
     /**
      * Closes the stage, since this is the very first stage, it will close the program completely.
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void close_app(MouseEvent event)
@@ -141,7 +143,8 @@ public class CourseWindowController implements Initializable
 
     /**
      * Minimizes the app.
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void minimize_app(MouseEvent event)

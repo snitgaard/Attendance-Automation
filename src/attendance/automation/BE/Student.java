@@ -7,6 +7,7 @@ package attendance.automation.BE;
 
 /**
  * Student BE Class
+ *
  * @author The Cowboys
  */
 public class Student extends Person
@@ -32,91 +33,101 @@ public class Student extends Person
     {
         super(id);
     }
-    
+
     /**
      * Gets the classId
+     *
      * @return classId
      */
     public int getClassId()
     {
         return classId;
     }
-    
+
     /**
      * Sets classId
-     * @param classId 
+     *
+     * @param classId
      */
     public void setClassId(int classId)
     {
         this.classId = classId;
     }
-    
+
     /**
      * Gets the student education
+     *
      * @return studentEducation
      */
     public String getStudentEducation()
     {
         return studentEducation;
     }
-    
+
     /**
      * Sets the student education
-     * @param studentEducation 
+     *
+     * @param studentEducation
      */
     public void setStudentEducation(String studentEducation)
     {
         this.studentEducation = studentEducation;
     }
-    
+
     /**
      * Gets the student password
-     * @return 
+     *
+     * @return
      */
     public String getStudentPassword()
     {
         return studentPassword;
     }
-    
+
     /**
      * Sets the student password
-     * @param studentPassword 
+     *
+     * @param studentPassword
      */
     public void setStudentPassword(String studentPassword)
     {
         this.studentPassword = studentPassword;
     }
-    
+
     /**
      * Gets the attendance
+     *
      * @return attendance
      */
     public double getAttendance()
     {
         return attendance;
     }
-    
+
     /**
      * Sets the attendance
-     * @param attendance 
+     *
+     * @param attendance
      */
     public void setAttendance(double attendance)
     {
         this.attendance = attendance;
     }
-    
+
     /**
      * Gets the semester
+     *
      * @return semester
      */
     public int getSemester()
     {
         return semester;
     }
-    
+
     /**
      * Sets the semester
-     * @param semester 
+     *
+     * @param semester
      */
     public void setSemester(int semester)
     {

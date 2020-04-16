@@ -15,6 +15,7 @@ import java.util.Properties;
 
 /**
  * DatabaseConnector Class
+ *
  * @author The Cowboys
  */
 public class DatabaseConnector
@@ -24,7 +25,8 @@ public class DatabaseConnector
     /**
      * This method reads a file in our root folder, the file consists of credentials needed to connect to the database.
      * The data gathered in the DBSettings file is then inserted and then connects to the database
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     DatabaseConnector() throws IOException
     {

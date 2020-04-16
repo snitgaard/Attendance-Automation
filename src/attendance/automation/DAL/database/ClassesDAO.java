@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * Classes Database Class
+ *
  * @author The Cowboys
  */
 public class ClassesDAO
@@ -26,13 +27,14 @@ public class ClassesDAO
     {
         dbCon = new DatabaseConnector();
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a list of strings containing all classes from the database
+     *
      * @return a list of all classes
-     * @throws DalException 
+     * @throws DalException
      */
     public List<String> getAllClasses() throws DalException
     {
@@ -57,14 +59,15 @@ public class ClassesDAO
             throw new DalException("Could not fetch all classes");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a classId int from the database based on specific className
+     *
      * @param classesName
      * @return classId int
-     * @throws DalException 
+     * @throws DalException
      */
     public int getClassId(String classesName) throws DalException
     {
@@ -87,14 +90,15 @@ public class ClassesDAO
             throw new DalException("Could not fetch class id");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a className string from the database based on a specific classId
+     *
      * @param classesId
      * @return className
-     * @throws DalException 
+     * @throws DalException
      */
     public String getClassName(int classesId) throws DalException
     {

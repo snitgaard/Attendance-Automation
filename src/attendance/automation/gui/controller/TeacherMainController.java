@@ -6,7 +6,8 @@
 package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Teacher;
-import attendance.automation.gui.Model.*;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
@@ -64,15 +65,7 @@ public class TeacherMainController implements Initializable
         {
             model = new Model();
             generateClassButtons();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ModelException ex)
+        } catch (IOException | SQLException | ParseException | ModelException ex)
         {
             Logger.getLogger(TeacherMainController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -80,7 +73,8 @@ public class TeacherMainController implements Initializable
 
     /**
      * Closes the stage
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void close_app(MouseEvent event)
@@ -90,7 +84,8 @@ public class TeacherMainController implements Initializable
 
     /**
      * Minimizes the stage
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void minimize_app(MouseEvent event)
@@ -101,10 +96,11 @@ public class TeacherMainController implements Initializable
 
     /**
      * Opens the Teacher class view
+     *
      * @throws IOException
      * @throws SQLException
      * @throws ParseException
-     * @throws ModelException 
+     * @throws ModelException
      */
     private void showTeacherClass() throws IOException, SQLException, ParseException, ModelException
     {
@@ -146,8 +142,9 @@ public class TeacherMainController implements Initializable
 
     /**
      * Opens the create course view
+     *
      * @param event
-     * @throws IOException 
+     * @throws IOException
      */
     @FXML
     private void createCourse(ActionEvent event) throws IOException
@@ -186,9 +183,10 @@ public class TeacherMainController implements Initializable
 
     /**
      * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     *
      * @param model
      * @param controller
-     * @param selectedTeacher 
+     * @param selectedTeacher
      */
     void ApplyImportantData(Model model, LoginController controller, Teacher selectedTeacher)
     {
@@ -201,10 +199,11 @@ public class TeacherMainController implements Initializable
      * Generates class buttons based on the amount of classes found in the database.
      * Sets the mouse click event to open a stage when you click on the class button,
      * and sets button sizes.
+     *
      * @throws SQLException
      * @throws IOException
      * @throws ParseException
-     * @throws ModelException 
+     * @throws ModelException
      */
     public void generateClassButtons() throws SQLException, IOException, ParseException, ModelException
     {

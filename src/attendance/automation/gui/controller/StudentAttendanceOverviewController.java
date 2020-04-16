@@ -10,7 +10,6 @@ import attendance.automation.BE.Student;
 import attendance.automation.gui.Model.Model;
 import attendance.automation.gui.Model.ModelException;
 import com.jfoenix.controls.JFXProgressBar;
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -20,14 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,9 +34,9 @@ import java.util.logging.Logger;
  *
  * @author The Cowboys
  */
-public class StudentAttendanceOverviewController implements Initializable {
+public class StudentAttendanceOverviewController implements Initializable
+{
 
-    private StudentAttendanceController controller;
     private Student selectedStudent;
 
     private Model model;
@@ -60,7 +58,8 @@ public class StudentAttendanceOverviewController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         try
         {
             model = new Model();
@@ -70,18 +69,19 @@ public class StudentAttendanceOverviewController implements Initializable {
         }
     }
 
-    
+
     /**
      * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     *
      * @param model
      * @param controller
      * @param selectedStudent
      * @throws SQLException
-     * @throws ModelException 
+     * @throws ModelException
      */
-    public void ApplyImportantData(Model model, StudentAttendanceController controller, Student selectedStudent) throws SQLException, ModelException {
+    public void ApplyImportantData(Model model, StudentAttendanceController controller, Student selectedStudent) throws SQLException, ModelException
+    {
         this.model = model;
-        this.controller = controller;
         this.selectedStudent = selectedStudent;
         attendanceChart.getData().clear();
 
@@ -93,16 +93,18 @@ public class StudentAttendanceOverviewController implements Initializable {
     }
 
     /**
-     * A line chart is defined, x axis as "days" y axis as "attendance". 
+     * A line chart is defined, x axis as "days" y axis as "attendance".
      * 6 lists are then created, 1 for all the courses, and the rest for the weekdays (monday-friday).
-     * Current time is defined, and checks if the weekdays of the courses match any of weekdays, and adds the result to the empty result lists created earlier. 
+     * Current time is defined, and checks if the weekdays of the courses match any of weekdays, and adds the result to the empty result lists created earlier.
      * 5 different for-loops are then created, again corresponding to the days of the week. It counts attendance on each of the weekdays by using the resultlists
      * created and checking which courses are on the different days.
      * Finally, the attendance is calculated and formatted to be percentages and the results are then added to the linechart data.
+     *
      * @throws SQLException
-     * @throws ModelException 
+     * @throws ModelException
      */
-    private void buildLineChart() throws SQLException, ModelException {
+    private void buildLineChart() throws SQLException, ModelException
+    {
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Days");
 
@@ -121,20 +123,27 @@ public class StudentAttendanceOverviewController implements Initializable {
 
         LocalDate todaysDate = LocalDate.now();
 
-        for (Course courses : courseIds) {
+        for (Course courses : courseIds)
+        {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate localCourseDate = LocalDate.parse(courses.getCourseDate(), formatter);
-            if (courses.getWeekDay() != null && localCourseDate.isBefore(todaysDate) || localCourseDate.equals(todaysDate)) {
+            if (courses.getWeekDay() != null && localCourseDate.isBefore(todaysDate) || localCourseDate.equals(todaysDate))
+            {
 
-                if (courses.getWeekDay().equals("Monday")) {
+                if (courses.getWeekDay().equals("Monday"))
+                {
                     resultMonday.add(courses);
-                } else if (courses.getWeekDay().equals("Tuesday")) {
+                } else if (courses.getWeekDay().equals("Tuesday"))
+                {
                     resultTuesday.add(courses);
-                } else if (courses.getWeekDay().equals("Wednesday")) {
+                } else if (courses.getWeekDay().equals("Wednesday"))
+                {
                     resultWednesday.add(courses);
-                } else if (courses.getWeekDay().equals("Thursday")) {
+                } else if (courses.getWeekDay().equals("Thursday"))
+                {
                     resultThursday.add(courses);
-                } else if (courses.getWeekDay().equals("Friday")) {
+                } else if (courses.getWeekDay().equals("Friday"))
+                {
                     resultFriday.add(courses);
                 }
             }
@@ -145,33 +154,43 @@ public class StudentAttendanceOverviewController implements Initializable {
         double attendedThursdayCounter = 0;
         double attendedFridayCounter = 0;
 
-        for (int i = 0; i < resultMonday.size(); i++) {
-            if (model.getAllCourseIds(resultMonday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
+        for (int i = 0; i < resultMonday.size(); i++)
+        {
+            if (model.getAllCourseIds(resultMonday.get(i).getCourseId(), selectedStudent.getId()) == 1)
+            {
                 attendedMondayCounter++;
-                
+
             }
         }
 
-        for (int i = 0; i < resultTuesday.size(); i++) {
-            if (model.getAllCourseIds(resultTuesday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
+        for (int i = 0; i < resultTuesday.size(); i++)
+        {
+            if (model.getAllCourseIds(resultTuesday.get(i).getCourseId(), selectedStudent.getId()) == 1)
+            {
                 attendedTuesdayCounter++;
             }
         }
 
-        for (int i = 0; i < resultWednesday.size(); i++) {
-            if (model.getAllCourseIds(resultWednesday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
+        for (int i = 0; i < resultWednesday.size(); i++)
+        {
+            if (model.getAllCourseIds(resultWednesday.get(i).getCourseId(), selectedStudent.getId()) == 1)
+            {
                 attendedWednesdayCounter++;
             }
         }
 
-        for (int i = 0; i < resultThursday.size(); i++) {
-            if (model.getAllCourseIds(resultThursday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
+        for (int i = 0; i < resultThursday.size(); i++)
+        {
+            if (model.getAllCourseIds(resultThursday.get(i).getCourseId(), selectedStudent.getId()) == 1)
+            {
                 attendedThursdayCounter++;
             }
         }
 
-        for (int i = 0; i < resultFriday.size(); i++) {
-            if (model.getAllCourseIds(resultFriday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
+        for (int i = 0; i < resultFriday.size(); i++)
+        {
+            if (model.getAllCourseIds(resultFriday.get(i).getCourseId(), selectedStudent.getId()) == 1)
+            {
                 attendedFridayCounter++;
             }
         }
@@ -195,27 +214,32 @@ public class StudentAttendanceOverviewController implements Initializable {
     /**
      * Dynamically updates the data corresponding to which student is using the program.
      */
-    private void updateDynamicData() {
+    private void updateDynamicData()
+    {
         studentName.setText(selectedStudent.getName());
         studentEducation.setText(selectedStudent.getStudentEducation());
     }
-   
+
     /**
      * Closes the current stage
-     * @param event 
+     *
+     * @param event
      */
     @FXML
-    private void close_app(MouseEvent event) {
+    private void close_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-    
+
     /**
      * Minimizes the stage
-     * @param event 
+     *
+     * @param event
      */
     @FXML
-    private void minimize_app(MouseEvent event) {
+    private void minimize_app(MouseEvent event)
+    {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }

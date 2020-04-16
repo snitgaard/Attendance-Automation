@@ -7,6 +7,7 @@ package attendance.automation.BE;
 
 /**
  * Class BE class
+ *
  * @author The Cowboys
  */
 public class Classes
@@ -20,19 +21,21 @@ public class Classes
         this.classesId = classesId;
         this.classesName = classesName;
     }
-    
+
     /**
      * Gets the class Id
+     *
      * @return classesId
      */
     public int getClassesId()
     {
         return classesId;
     }
-    
+
     /**
      * Sets the class Id
-     * @param classesId 
+     *
+     * @param classesId
      */
     public void setClassesId(int classesId)
     {
@@ -41,16 +44,18 @@ public class Classes
 
     /**
      * Gets the class name
+     *
      * @return classesName
      */
     public String getClassesName()
     {
         return classesName;
     }
-    
+
     /**
      * Sets the class name
-     * @param classesName 
+     *
+     * @param classesName
      */
     public void setClassesName(String classesName)
     {
@@ -59,6 +64,7 @@ public class Classes
 
     /**
      * toString method for setting the className
+     *
      * @return classesName as toString.
      */
     @Override

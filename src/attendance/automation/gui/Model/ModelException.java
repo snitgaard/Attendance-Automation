@@ -7,6 +7,7 @@ package attendance.automation.gui.Model;
 
 /**
  * ModelException class
+ *
  * @author The Cowboys
  */
 public class ModelException extends Exception
@@ -16,5 +17,5 @@ public class ModelException extends Exception
     {
         super(message);
     }
-    
+
 }

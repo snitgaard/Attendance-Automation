@@ -5,19 +5,17 @@
  */
 package attendance.automation.gui.Model;
 
-import attendance.automation.BE.Course;
-import attendance.automation.BE.Student;
-import attendance.automation.BE.Teacher;
+import attendance.automation.BE.*;
 import attendance.automation.BLL.BllException;
 import attendance.automation.BLL.BllManager;
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
+
 /**
- *
  * @author CSnit
  */
 public class Model
@@ -301,11 +299,12 @@ public class Model
 
     /**
      * Updates attendance based on attendance, studentId and courseId
+     *
      * @param attendance
      * @param studentId
      * @param courseId
      * @return updateAttendance from bllManager, returns true if a row was added, false if not
-     * @throws ModelException 
+     * @throws ModelException
      */
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws ModelException
     {
@@ -320,10 +319,11 @@ public class Model
 
     /**
      * Gets an int of all courseIds based on courseId and studentId
+     *
      * @param courseId
      * @param studentId
      * @return getAttendanceFromCourses method from bllManager
-     * @throws ModelException 
+     * @throws ModelException
      */
     public int getAllCourseIds(int courseId, int studentId) throws ModelException
     {
@@ -338,10 +338,11 @@ public class Model
 
     /**
      * Checks if student credentials match the database entry of credentials basd on studentEmail and studentPassword
+     *
      * @param studentEmail
      * @param studentPassword
      * @return true if the credentials match, false if not from the bllManager
-     * @throws ModelException 
+     * @throws ModelException
      */
     public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws ModelException
     {
@@ -356,9 +357,10 @@ public class Model
 
     /**
      * Gets a list of all students based on studentEmail
+     *
      * @param studentEmail
-     * @return getStudent list from the bllManager 
-     * @throws ModelException 
+     * @return getStudent list from the bllManager
+     * @throws ModelException
      */
     public List<Student> getStudent(String studentEmail) throws ModelException
     {
@@ -373,9 +375,10 @@ public class Model
 
     /**
      * Gets a specific student based on studentEmail from the bllManager
+     *
      * @param studentEmail
      * @return getSpecificStudent from the bllManager
-     * @throws ModelException 
+     * @throws ModelException
      */
     public Student getSpecificStudent(String studentEmail) throws ModelException
     {
@@ -390,9 +393,10 @@ public class Model
 
     /**
      * Gets a list of students in a class based on classId
+     *
      * @param classId
      * @return getStudentClass method from bllManager
-     * @throws ModelException 
+     * @throws ModelException
      */
     public List<Student> getStudentClass(int classId) throws ModelException
     {
@@ -407,10 +411,11 @@ public class Model
 
     /**
      * Updates the attendancePercentage based on attendance and studentId
+     *
      * @param attendance
      * @param studentId
      * @return true if row was affected, false if not
-     * @throws ModelException 
+     * @throws ModelException
      */
     public boolean updateAttendancePercentage(double attendance, int studentId) throws ModelException
     {
@@ -425,10 +430,11 @@ public class Model
 
     /**
      * Gets an ObservableList of all students based on className through FXCollections
+     *
      * @param className
      * @return an observableList of all students
      * @throws ModelException
-     * @throws ParseException 
+     * @throws ParseException
      */
     public ObservableList<Student> getAllStudentsClass(String className) throws ModelException, ParseException
     {
@@ -444,12 +450,13 @@ public class Model
     }
 
     /**
-     * Checks if the teacher credentials match if it matches with an entry in the 
+     * Checks if the teacher credentials match if it matches with an entry in the
      * database based on teacherEmail and teacherPassword
+     *
      * @param teacherEmail
      * @param teacherPassword
      * @return true if credentials match a database entry, false if not
-     * @throws ModelException 
+     * @throws ModelException
      */
     public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws ModelException
     {
@@ -461,12 +468,13 @@ public class Model
             throw new ModelException(ex.getMessage());
         }
     }
-    
+
     /**
      * Gets a specific teacher based on teacherEmail
+     *
      * @param teacherEmail
      * @return specific teacher from bllManager
-     * @throws ModelException 
+     * @throws ModelException
      */
     public Teacher getSpecificTeacher(String teacherEmail) throws ModelException
     {

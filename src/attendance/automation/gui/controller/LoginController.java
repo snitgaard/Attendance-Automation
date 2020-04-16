@@ -7,7 +7,8 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Student;
 import attendance.automation.BE.Teacher;
-import attendance.automation.gui.Model.*;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import com.jfoenix.controls.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,16 +52,17 @@ public class LoginController implements Initializable
     private ImageView btn_close;
 
     private Model model;
-    
+
     /**
      * Algorithm "SHA-512" is called through getInstance. Digest method then gets called
      * to calculate the message diest of the input string and returned as an array of byte.
      * The byte gets converted into BigInteger, and the message is converted into a
-     * hex value. Lastly it adds preceding 0's to make the hashed text 32-bit 
+     * hex value. Lastly it adds preceding 0's to make the hashed text 32-bit
+     *
      * @param input
      * @return the hashtext
      */
-    public static String encryptThisString(String input)
+    public static String encryptThisString(String input) throws RuntimeException
     {
         try
         {
@@ -73,8 +75,7 @@ public class LoginController implements Initializable
                 hashtext = "0" + hashtext;
             }
             return hashtext;
-        }
-        catch (NoSuchAlgorithmException e)
+        } catch (NoSuchAlgorithmException e)
         {
             throw new RuntimeException(e);
         }
@@ -96,15 +97,16 @@ public class LoginController implements Initializable
     }
 
     /**
-    * This method checks what is written in the username and password fields. If they fit with a student login
-    * It will try to load the Student Main Menu as the correct student logged in as
-    * If not, it checks the same for teacher.
-    * else, it will tell you that something is wrong with the username and/or password.
-    * Hashes the password using encryptThisString method.
+     * This method checks what is written in the username and password fields. If they fit with a student login
+     * It will try to load the Student Main Menu as the correct student logged in as
+     * If not, it checks the same for teacher.
+     * else, it will tell you that something is wrong with the username and/or password.
+     * Hashes the password using encryptThisString method.
+     *
      * @param event
      * @throws IOException
      * @throws SQLException
-     * @throws ModelException 
+     * @throws ModelException
      */
     @FXML
     private void handleLogInButton(ActionEvent event) throws IOException, SQLException, ModelException
@@ -146,9 +148,9 @@ public class LoginController implements Initializable
     }
 
     /*
-    * This method ensures proper creating of a new stage.
-    * It is called in the checkLoginCredentials method to open up a new window of teachermain or studentattendance
-    */
+     * This method ensures proper creating of a new stage.
+     * It is called in the checkLoginCredentials method to open up a new window of teachermain or studentattendance
+     */
     private void redirectToStage(FXMLLoader fxmlLoader) throws IOException
     {
         Parent root = fxmlLoader.load();
@@ -182,7 +184,8 @@ public class LoginController implements Initializable
 
     /**
      * Closes the stage, since this is the very first stage, it will close the program completely.
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void close_app(MouseEvent event)
@@ -191,11 +194,12 @@ public class LoginController implements Initializable
         stage.close();
     }
 
-    
-   /**
-    * Minimizes the stage
-    * @param event 
-    */
+
+    /**
+     * Minimizes the stage
+     *
+     * @param event
+     */
     @FXML
     private void minimize_app(MouseEvent event)
     {

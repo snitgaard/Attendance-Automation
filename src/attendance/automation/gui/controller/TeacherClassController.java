@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -38,8 +39,6 @@ public class TeacherClassController implements Initializable
     private Model model;
     private Student selectedStudent;
     private StudentAttendanceController studentAttendanceController;
-    private TeacherMainController controller;
-    private Class selectedClass;
     private JFXButton classButton;
     private double xOffset = 0;
     private double yOffset = 0;
@@ -80,6 +79,7 @@ public class TeacherClassController implements Initializable
 
     /**
      * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     *
      * @param model
      * @param controller
      * @param selectedClass
@@ -87,13 +87,11 @@ public class TeacherClassController implements Initializable
      * @throws SQLException
      * @throws IOException
      * @throws ParseException
-     * @throws ModelException 
+     * @throws ModelException
      */
     public void ApplyImportantData(Model model, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException, ParseException, ModelException
     {
         this.model = model;
-        this.controller = controller;
-        this.selectedClass = selectedClass;
         this.classButton = classButton;
         attendanceView.setItems(model.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
@@ -102,9 +100,10 @@ public class TeacherClassController implements Initializable
     }
 
     /**
-     * Loads the student overview view if the teacher double clicks on a student in a class list. 
+     * Loads the student overview view if the teacher double clicks on a student in a class list.
+     *
      * @throws IOException
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void studentOverview() throws IOException, SQLException
     {
@@ -169,12 +168,13 @@ public class TeacherClassController implements Initializable
             return row;
         });
     }
-    
+
     /**
      * Calculates the average attendance of a class and formats the average.
+     *
      * @throws SQLException
      * @throws ParseException
-     * @throws ModelException 
+     * @throws ModelException
      */
     private void setAverageAttendance() throws SQLException, ParseException, ModelException
     {
@@ -192,7 +192,8 @@ public class TeacherClassController implements Initializable
 
     /**
      * Closes the stage
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void close_app(MouseEvent event)
@@ -202,7 +203,8 @@ public class TeacherClassController implements Initializable
 
     /**
      * Minimizes the app
-     * @param event 
+     *
+     * @param event
      */
     @FXML
     private void minimize_app(MouseEvent event)
@@ -213,7 +215,8 @@ public class TeacherClassController implements Initializable
 
     /**
      * Shows the teacher main view
-     * @throws IOException 
+     *
+     * @throws IOException
      */
     @FXML
     private void showTeacherMain() throws IOException
@@ -252,8 +255,7 @@ public class TeacherClassController implements Initializable
     }
 
     /**
-     * 
-     * @throws IOException 
+     * @throws IOException
      */
     private void showTeacherStudent() throws IOException
     {

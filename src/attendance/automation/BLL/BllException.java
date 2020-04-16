@@ -7,13 +7,15 @@ package attendance.automation.BLL;
 
 /**
  * BllException class
+ *
  * @author The Cowboys
  */
 public class BllException extends Exception
 {
     /**
      * BllException method for exception handling
-     * @param message 
+     *
+     * @param message
      */
     public BllException(String message)
     {

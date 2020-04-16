@@ -7,7 +7,8 @@ package attendance.automation.gui.controller;
 
 import attendance.automation.BE.Course;
 import attendance.automation.BE.Student;
-import attendance.automation.gui.Model.*;
+import attendance.automation.gui.Model.Model;
+import attendance.automation.gui.Model.ModelException;
 import attendance.automation.gui.utilities.Checker;
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
@@ -23,8 +24,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
+
 import java.io.IOException;
-import java.net.*;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -229,8 +232,8 @@ public class StudentAttendanceController implements Initializable
     }
 
     /*
-    * This method checks the date, the students class and which courses that specific class, have that specific day
-    * For each course found within the day, a JFXToggleButton is created and adde to the listView.
+     * This method checks the date, the students class and which courses that specific class, have that specific day
+     * For each course found within the day, a JFXToggleButton is created and adde to the listView.
      */
     public void generateAttendanceButtons() throws SQLException, ModelException
     {
@@ -290,14 +293,14 @@ public class StudentAttendanceController implements Initializable
      * Firstly, 3 calendars are defined. The first calendar is current time, the
      * others are the course time interval (start and end time).
      * 5 different scenarios can then happen:
-     * If the calendar is equal to current date, it should then check the IP. If the IP is true, it will check if the courses are on current time. 
-     * If the current time is in the course time, it will register you as attended. 
-     * If you're already attended, it will just disable the buttons as you're already attending. 
+     * If the calendar is equal to current date, it should then check the IP. If the IP is true, it will check if the courses are on current time.
+     * If the current time is in the course time, it will register you as attended.
+     * If you're already attended, it will just disable the buttons as you're already attending.
      * If you're not attended, the button will unselected and disabled.
      * If you're not on current date and you select a different date from the calender, it will generate the buttons equivalent to the date selected.
-     * 
+     *
      * @throws SQLException
-     * @throws ModelException 
+     * @throws ModelException
      */
     private void checkDate() throws SQLException, ModelException
     {
@@ -378,7 +381,7 @@ public class StudentAttendanceController implements Initializable
     }
 
     /**
-     * Location alert method to give an alert if you're not on the school IP. 
+     * Location alert method to give an alert if you're not on the school IP.
      */
     public void locationAlert()
     {

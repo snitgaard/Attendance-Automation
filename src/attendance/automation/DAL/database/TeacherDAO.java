@@ -27,12 +27,13 @@ public class TeacherDAO
 
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Checks if the teacher login provided matches with the credentials in the database
+     *
      * @param teacherEmail
      * @param teacherPassword
      * @return true if a row was found, false if not
-     * @throws DalException 
+     * @throws DalException
      */
     public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws DalException
     {
@@ -58,14 +59,15 @@ public class TeacherDAO
             throw new DalException("Could not check teacher credentials");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a list of teachers based on teacher email
+     *
      * @param teacherEmail
      * @return list of teachers
-     * @throws DalException 
+     * @throws DalException
      */
     public List<Teacher> getTeacher(String teacherEmail) throws DalException
     {
@@ -98,11 +100,12 @@ public class TeacherDAO
 
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Get index 0 of getTeacher method (the allTeachers list)
+     *
      * @param teacherEmail
      * @return
-     * @throws DalException 
+     * @throws DalException
      */
     public Teacher getSpecificTeacher(String teacherEmail) throws DalException
     {

@@ -29,12 +29,13 @@ public class StudentDAO
 
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets a list of all students and formats the attendance to be 2 decimals
+     *
      * @param className
      * @return list of all students
      * @throws DalException
-     * @throws ParseException 
+     * @throws ParseException
      */
     public List<Student> getAllStudentsClass(String className) throws DalException, ParseException
     {
@@ -78,15 +79,16 @@ public class StudentDAO
             throw new DalException("Could not parse decimals");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Checks the student credentials based on student email and password
+     *
      * @param studentEmail
      * @param studentPassword
      * @return true if credentials match with the database and false if not
-     * @throws DalException 
+     * @throws DalException
      */
     public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws DalException
     {
@@ -112,14 +114,15 @@ public class StudentDAO
             throw new DalException("Could not check student credentials");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
-     * Gets a list of students from studentEmail 
+     * and the program. The SQL statement will be run afterwards.
+     * Gets a list of students from studentEmail
+     *
      * @param studentEmail
      * @return list of students called selectedStudent
-     * @throws DalException 
+     * @throws DalException
      */
     public List<Student> getStudent(String studentEmail) throws DalException
     {
@@ -153,27 +156,29 @@ public class StudentDAO
             throw new DalException("Could not get student");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Gets specific student on index 0
+     *
      * @param studentEmail
      * @return index 0 of getStudent method
-     * @throws DalException 
+     * @throws DalException
      */
     public Student getSpecificStudent(String studentEmail) throws DalException
     {
         return getStudent(studentEmail).get(0);
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
-     * Gets a list of students from classId 
+     * and the program. The SQL statement will be run afterwards.
+     * Gets a list of students from classId
+     *
      * @param classId
      * @return list of students
-     * @throws DalException 
+     * @throws DalException
      */
     public List<Student> getStudentClass(int classId) throws DalException
     {
@@ -199,15 +204,16 @@ public class StudentDAO
             throw new DalException("Could not get student class");
         }
     }
-    
+
     /**
      * If called this method will create a connection between the database
-     * and the program. The SQL statement will be run afterwards. 
+     * and the program. The SQL statement will be run afterwards.
      * Updates attendance percentage based on attendance and studentId
+     *
      * @param attendance
      * @param studentId
      * @return true if attendance was updated
-     * @throws DalException 
+     * @throws DalException
      */
     public boolean updateAttendancePercentage(double attendance, int studentId) throws DalException
     {
