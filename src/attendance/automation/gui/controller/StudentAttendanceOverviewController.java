@@ -70,7 +70,15 @@ public class StudentAttendanceOverviewController implements Initializable {
         }
     }
 
-    // This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+    
+    /**
+     * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     * @param model
+     * @param controller
+     * @param selectedStudent
+     * @throws SQLException
+     * @throws ModelException 
+     */
     public void ApplyImportantData(Model model, StudentAttendanceController controller, Student selectedStudent) throws SQLException, ModelException {
         this.model = model;
         this.controller = controller;
@@ -82,9 +90,18 @@ public class StudentAttendanceOverviewController implements Initializable {
         studentAttendancePercentage.setText(df.format(selectedStudent.getAttendance()) + " %");
         updateDynamicData();
         buildLineChart();
-
     }
 
+    /**
+     * A line chart is defined, x axis as "days" y axis as "attendance". 
+     * 6 lists are then created, 1 for all the courses, and the rest for the weekdays (monday-friday).
+     * Current time is defined, and checks if the weekdays of the courses match any of weekdays, and adds the result to the empty result lists created earlier. 
+     * 5 different for-loops are then created, again corresponding to the days of the week. It counts attendance on each of the weekdays by using the resultlists
+     * created and checking which courses are on the different days.
+     * Finally, the attendance is calculated and formatted to be percentages and the results are then added to the linechart data.
+     * @throws SQLException
+     * @throws ModelException 
+     */
     private void buildLineChart() throws SQLException, ModelException {
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Days");
@@ -120,10 +137,8 @@ public class StudentAttendanceOverviewController implements Initializable {
                 } else if (courses.getWeekDay().equals("Friday")) {
                     resultFriday.add(courses);
                 }
-
             }
         }
-
         double attendedMondayCounter = 0;
         double attendedTuesdayCounter = 0;
         double attendedWednesdayCounter = 0;
@@ -133,6 +148,7 @@ public class StudentAttendanceOverviewController implements Initializable {
         for (int i = 0; i < resultMonday.size(); i++) {
             if (model.getAllCourseIds(resultMonday.get(i).getCourseId(), selectedStudent.getId()) == 1) {
                 attendedMondayCounter++;
+                
             }
         }
 
@@ -176,23 +192,31 @@ public class StudentAttendanceOverviewController implements Initializable {
         attendanceChart.getData().add(data);
     }
 
+    /**
+     * Dynamically updates the data corresponding to which student is using the program.
+     */
     private void updateDynamicData() {
         studentName.setText(selectedStudent.getName());
         studentEducation.setText(selectedStudent.getStudentEducation());
     }
-
-    // This closes the current stage/window.
+   
+    /**
+     * Closes the current stage
+     * @param event 
+     */
     @FXML
     private void close_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
-
-    // This minimizes the window.
+    
+    /**
+     * Minimizes the stage
+     * @param event 
+     */
     @FXML
     private void minimize_app(MouseEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
-
 }

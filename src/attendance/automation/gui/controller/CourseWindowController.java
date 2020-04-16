@@ -39,6 +39,7 @@ public class CourseWindowController implements Initializable
 
     Course course;
     private Model model;
+    private int NOT_ATTENDED_YET = 0;
 
     @FXML
     private TextField txt_courseName;
@@ -75,6 +76,16 @@ public class CourseWindowController implements Initializable
         }
     }
 
+    /**
+     * Creates a course that gets added to the database. Gives an error if 
+     * a course name hasnt been put. Automatically sets attendance to be
+     * "NOT_ATTENDED_YET" which corresponds to a 0.
+     *
+     * @param event
+     * @throws DalException
+     * @throws SQLException
+     * @throws ModelException
+     */
     @FXML
     private void createCourse(ActionEvent event) throws DalException, SQLException, ModelException
     {
@@ -101,7 +112,7 @@ public class CourseWindowController implements Initializable
             {
 
                 model.createAttendance(model.getSpecificCourse(course, weekDay, model.getClassId(className), startTime, endTime,
-                        courseDate), student.getId(), 0);
+                        courseDate), student.getId(), NOT_ATTENDED_YET);
             }
 
         }
@@ -116,6 +127,11 @@ public class CourseWindowController implements Initializable
 
     }
 
+    
+    /**
+     * Closes the stage, since this is the very first stage, it will close the program completely.
+     * @param event 
+     */
     @FXML
     private void close_app(MouseEvent event)
     {
@@ -123,6 +139,10 @@ public class CourseWindowController implements Initializable
         stage.close();
     }
 
+    /**
+     * Minimizes the app.
+     * @param event 
+     */
     @FXML
     private void minimize_app(MouseEvent event)
     {

@@ -19,15 +19,22 @@ import java.util.List;
  */
 public class TeacherDAO
 {
-
     private DatabaseConnector dbCon;
 
-    // Initializer for TeacherDAO, creates a connection with the databaseconnector, allowing the class to speak with the database
     public TeacherDAO() throws IOException
     {
         dbCon = new DatabaseConnector();
     }
 
+    /**
+     * If called this method will create a connection between the database
+     * and the program. The SQL statement will be run afterwards. 
+     * Checks if the teacher login provided matches with the credentials in the database
+     * @param teacherEmail
+     * @param teacherPassword
+     * @return true if a row was found, false if not
+     * @throws DalException 
+     */
     public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws DalException
     {
         try (Connection con = dbCon.getConnection())
@@ -52,8 +59,15 @@ public class TeacherDAO
             throw new DalException("Could not check teacher credentials");
         }
     }
-
-    // This method gathers a list of all the Teachers, where the email is the parameter sent in.
+    
+    /**
+     * If called this method will create a connection between the database
+     * and the program. The SQL statement will be run afterwards. 
+     * Gets a list of teachers based on teacher email
+     * @param teacherEmail
+     * @return list of teachers
+     * @throws DalException 
+     */
     public List<Teacher> getTeacher(String teacherEmail) throws DalException
     {
         try (Connection con = dbCon.getConnection())
@@ -83,10 +97,16 @@ public class TeacherDAO
         }
     }
 
-    //This method grabs the first teacher on the list of teachers with that specific email
+    /**
+     * If called this method will create a connection between the database
+     * and the program. The SQL statement will be run afterwards. 
+     * Get index 0 of getTeacher method (the allTeachers list)
+     * @param teacherEmail
+     * @return
+     * @throws DalException 
+     */
     public Teacher getSpecificTeacher(String teacherEmail) throws DalException
     {
         return getTeacher(teacherEmail).get(0);
     }
-
 }

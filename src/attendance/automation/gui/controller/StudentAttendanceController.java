@@ -23,7 +23,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
-
 import java.io.IOException;
 import java.net.*;
 import java.sql.SQLException;
@@ -45,18 +44,18 @@ public class StudentAttendanceController implements Initializable
 {
 
     public static final long MSEC_SINCE_EPOCH = System.currentTimeMillis();
+    private int prefButtonSize = 62;
     private Model model;
     private LoginController controller;
     private Student selectedStudent;
     private Checker checker;
     private Course selectedCourse;
-    @FXML
-    private ImageView btn_close;
     private Course course;
     private double xOffset = 0;
     private double yOffset = 0;
     private String courseDate;
     private int attendance = 0;
+
     @FXML
     private JFXProgressBar progressBar;
     @FXML
@@ -67,6 +66,8 @@ public class StudentAttendanceController implements Initializable
     private JFXDatePicker calendar;
     @FXML
     private AnchorPane studentPane;
+    @FXML
+    private ImageView btn_close;
 
     private ObservableList<JFXToggleButton> attButtons = FXCollections.observableArrayList();
 
@@ -101,15 +102,22 @@ public class StudentAttendanceController implements Initializable
         this.selectedStudent = selectedStudent;
 
         nameTag.setText(selectedStudent.getName());
-
         studentClassName.setText(selectedStudent.getClassId() + "");
-
         calendar.setValue(LocalDate.now());
-
         getAttendanceFromCourse();
-
     }
 
+    /**
+     * Creates 2 lists and defines todays date. The enhanced for-loop searches
+     * through the courseIds list and checks if the course dates isnt null. If
+     * the course date isnt null, then the date is formatted. If the found date
+     * is before todays date and is equal to todays date, found date is added to
+     * the empty list "result". It then formats the attendance and adds a
+     * percentage symbol at the end.
+     *
+     * @throws SQLException
+     * @throws ModelException
+     */
     public void getAttendanceFromCourse() throws SQLException, ModelException
     {
         List<Course> courseIds = model.getAllCourses();
@@ -140,7 +148,6 @@ public class StudentAttendanceController implements Initializable
             {
                 attendedCounter++;
             }
-
         }
 
         double realAttendance = attendedCounter / result.size();
@@ -149,10 +156,16 @@ public class StudentAttendanceController implements Initializable
         model.updateAttendancePercentage(realAttendance * 100, studentId);
         progressBar.setProgress(realAttendance);
         studentAttendancePercentage.setText(roundedAttendance + " %");
-
     }
 
-    // This method opens up a new stage with the Student Attendance Overview.
+    /**
+     * Opens up the Student Attendance Overview stage
+     *
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     * @throws ModelException
+     */
     @FXML
     private void handleOverview(ActionEvent event) throws IOException, SQLException, ModelException
     {
@@ -192,14 +205,22 @@ public class StudentAttendanceController implements Initializable
 
     }
 
-    // This method closes the program.
+    /**
+     * Closes the program
+     *
+     * @param event
+     */
     @FXML
     private void close_app(MouseEvent event)
     {
         System.exit(0);
     }
 
-    // This method minimizes the stage.
+    /**
+     * Minimizes the stage
+     *
+     * @param event
+     */
     @FXML
     private void minimize_app(MouseEvent event)
     {
@@ -209,8 +230,8 @@ public class StudentAttendanceController implements Initializable
 
     /*
     * This method checks the date, the students class and which courses that specific class, have that specific day
-    * For each course found within the day, a JFXToggleButton is created.
-    */
+    * For each course found within the day, a JFXToggleButton is created and adde to the listView.
+     */
     public void generateAttendanceButtons() throws SQLException, ModelException
     {
 
@@ -237,15 +258,20 @@ public class StudentAttendanceController implements Initializable
             listView.setVisible(false);
         }
 
-        listView.setPrefHeight(attButtons.size() * 62);
+        listView.setPrefHeight(attButtons.size() * prefButtonSize);
 
         listView.setItems(attButtons);
 
     }
 
-    // This method checks if the users IP Adress is equal to that of EASV.
-    
-
+    /**
+     * Changes the calendar date and generates the buttons based on the calendar
+     * date.
+     *
+     * @param event
+     * @throws SQLException
+     * @throws ModelException
+     */
     @FXML
     private void changeDate(ActionEvent event) throws SQLException, ModelException
     {
@@ -260,6 +286,19 @@ public class StudentAttendanceController implements Initializable
         }
     }
 
+    /**
+     * Firstly, 3 calendars are defined. The first calendar is current time, the
+     * others are the course time interval (start and end time).
+     * 5 different scenarios can then happen:
+     * If the calendar is equal to current date, it should then check the IP. If the IP is true, it will check if the courses are on current time. 
+     * If the current time is in the course time, it will register you as attended. 
+     * If you're already attended, it will just disable the buttons as you're already attending. 
+     * If you're not attended, the button will unselected and disabled.
+     * If you're not on current date and you select a different date from the calender, it will generate the buttons equivalent to the date selected.
+     * 
+     * @throws SQLException
+     * @throws ModelException 
+     */
     private void checkDate() throws SQLException, ModelException
     {
         String studentId = studentClassName.getText();
@@ -295,9 +334,11 @@ public class StudentAttendanceController implements Initializable
                             attButton.setSelected(true);
                             attButton.setDisable(true);
 
-                            model.updateAttendance(1, model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
+                            model.updateAttendance(1, model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(),
+                                    realStudentId, attButton.getUserData().toString().substring(0, 5).trim()));
 
-                        } else if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1)
+                        } else if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(),
+                                realStudentId, attButton.getUserData().toString().substring(0, 5).trim())) == 1)
                         {
                             attButton.setSelected(true);
                             attButton.setDisable(true);
@@ -305,18 +346,10 @@ public class StudentAttendanceController implements Initializable
                         {
                             attButton.setSelected(false);
                             attButton.setDisable(true);
-
                         }
                     } else
                     {
-                        Stage onTop = (Stage) nameTag.getScene().getWindow();
-                        onTop.setAlwaysOnTop(true);
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Cannot submit attendance");
-                        alert.setHeaderText(null);
-                        alert.initOwner(onTop);
-                        alert.setContentText("Current location does not match with the school");
-                        alert.showAndWait();
+                        locationAlert();
                     }
 
                 } catch (UnknownHostException ex)
@@ -327,24 +360,35 @@ public class StudentAttendanceController implements Initializable
             {
                 for (JFXToggleButton attBut : attButtons)
                 {
-                    if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(), realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
+                    if (model.getAttendance(model.getStudentId(nameTag.getText()), model.getCourseId(calendar.getValue().toString(),
+                            realStudentId, attBut.getUserData().toString().substring(0, 5).trim())) == 1)
                     {
                         attBut.setSelected(true);
                     } else
                     {
                         attBut.setSelected(false);
                     }
-
                 }
-
                 attButton.setDisable(true);
             }
-
         } catch (ParseException ex)
         {
             Logger.getLogger(StudentAttendanceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
+    /**
+     * Location alert method to give an alert if you're not on the school IP. 
+     */
+    public void locationAlert()
+    {
+        Stage onTop = (Stage) nameTag.getScene().getWindow();
+        onTop.setAlwaysOnTop(true);
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Cannot submit attendance");
+        alert.setHeaderText(null);
+        alert.initOwner(onTop);
+        alert.setContentText("Current location does not match with the school");
+        alert.showAndWait();
+    }
 }

@@ -17,10 +17,12 @@ import java.util.List;
  */
 public interface DalFacade
 {
+    // ClassesDAO
     public List<String> getAllClasses() throws DalException;
     public int getClassId(String classesName) throws DalException;
     public String getClassName(int classesId) throws DalException;
     
+    // CourseDAO
     public List<Course> getAllCourses() throws DalException;
     public boolean createCourse(String courseName, String weekDay, String startTime, String endTime, int classId, String courseDate) throws DalException;
     public int getAllCourseDates(String courseDate, int classId) throws DalException;
@@ -29,7 +31,7 @@ public interface DalFacade
     public List<Course> getAllCourseIds() throws DalException;
     public List<String> getAllClassNames() throws DalException;
     
-    
+    // StudentCourseDAO
     public int getAttendance(int studentId, int courseId) throws DalException;
     public boolean updateAttendance(int attendance, int studentId, int courseId) throws DalException;
     public int getCourseId(String courseDate, int classId, String startTime) throws DalException;
@@ -37,7 +39,7 @@ public interface DalFacade
     public boolean createAttendance(int courseId, int studentId, int attended) throws DalException;
     public int getAttendanceFromCourses(int courseId, int studentId) throws DalException;
 
-    
+    // StudentDAO
     public List<Student> getAllStudentsClass(String className) throws DalException, ParseException;
     public boolean checkStudentCredentials(String studentEmail, String studentPassword) throws DalException;
     public List<Student> getStudent(String studentEmail) throws DalException;
@@ -45,6 +47,7 @@ public interface DalFacade
     public boolean updateAttendancePercentage(double attendance, int studentId) throws DalException;
     public List<Student> getStudentClass(int classId) throws DalException;
     
+    // TeacherDAO
     public boolean checkTeacherCredentials(String teacherEmail, String teacherPassword) throws DalException;
     public List<Teacher> getTeacher(String teacherEmail) throws DalException;
     public Teacher getSpecificTeacher(String teacherEmail) throws DalException;

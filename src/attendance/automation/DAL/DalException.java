@@ -6,14 +6,13 @@
 package attendance.automation.DAL;
 
 /**
+ * DalException class
  * @author The Cowboys
  */
 public class DalException extends Exception
 {
-
     public DalException(String message)
     {
         super(message);
     }
-
 }

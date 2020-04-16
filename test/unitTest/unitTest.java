@@ -11,7 +11,6 @@ import static attendance.automation.gui.controller.LoginController.encryptThisSt
 import attendance.automation.gui.utilities.Checker;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +51,11 @@ public class unitTest {
     private boolean throwException() {
         throw new IllegalArgumentException();
     }
-
+    
+    /**
+     * Test method that checks if the IP matches the school IP
+     * @throws UnknownHostException 
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testCheckIfIPIsCorrect() throws UnknownHostException {
         System.out.println("attendanceAutomationTest:TestIfCorrectIP");
@@ -63,7 +66,12 @@ public class unitTest {
             assertTrue(false);
         }
     }
-
+    
+    /**
+     * Test method that checks the login credentials.
+     * @throws UnknownHostException
+     * @throws ModelException 
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testLoginCredentials() throws UnknownHostException, ModelException {
         System.out.println("attendanceAutomationTest:TestLoginCredentials");
@@ -83,7 +91,11 @@ public class unitTest {
             assertTrue(false);
         }
     }
-
+    
+    /**
+     * Test method that checks if the encryption works
+     * @throws UnknownHostException 
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testIfEncryptWorks() throws UnknownHostException {
         System.out.println("attendanceAutomationTest:testIfEncryptWorks");

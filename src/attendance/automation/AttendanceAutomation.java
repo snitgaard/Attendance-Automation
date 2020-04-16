@@ -23,6 +23,11 @@ public class AttendanceAutomation extends Application
     private double xOffset = 0;
     private double yOffset = 0;
     
+    /**
+     * Start method for the application
+     * @param stage
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception
     {

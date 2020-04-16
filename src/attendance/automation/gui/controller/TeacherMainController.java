@@ -40,6 +40,8 @@ public class TeacherMainController implements Initializable
     private Class selectedClass;
     private JFXButton classButton;
     private Teacher selectedTeacher;
+    private double prefButtonHeight = 30.3;
+    private int prefButtonWidth = 68;
     private ObservableList<JFXButton> classButtons = FXCollections.observableArrayList();
     @FXML
     private ImageView btn_close;
@@ -76,12 +78,20 @@ public class TeacherMainController implements Initializable
         }
     }
 
+    /**
+     * Closes the stage
+     * @param event 
+     */
     @FXML
     private void close_app(MouseEvent event)
     {
         System.exit(0);
     }
 
+    /**
+     * Minimizes the stage
+     * @param event 
+     */
     @FXML
     private void minimize_app(MouseEvent event)
     {
@@ -89,42 +99,13 @@ public class TeacherMainController implements Initializable
         stage.setIconified(true);
     }
 
-    private void showTeacherCourse() throws IOException
-    {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherCourse.fxml"));
-        Parent root = fxmlLoader.load();
-
-        Stage stage1 = (Stage) ancMain.getScene().getWindow();
-        stage1.close();
-        Object c = fxmlLoader.getController();
-        Stage stage = new Stage();
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setAlwaysOnTop(true);
-        stage.setResizable(false);
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        root.setOnMousePressed(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent event)
-            {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            }
-        });
-    }
-
+    /**
+     * Opens the Teacher class view
+     * @throws IOException
+     * @throws SQLException
+     * @throws ParseException
+     * @throws ModelException 
+     */
     private void showTeacherClass() throws IOException, SQLException, ParseException, ModelException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherClass.fxml"));
@@ -163,6 +144,11 @@ public class TeacherMainController implements Initializable
         });
     }
 
+    /**
+     * Opens the create course view
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void createCourse(ActionEvent event) throws IOException
     {
@@ -198,6 +184,12 @@ public class TeacherMainController implements Initializable
         });
     }
 
+    /**
+     * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     * @param model
+     * @param controller
+     * @param selectedTeacher 
+     */
     void ApplyImportantData(Model model, LoginController controller, Teacher selectedTeacher)
     {
         this.model = model;
@@ -205,6 +197,15 @@ public class TeacherMainController implements Initializable
         this.selectedTeacher = selectedTeacher;
     }
 
+    /**
+     * Generates class buttons based on the amount of classes found in the database.
+     * Sets the mouse click event to open a stage when you click on the class button,
+     * and sets button sizes.
+     * @throws SQLException
+     * @throws IOException
+     * @throws ParseException
+     * @throws ModelException 
+     */
     public void generateClassButtons() throws SQLException, IOException, ParseException, ModelException
     {
         for (int i = 1; i < model.getAllClasses().size() + 1; i++)
@@ -222,7 +223,6 @@ public class TeacherMainController implements Initializable
                     ->
             {
                 {
-
                     Stage stage1 = (Stage) ancMain.getScene().getWindow();
                     stage1.close();
                     Object c = fxmlLoader.getController();
@@ -256,15 +256,12 @@ public class TeacherMainController implements Initializable
 
             });
         }
-
         Comparator<JFXButton> sortByName = (JFXButton b1, JFXButton b2) -> b1.getText().compareTo(b2.getText());
         Collections.sort(classButtons, sortByName);
         classListView.setItems(classButtons);
-        classButton.setPrefHeight(30.3);
+        classButton.setPrefHeight(prefButtonHeight);
         classListView.setPrefHeight(classButtons.size() * classButton.getPrefHeight());
-        classListView.setPrefWidth(68);
+        classListView.setPrefWidth(prefButtonWidth);
         classListView.setItems(classButtons);
-
     }
-
 }

@@ -35,7 +35,6 @@ import java.util.logging.Logger;
  */
 public class LoginController implements Initializable
 {
-
     @FXML
     private JFXTextField usernameField;
     @FXML
@@ -53,35 +52,28 @@ public class LoginController implements Initializable
 
     private Model model;
     
+    /**
+     * Algorithm "SHA-512" is called through getInstance. Digest method then gets called
+     * to calculate the message diest of the input string and returned as an array of byte.
+     * The byte gets converted into BigInteger, and the message is converted into a
+     * hex value. Lastly it adds preceding 0's to make the hashed text 32-bit 
+     * @param input
+     * @return the hashtext
+     */
     public static String encryptThisString(String input)
     {
         try
         {
-            // getInstance() method is called with algorithm SHA-512
             MessageDigest md = MessageDigest.getInstance("SHA-512");
-
-            // digest() method is called
-            // to calculate message digest of the input string
-            // returned as array of byte
             byte[] messageDigest = md.digest(input.getBytes());
-
-            // Convert byte array into signum representation
             BigInteger no = new BigInteger(1, messageDigest);
-
-            // Convert message digest into hex value
             String hashtext = no.toString(16);
-
-            // Add preceding 0s to make it 32 bit
             while (hashtext.length() < 32)
             {
                 hashtext = "0" + hashtext;
             }
-
-            // return the HashText
             return hashtext;
         }
-
-        // For specifying wrong message digest algorithms
         catch (NoSuchAlgorithmException e)
         {
             throw new RuntimeException(e);
@@ -103,12 +95,17 @@ public class LoginController implements Initializable
         }
     }
 
-    /*
+    /**
     * This method checks what is written in the username and password fields. If they fit with a student login
     * It will try to load the Student Main Menu as the correct student logged in as
     * If not, it checks the same for teacher.
-    * else, it will tell you that something is wrong with the username and/or password
-    */
+    * else, it will tell you that something is wrong with the username and/or password.
+    * Hashes the password using encryptThisString method.
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     * @throws ModelException 
+     */
     @FXML
     private void handleLogInButton(ActionEvent event) throws IOException, SQLException, ModelException
     {
@@ -183,15 +180,22 @@ public class LoginController implements Initializable
         });
     }
 
-    // closes the stage, since this is the very first stage, it will close the program completely.
+    /**
+     * Closes the stage, since this is the very first stage, it will close the program completely.
+     * @param event 
+     */
     @FXML
     private void close_app(MouseEvent event)
     {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
+
     
-    // minimizes the current stage
+   /**
+    * Minimizes the stage
+    * @param event 
+    */
     @FXML
     private void minimize_app(MouseEvent event)
     {

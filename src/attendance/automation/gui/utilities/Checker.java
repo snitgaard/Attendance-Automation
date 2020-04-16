@@ -9,13 +9,18 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- *
+ * IP Checker class
  * @author The Cowboys
  */
 public class Checker
 {
     private String IpAddress;
     
+    /**
+     * Checks to see if the IP Address matches the IP Address of EASV.
+     * @return true if IP matches, false if not.
+     * @throws UnknownHostException 
+     */
     public boolean checker() throws UnknownHostException
     {
         IpAddress = InetAddress.getLocalHost().getHostAddress();

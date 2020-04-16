@@ -6,6 +6,7 @@
 package attendance.automation.BE;
 
 /**
+ * Person BE Class
  * @author The Cowboys
  */
 public abstract class Person
@@ -26,48 +27,73 @@ public abstract class Person
     {
         this.id = id;
     }
-
+    
     public Person(String name)
     {
         this.name = name;
     }
-
-
+    
+    /**
+     * Gets the Id
+     * @return id
+     */
     public int getId()
     {
         return id;
     }
-
+    
+    /**
+     * Sets the id
+     * @param id 
+     */
     public void setId(int id)
     {
         this.id = id;
     }
-
+    
+    /**
+     * Gets the name
+     * @return name
+     */
     public String getName()
     {
         return name;
     }
-
+    
+    /**
+     * Sets the name
+     * @param name 
+     */
     public void setName(String name)
     {
         this.name = name;
     }
-
+    
+    /**
+     * Gets the email
+     * @return 
+     */
     public String getEmail()
     {
         return email;
     }
-
+    
+    /**
+     * Sets the email
+     * @param email 
+     */
     public void setEmail(String email)
     {
         this.email = email;
     }
-
+    
+    /**
+     * toString method for the person class
+     * @return 
+     */
     @Override
     public String toString()
     {
         return name;
     }
-
-
 }

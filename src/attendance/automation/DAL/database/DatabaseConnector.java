@@ -14,14 +14,17 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
+ * DatabaseConnector Class
  * @author The Cowboys
  */
 public class DatabaseConnector
 {
     private SQLServerDataSource dataSource;
 
-    /*This method reads a file in our github folder, the file consists of data needed to get on our database.
-     * It then inserts the data
+    /**
+     * This method reads a file in our root folder, the file consists of credentials needed to connect to the database.
+     * The data gathered in the DBSettings file is then inserted and then connects to the database
+     * @throws IOException 
      */
     DatabaseConnector() throws IOException
     {

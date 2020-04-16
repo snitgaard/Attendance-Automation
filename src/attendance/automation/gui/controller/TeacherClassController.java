@@ -18,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,20 +34,13 @@ import java.util.logging.Logger;
  */
 public class TeacherClassController implements Initializable
 {
+
     private Model model;
     private Student selectedStudent;
     private StudentAttendanceController studentAttendanceController;
     private TeacherMainController controller;
     private Class selectedClass;
     private JFXButton classButton;
-    @FXML
-    private ImageView btn_close;
-    @FXML
-    private AnchorPane ancMain;
-    private Label nameFour;
-    private Label nameTwo;
-    private Label nameOne;
-    private Label nameThree;
     private double xOffset = 0;
     private double yOffset = 0;
     @FXML
@@ -63,6 +55,10 @@ public class TeacherClassController implements Initializable
     private Label averageLabel;
     @FXML
     private ProgressBar attendanceBar;
+    @FXML
+    private ImageView btn_close;
+    @FXML
+    private AnchorPane ancMain;
 
     /**
      * Initializes the controller class.
@@ -82,19 +78,34 @@ public class TeacherClassController implements Initializable
         attendanceTable.setCellValueFactory(new PropertyValueFactory<>("attendance"));
     }
 
+    /**
+     * This method makes sure that we have the correct data with us, into the class. It also sets a lot of the relevant data.
+     * @param model
+     * @param controller
+     * @param selectedClass
+     * @param classButton
+     * @throws SQLException
+     * @throws IOException
+     * @throws ParseException
+     * @throws ModelException 
+     */
     public void ApplyImportantData(Model model, TeacherMainController controller, Class selectedClass, JFXButton classButton) throws SQLException, IOException, ParseException, ModelException
     {
-        this.model= model;
+        this.model = model;
         this.controller = controller;
         this.selectedClass = selectedClass;
         this.classButton = classButton;
-//        int realUserData = Integer.parseInt(classButton.getText().substring(10));
         attendanceView.setItems(model.getAllStudentsClass(classButton.getText()));
         setAverageAttendance();
         studentOverview();
         attendanceView.getSelectionModel().setCellSelectionEnabled(true);
     }
 
+    /**
+     * Loads the student overview view if the teacher double clicks on a student in a class list. 
+     * @throws IOException
+     * @throws SQLException 
+     */
     public void studentOverview() throws IOException, SQLException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/StudentAttendanceOverview.fxml"));
@@ -157,9 +168,14 @@ public class TeacherClassController implements Initializable
             });
             return row;
         });
-
     }
-
+    
+    /**
+     * Calculates the average attendance of a class and formats the average.
+     * @throws SQLException
+     * @throws ParseException
+     * @throws ModelException 
+     */
     private void setAverageAttendance() throws SQLException, ParseException, ModelException
     {
         double totalAttendance = 0;
@@ -168,20 +184,26 @@ public class TeacherClassController implements Initializable
         {
             totalAttendance += model.getAllStudentsClass(classButton.getText()).get(i).getAttendance();
         }
-
         averageAttendance = totalAttendance / model.getAllStudentsClass(classButton.getText()).size();
         DecimalFormat df = new DecimalFormat("#.##");
         averageLabel.setText(df.format((averageAttendance)) + " %");
         attendanceBar.setProgress(averageAttendance / 100);
     }
 
-
+    /**
+     * Closes the stage
+     * @param event 
+     */
     @FXML
     private void close_app(MouseEvent event)
     {
         System.exit(0);
     }
 
+    /**
+     * Minimizes the app
+     * @param event 
+     */
     @FXML
     private void minimize_app(MouseEvent event)
     {
@@ -189,6 +211,10 @@ public class TeacherClassController implements Initializable
         stage.setIconified(true);
     }
 
+    /**
+     * Shows the teacher main view
+     * @throws IOException 
+     */
     @FXML
     private void showTeacherMain() throws IOException
     {
@@ -225,6 +251,10 @@ public class TeacherClassController implements Initializable
         });
     }
 
+    /**
+     * 
+     * @throws IOException 
+     */
     private void showTeacherStudent() throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/attendance/automation/gui/view/TeacherStudent.fxml"));

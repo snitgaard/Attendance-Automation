@@ -6,8 +6,8 @@
 package attendance.automation.gui.Model;
 
 /**
- *
- * @author CSnit
+ * ModelException class
+ * @author The Cowboys
  */
 public class ModelException extends Exception
 {
